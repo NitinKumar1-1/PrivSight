@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShirtStore - Black Shirts</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <span class="brand">ShirtStore</span>
+    <nav>
+      <a href="#products">Products</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Controlled fake account data for the privacy demo. Not real. -->
+    <section class="account">
+      <h2>Signed in as</h2>
+      <dl>
+        <dt>Email</dt>
+        <dd>demo@example.com</dd>
+        <dt>Phone</dt>
+        <dd>9999999999</dd>
+      </dl>
+    </section>
+
+    <h1 id="products">Black Shirts</h1>
+
+    <!-- One Buy Now per product so the chosen target identifies the shirt. -->
+    <section class="product-grid">
+      <article class="product">
+        <div class="thumb"></div>
+        <h2>Black Shirt A</h2>
+        <p class="price">Price: ₹799</p>
+        <button id="buy_a" class="buy-button" data-product="Black Shirt A">Buy Now A</button>
+      </article>
+
+      <article class="product">
+        <div class="thumb"></div>
+        <h2>Black Shirt B</h2>
+        <p class="price">Price: ₹899</p>
+        <button id="buy_b" class="buy-button" data-product="Black Shirt B">Buy Now B</button>
+      </article>
+
+      <article class="product">
+        <div class="thumb"></div>
+        <h2>Black Shirt C</h2>
+        <p class="price">Price: ₹699</p>
+        <button id="buy_c" class="buy-button" data-product="Black Shirt C">Buy Now C</button>
+      </article>
+    </section>
+
+    <p id="purchase-status" class="status" hidden></p>
+
+    <section class="checkout">
+      <h2>Delivery details</h2>
+      <!-- Prefilled with fake test values so field-based detection has something to redact. -->
+      <form class="details" onsubmit="return false">
+        <label for="email">Email</label>
+        <input id="email" type="email" autocomplete="email" value="demo@example.com">
+
+        <label for="phone">Phone</label>
+        <input id="phone" type="tel" autocomplete="tel" value="9999999999">
+
+        <label for="password">Password</label>
+        <input id="password" type="password" autocomplete="current-password" value="DemoPassword123">
+
+        <label>Card number
+          <input name="card_number" type="text" autocomplete="cc-number" value="4111 1111 1111 1111">
+        </label>
+
+        <label>OTP
+          <input name="otp" type="text" autocomplete="one-time-code" value="123456">
+        </label>
+      </form>
+    </section>
+
+    <section id="about" class="about">
+      <p>ShirtStore is a local demo page used to test browser automation. All account details shown are fake test values.</p>
+    </section>
+  </main>
+
+  <script>
+    const status = document.getElementById("purchase-status");
+    const buttons = Array.from(document.querySelectorAll(".buy-button"));
+
+    for (const button of buttons) {
+      const label = button.textContent;
+      button.addEventListener("click", () => {
+        for (const other of buttons) {
+          other.classList.remove("clicked");
+        }
+        button.classList.add("clicked");
+        status.textContent = button.dataset.product + " Purchased (" + label + " clicked at " + new Date().toLocaleTimeString() + ")";
+        status.hidden = false;
+      });
+    }
+  </script>
+</body>
+</html>

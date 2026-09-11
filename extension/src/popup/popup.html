@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PrivSight</title>
+  <style>
+    body {
+      width: 360px;
+      margin: 0;
+      padding: 14px;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      font-size: 13px;
+      color: #1f2937;
+    }
+    h1 { font-size: 16px; margin: 0 0 12px; }
+    label { display: block; font-weight: 600; margin-bottom: 4px; }
+    textarea {
+      width: 100%;
+      box-sizing: border-box;
+      min-height: 60px;
+      padding: 8px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font: inherit;
+      resize: vertical;
+    }
+    button {
+      width: 100%;
+      margin-top: 8px;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background: #1d4ed8;
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button:disabled { background: #9ca3af; cursor: default; }
+    h2 { font-size: 13px; margin: 14px 0 6px; }
+
+    .badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 14px;
+    }
+    .badge-row h2 { margin: 0; }
+    .badge {
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      background: #e5e7eb;
+      color: #374151;
+    }
+    .badge.ok { background: #dcfce7; color: #166534; }
+    .badge.blocked { background: #fee2e2; color: #991b1b; }
+
+    #pipeline {
+      list-style: none;
+      margin: 6px 0 0;
+      padding: 6px 8px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+    }
+    #pipeline li {
+      display: flex;
+      justify-content: space-between;
+      padding: 3px 0;
+      cursor: help;
+    }
+    #pipeline .state {
+      font-size: 11px;
+      font-weight: 700;
+      color: #9ca3af;
+    }
+    #pipeline li[data-state="pass"] .state { color: #15803d; }
+    #pipeline li[data-state="fail"] .state { color: #b91c1c; }
+    #pipeline li[data-state="skipped"] .state { color: #6b7280; }
+
+    #status {
+      list-style: none;
+      margin: 0;
+      padding: 8px;
+      min-height: 40px;
+      background: #f3f4f6;
+      border-radius: 6px;
+    }
+    #status li { padding: 2px 0; }
+    #status li.success { color: #15803d; }
+    #status li.error { color: #b91c1c; }
+    details { margin-top: 12px; }
+    summary { cursor: pointer; font-weight: 600; font-size: 13px; }
+    #payload {
+      margin: 6px 0 0;
+      padding: 8px;
+      max-height: 220px;
+      overflow: auto;
+      background: #111827;
+      color: #e5e7eb;
+      border-radius: 6px;
+      font-size: 11px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .hint { margin: 4px 0 0; color: #6b7280; font-size: 11px; }
+  </style>
+</head>
+<body>
+  <h1>PrivSight</h1>
+
+  <label for="task">Task</label>
+  <textarea id="task">Find the cheapest black shirt and click Buy Now</textarea>
+  <button id="run">Run</button>
+
+  <div class="badge-row">
+    <h2>Privacy status</h2>
+    <span id="privacy-badge" class="badge idle">IDLE</span>
+  </div>
+  <ul id="pipeline">
+    <li data-stage="detect" data-state="pending"><span>Local PII detection</span><span class="state">PENDING</span></li>
+    <li data-stage="leakage" data-state="pending"><span>Leakage verification</span><span class="state">PENDING</span></li>
+    <li data-stage="firewall" data-state="pending"><span>Privacy Firewall</span><span class="state">PENDING</span></li>
+    <li data-stage="reason" data-state="pending"><span>Cloud reasoning</span><span class="state">PENDING</span></li>
+    <li data-stage="validate" data-state="pending"><span>Local action validator</span><span class="state">PENDING</span></li>
+    <li data-stage="execute" data-state="pending"><span>Browser execution</span><span class="state">PENDING</span></li>
+  </ul>
+  <p class="hint">Hover a row for details. Raw values are never shown.</p>
+
+  <h2>Status</h2>
+  <ul id="status"></ul>
+
+  <details>
+    <summary>Sanitized payload sent to backend</summary>
+    <p class="hint">Exact request body. Sensitive values appear only as placeholders.</p>
+    <pre id="payload">(run a task to see the payload)</pre>
+  </details>
+
+  <script type="module" src="popup.ts"></script>
+</body>
+</html>

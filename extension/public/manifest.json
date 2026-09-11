@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "PrivSight",
+  "version": "0.3.0",
+  "description": "Privacy-preserving browser agent. Phase 3: local PII redaction, privacy firewall, leakage verification and local action validation.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "http://localhost:8000/*"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "PrivSight"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
