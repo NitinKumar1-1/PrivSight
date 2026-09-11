@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Eval - PII Collision</title>
+<style>body{margin:0;padding:24px;font-family:system-ui,"Segoe UI",Roboto,sans-serif;background:#f4f5f7;color:#1f2937;font-size:16px}.panel{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:16px;max-width:520px}.inline{margin:6px 0}</style>
+</head>
+<body>
+  <h1 style="font-size:20px">Collision case (fake test data)</h1>
+  <!-- The same six digits appear once as an OTP and once as a quantity. Only semantic context separates them. -->
+  <div class="panel">
+    <div class="inline">OTP: <span data-gt="pii:OTP">123456</span></div>
+    <div class="inline">Quantity: <span data-gt="nonpii">123456</span></div>
+    <div class="inline">Price: <span data-gt="nonpii">₹699</span></div>
+    <div class="inline">Product: <span data-gt="nonpii">Black Shirt C</span></div>
+  </div>
+</body>
+</html>

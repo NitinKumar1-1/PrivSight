@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-09-11T21:38:27.194Z",
+  "redaction": {
+    "sensitive_removed": {
+      "value": 1,
+      "of": "20/20"
+    },
+    "non_sensitive_removed": 2,
+    "precision": {
+      "value": 0.909,
+      "of": "20/22"
+    },
+    "task_relevant_preserved": {
+      "value": 1,
+      "of": "103/103"
+    },
+    "pii_boxes_masked": {
+      "value": 0.81,
+      "of": "17/21"
+    }
+  }
+}

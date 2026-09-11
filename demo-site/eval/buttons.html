@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Eval - Button Styles</title>
+  <style>
+    body { margin: 0; padding: 24px; font-family: system-ui, "Segoe UI", Roboto, sans-serif; background: #f4f5f7; color: #1f2937; }
+    h1 { font-size: 20px; margin: 0 0 16px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .cell { padding: 16px; border-radius: 8px; background: #fff; border: 1px solid #e5e7eb; }
+    .cell.dark { background: #1f2937; }
+    button { border: none; border-radius: 6px; font-weight: 700; cursor: pointer; padding: 12px 18px; font-size: 15px; width: 100%; }
+    .orange { background: #f59e0b; color: #fff; }
+    .light { background: #f3f4f6; color: #111827; border: 2px solid #9ca3af; }
+    .blue { background: #2563eb; color: #fff; }
+    .outline { background: #fff; color: #1d4ed8; border: 2px solid #1d4ed8; }
+    .green { background: #16a34a; color: #fff; }
+    .yellow { background: #fde047; color: #1f2937; }
+    .black { background: #111827; color: #fff; }
+    .red { background: #dc2626; color: #fff; }
+    .small { font-size: 12px; padding: 8px 12px; }
+    .large { font-size: 20px; padding: 16px 24px; }
+  </style>
+</head>
+<body>
+  <h1>Button styles</h1>
+  <div class="grid">
+    <div class="cell"><button id="b1" class="orange" data-gt="button">Buy Now A</button></div>
+    <div class="cell"><button id="b2" class="light" data-gt="button">Buy Now B</button></div>
+    <div class="cell"><button id="b3" class="blue" data-gt="button">Buy Now C</button></div>
+    <div class="cell"><button id="b4" class="outline" data-gt="button">Add to Cart</button></div>
+    <div class="cell"><button id="b5" class="green" data-gt="button">Checkout</button></div>
+    <div class="cell"><button id="b6" class="yellow" data-gt="button">Apply Coupon</button></div>
+    <div class="cell"><button id="b7" class="black" data-gt="button">Place Order</button></div>
+    <div class="cell"><button id="b8" class="red" data-gt="button">Remove</button></div>
+    <div class="cell"><button id="b9" class="orange small" data-gt="button">Buy Now D</button></div>
+    <div class="cell"><button id="b10" class="orange large" data-gt="button">Buy Now E</button></div>
+    <div class="cell dark"><button id="b11" class="light" data-gt="button">Continue</button></div>
+    <div class="cell"><button id="b12" class="blue small" data-gt="button">View Details</button></div>
+  </div>
+</body>
+</html>

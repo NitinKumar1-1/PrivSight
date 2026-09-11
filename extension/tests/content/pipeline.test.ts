@@ -46,7 +46,7 @@ function clickSpy(): ReturnType<typeof vi.fn> {
 
 describe("extract -> firewall -> network gate (positive)", () => {
   it("approved bytes pass the pre-fetch gate and are sent verbatim", async () => {
-    const extracted = handleExtractPage(TASK);
+    const extracted = await handleExtractPage(TASK);
     expect(extracted.ok).toBe(true);
     if (!extracted.ok || extracted.firewall.verdict !== "allowed") throw new Error("expected allowed");
 
@@ -68,7 +68,7 @@ describe("extract -> firewall (negative: unsafe payload never reaches the networ
     const fetchMock = vi.fn();
     vi.stubGlobal("fetch", fetchMock);
 
-    const extracted = handleExtractPage(TASK);
+    const extracted = await handleExtractPage(TASK);
     expect(extracted.ok).toBe(true);
     if (!extracted.ok) return;
     expect(extracted.firewall.verdict).toBe("blocked");
@@ -103,16 +103,16 @@ describe("extract -> firewall (negative: unsafe payload never reaches the networ
 });
 
 describe("backend response -> validator -> executor", () => {
-  it("a valid click from the backend is validated against the live page and executed", () => {
-    handleExtractPage(TASK);
+  it("a valid click from the backend is validated against the live page and executed", async () => {
+    await handleExtractPage(TASK);
     const spy = clickSpy();
     const result = handleExecuteAction({ action: "click", target: "el_buy_now", confidence: 0.95, reason: "cheapest is C" });
     expect(result).toEqual({ ok: true, message: "Clicked el_buy_now", validation: "pass" });
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it("negative: unknown target is blocked and nothing is clicked", () => {
-    handleExtractPage(TASK);
+  it("negative: unknown target is blocked and nothing is clicked", async () => {
+    await handleExtractPage(TASK);
     const spy = clickSpy();
     const result = handleExecuteAction({ action: "click", target: "el_random_button", confidence: 1, reason: "" });
     expect(result.validation).toBe("blocked");
@@ -129,8 +129,8 @@ describe("backend response -> validator -> executor", () => {
     expect(spy).not.toHaveBeenCalled();
   });
 
-  it("negative: a contract-valid type action is rejected because the executor does not support it", () => {
-    handleExtractPage(TASK);
+  it("negative: a contract-valid type action is rejected because the executor does not support it", async () => {
+    await handleExtractPage(TASK);
     const result = handleExecuteAction({ action: "type", target: "el_email", value: "[EMAIL_1]", confidence: 1, reason: "" });
     expect(result.validation).toBe("blocked");
     expect(result.code).toBe("unsupported_by_executor");
@@ -143,8 +143,8 @@ describe("backend response -> validator -> executor", () => {
     expect(["dangerous_navigation", "executable_content"]).toContain(result.code);
   });
 
-  it("only the validated product button is clicked, never its siblings", () => {
-    handleExtractPage(TASK);
+  it("only the validated product button is clicked, never its siblings", async () => {
+    await handleExtractPage(TASK);
     const spyA = vi.fn();
     const spyC = vi.fn();
     document.getElementById("buy_a")?.addEventListener("click", spyA);

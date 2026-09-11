@@ -4,8 +4,9 @@ import { defineConfig } from "vite";
 /**
  * Popup and service worker build.
  *
- *   popup/popup.html -> dist/popup/popup.html + dist/popup.js
- *   background       -> dist/background.js
+ *   popup/popup.html         -> dist/popup/popup.html + dist/popup.js
+ *   offscreen/offscreen.html -> dist/offscreen/offscreen.html + dist/offscreen.js (local OCR host)
+ *   background               -> dist/background.js
  *
  * The content script is built separately by vite.content.config.ts so it is
  * always a single self-contained file: it shares the privacy modules with the
@@ -21,6 +22,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         popup: resolve(__dirname, "src/popup/popup.html"),
+        offscreen: resolve(__dirname, "src/offscreen/offscreen.html"),
         background: resolve(__dirname, "src/background/index.ts"),
       },
       output: {

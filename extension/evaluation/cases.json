@@ -1,0 +1,121 @@
+{
+  "_note": "Evaluation cases. Each id has a hand-written ground-truth/<id>.json (text, prices, buttons, PII, non-PII) and a renderer-generated ground-truth/<id>.boxes.json (page geometry via the selectors below and window.__gtBoxes for canvas text; never OCR output).",
+  "cases": [
+    {
+      "id": "shirtstore-basic",
+      "page": "index.html",
+      "role": "DOM + vision, PII in DOM text and fields",
+      "gt": [
+        {
+          "selector": ".product h2",
+          "kind": "text"
+        },
+        {
+          "selector": ".price",
+          "kind": "price"
+        },
+        {
+          "selector": ".buy-button",
+          "kind": "button"
+        },
+        {
+          "selector": ".account dd:nth-of-type(1)",
+          "kind": "pii:EMAIL"
+        },
+        {
+          "selector": ".account dd:nth-of-type(2)",
+          "kind": "pii:PHONE"
+        },
+        {
+          "selector": "#email",
+          "kind": "pii:EMAIL"
+        },
+        {
+          "selector": "#phone",
+          "kind": "pii:PHONE"
+        },
+        {
+          "selector": "[name=card_number]",
+          "kind": "pii:CARD"
+        },
+        {
+          "selector": "[name=otp]",
+          "kind": "pii:OTP"
+        }
+      ]
+    },
+    {
+      "id": "visual-fallback",
+      "page": "visual.html",
+      "role": "one product name/price only on canvas",
+      "gt": [
+        {
+          "selector": ".product h2",
+          "kind": "text"
+        },
+        {
+          "selector": ".price",
+          "kind": "price"
+        },
+        {
+          "selector": ".buy-button",
+          "kind": "button"
+        }
+      ]
+    },
+    {
+      "id": "visual-only",
+      "page": "visual-only.html",
+      "role": "all names/prices only on canvas; dark-on-light buttons",
+      "gt": [
+        {
+          "selector": ".buy-button",
+          "kind": "button"
+        }
+      ]
+    },
+    {
+      "id": "visual-privacy",
+      "page": "visual-privacy.html",
+      "role": "PII only on canvas next to non-PII numbers",
+      "gt": [
+        {
+          "selector": ".product h2",
+          "kind": "text"
+        },
+        {
+          "selector": ".price",
+          "kind": "price"
+        },
+        {
+          "selector": ".buy-button",
+          "kind": "button"
+        }
+      ]
+    },
+    {
+      "id": "price-formats",
+      "page": "eval/price-formats.html",
+      "role": "12 prices: rupee sign, Rs, INR, sizes 14 to 32 px, light/gray/dark/green backgrounds",
+      "gt": []
+    },
+    {
+      "id": "buttons",
+      "page": "eval/buttons.html",
+      "role": "12 button labels in 8 colour styles and 3 sizes",
+      "gt": []
+    },
+    {
+      "id": "pii-layouts",
+      "page": "eval/pii-layouts.html",
+      "role": "PII in same-line, form-row and stacked layouts next to 12 non-PII values",
+      "gt": []
+    },
+    {
+      "id": "pii-collision",
+      "page": "eval/pii-collision.html",
+      "role": "same digits as OTP and as quantity on one page; expected fail-closed behaviour is measured, not hidden",
+      "gt": []
+    }
+  ]
+}

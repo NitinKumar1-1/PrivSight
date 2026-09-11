@@ -1,0 +1,38 @@
+{
+  "case": "buttons",
+  "expected_text": [
+    "Button styles"
+  ],
+  "expected_prices": [],
+  "expected_buttons": [
+    "Buy Now A",
+    "Buy Now B",
+    "Buy Now C",
+    "Add to Cart",
+    "Checkout",
+    "Apply Coupon",
+    "Place Order",
+    "Remove",
+    "Buy Now D",
+    "Buy Now E",
+    "Continue",
+    "View Details"
+  ],
+  "button_styles": {
+    "Buy Now A": "white-on-orange",
+    "Buy Now B": "dark-on-light",
+    "Buy Now C": "white-on-blue",
+    "Add to Cart": "blue-outline",
+    "Checkout": "white-on-green",
+    "Apply Coupon": "dark-on-yellow",
+    "Place Order": "white-on-black",
+    "Remove": "white-on-red",
+    "Buy Now D": "white-on-orange-small",
+    "Buy Now E": "white-on-orange-large",
+    "Continue": "dark-on-light-in-dark-cell",
+    "View Details": "white-on-blue-small"
+  },
+  "expected_pii": [],
+  "non_pii": [],
+  "extra_text": []
+}

@@ -1,0 +1,37 @@
+{
+  "generatedAt": "2026-09-12T02:35:11",
+  "request_bytes": 1688,
+  "runs_per_arm": 1,
+  "default_thinking": {
+    "runs": 1,
+    "ok": 1,
+    "correct_target": 1,
+    "ms": {
+      "min": 7539,
+      "mean": 7539,
+      "median": 7539,
+      "max": 7539
+    },
+    "rows": [
+      {
+        "ms": 7539,
+        "status": 200,
+        "target": "el_buy_c",
+        "action": "click"
+      }
+    ]
+  },
+  "thinking_budget_0": {
+    "runs": 1,
+    "ok": 0,
+    "correct_target": 0,
+    "ms": null,
+    "rows": [
+      {
+        "ms": 7536,
+        "status": 502,
+        "error": "{\"detail\":\"Reasoning provider error: Gemini (gemini-3.5-flash-lite) returned HTTP 400: {\\n  \\\"error\\\": {\\n    \\\"code\\\": 400,\\n    \\\"message\\\": \\\"Request contains an invalid argument.\\\",\\n    \\\"status\\\": \\\"INVALID_ARGUMENT\\\"\\n  }\\n}\\n\"}"
+      }
+    ]
+  }
+}

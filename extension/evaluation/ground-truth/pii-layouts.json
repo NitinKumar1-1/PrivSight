@@ -1,0 +1,107 @@
+{
+  "case": "pii-layouts",
+  "expected_text": [
+    "PII layouts (all values are fake test data)",
+    "Label and value on one line",
+    "Label left, boxed value right (form-like)",
+    "Label above value",
+    "Non-sensitive values that must stay",
+    "Card number",
+    "OTP",
+    "Password",
+    "Mobile",
+    "Verification code",
+    "Email address",
+    "Order reference",
+    "Ticket",
+    "Quantity",
+    "Delivery slot",
+    "Product"
+  ],
+  "expected_prices": [
+    {
+      "amount": 699,
+      "text": "₹699"
+    }
+  ],
+  "expected_buttons": [],
+  "expected_pii": [
+    {
+      "type": "EMAIL",
+      "value": "demo@example.com",
+      "layout": "same-line"
+    },
+    {
+      "type": "PHONE",
+      "value": "9999999999",
+      "layout": "same-line"
+    },
+    {
+      "type": "CARD",
+      "value": "4111 1111 1111 1111",
+      "layout": "same-line"
+    },
+    {
+      "type": "OTP",
+      "value": "123456",
+      "layout": "same-line"
+    },
+    {
+      "type": "CARD",
+      "value": "5555 5555 5555 4444",
+      "layout": "form-row"
+    },
+    {
+      "type": "OTP",
+      "value": "654321",
+      "layout": "form-row"
+    },
+    {
+      "type": "PASSWORD",
+      "value": "Secret#2026",
+      "layout": "form-row"
+    },
+    {
+      "type": "PHONE",
+      "value": "+91 98765 43210",
+      "layout": "form-row"
+    },
+    {
+      "type": "OTP",
+      "value": "4821",
+      "layout": "stacked"
+    },
+    {
+      "type": "EMAIL",
+      "value": "buyer.two@shop.example",
+      "layout": "stacked"
+    }
+  ],
+  "non_pii": [
+    "₹699",
+    "1234567890",
+    "5551234567",
+    "7788990011",
+    "12/09/2026",
+    "12",
+    "560001",
+    "ORD-2024-5821",
+    "88451200",
+    "2",
+    "14:00 to 16:00",
+    "Black Shirt C"
+  ],
+  "extra_text": [
+    "Email:",
+    "Phone:",
+    "Card:",
+    "OTP:",
+    "Price:",
+    "Order ID:",
+    "Invoice:",
+    "Tracking:",
+    "Date:",
+    "Quantity:",
+    "PIN code:"
+  ]
+}

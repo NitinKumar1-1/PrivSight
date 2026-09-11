@@ -10,6 +10,7 @@ import {
   type SanitizedPage,
 } from "../privacy/sanitize";
 import type { PageElement, PageInfo } from "../shared/contract";
+import type { OcrResult } from "../vision/types";
 import {
   PS_ID_ATTRIBUTE,
   ensureElementIds,
@@ -26,10 +27,10 @@ export function extractPageInfo(): SanitizedPage {
   return sanitizePage(page, elements);
 }
 
-/** Extracts the page, sanitizes it with the task, and runs the privacy firewall. */
-export function prepareRequest(task: string): PreparedRequest {
+/** Extracts the page, fuses local OCR (if any), sanitizes everything with the task, and runs the privacy firewall. */
+export function prepareRequest(task: string, ocr: OcrResult | null = null): PreparedRequest {
   const { page, elements } = extractRawPage();
-  return prepareOutgoingRequest(task, page, elements);
+  return prepareOutgoingRequest(task, page, elements, ocr);
 }
 
 function extractRawPage(): { page: PageInfo; elements: HTMLElement[] } {

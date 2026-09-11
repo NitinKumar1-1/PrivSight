@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShirtStore - Visual Only</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .canvas-card canvas { display: block; width: 100%; border-radius: 6px; margin-bottom: 12px; }
+    /* Dark label on a light button so the local OCR engine can read the label and map it to this DOM element. */
+    .buy-button.light { background: #f3f4f6; color: #111827; border: 2px solid #9ca3af; }
+    .buy-button.light.clicked { background: #16a34a; color: #fff; border-color: #16a34a; }
+    .note { margin: 0 0 16px; color: #6b7280; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <span class="brand">ShirtStore</span>
+    <nav>
+      <a href="#products">Products</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1 id="products">Black Shirts</h1>
+    <p class="note">Visual-only fixture: every product name and price is drawn on a canvas. The DOM contains the buttons only.</p>
+
+    <!-- No product name or price exists as DOM text on this page. -->
+    <section class="product-grid">
+      <article class="product canvas-card">
+        <canvas class="card" data-card="A" width="480" height="440" aria-hidden="true"></canvas>
+        <button id="buy_a" class="buy-button light" data-product="Black Shirt A">Buy Now A</button>
+      </article>
+
+      <article class="product canvas-card">
+        <canvas class="card" data-card="B" width="480" height="440" aria-hidden="true"></canvas>
+        <button id="buy_b" class="buy-button light" data-product="Black Shirt B">Buy Now B</button>
+      </article>
+
+      <article class="product canvas-card">
+        <canvas class="card" data-card="C" width="480" height="440" aria-hidden="true"></canvas>
+        <button id="buy_c" class="buy-button light" data-product="Black Shirt C">Buy Now C</button>
+      </article>
+    </section>
+
+    <p id="purchase-status" class="status" hidden></p>
+
+    <section id="about" class="about">
+      <p>ShirtStore is a local demo page used to test browser automation.</p>
+    </section>
+  </main>
+
+  <script>
+    // Prices live only here, as pixels. A is the cheapest on this page.
+    const PRICES = { A: 499, B: 899, C: 699 };
+    for (const canvas of document.querySelectorAll("canvas.card")) {
+      const letter = canvas.dataset.card;
+      const ctx = canvas.getContext("2d");
+      ctx.fillStyle = "#1f2937";
+      ctx.fillRect(0, 0, 480, 280);
+      ctx.fillStyle = "#111827";
+      ctx.font = "bold 32px system-ui, Segoe UI, Roboto, sans-serif";
+      ctx.fillText("Black Shirt " + letter, 0, 340);
+      ctx.fillStyle = "#065f46";
+      ctx.font = "600 32px system-ui, Segoe UI, Roboto, sans-serif";
+      ctx.fillText("Price: Rs " + PRICES[letter], 0, 400);
+    }
+
+
+    // Ground-truth boxes for canvas text (page geometry, used only by the evaluation fixture renderer).
+    window.__gtBoxes = [];
+    function recordText(canvas, text, x, baseline, font, kind) {
+      const c = canvas.getContext("2d"); c.font = font;
+      const m = c.measureText(text); const r = canvas.getBoundingClientRect();
+      const sx = r.width / canvas.width, sy = r.height / canvas.height;
+      const ascent = m.actualBoundingBoxAscent, descent = m.actualBoundingBoxDescent;
+      window.__gtBoxes.push({ kind, text, x: r.left + x * sx, y: r.top + (baseline - ascent) * sy, width: m.width * sx, height: (ascent + descent) * sy });
+    }
+    for (const canvas of document.querySelectorAll("canvas.card")) {
+      const letter = canvas.dataset.card;
+      recordText(canvas, "Black Shirt " + letter, 0, 340, "bold 32px system-ui, Segoe UI, Roboto, sans-serif", "text");
+      recordText(canvas, "Price: Rs " + PRICES[letter], 0, 400, "600 32px system-ui, Segoe UI, Roboto, sans-serif", "price");
+    }
+
+    const status = document.getElementById("purchase-status");
+    const buttons = Array.from(document.querySelectorAll(".buy-button"));
+    for (const button of buttons) {
+      const label = button.textContent;
+      button.addEventListener("click", () => {
+        for (const other of buttons) other.classList.remove("clicked");
+        button.classList.add("clicked");
+        status.textContent = button.dataset.product + " Purchased (" + label + " clicked at " + new Date().toLocaleTimeString() + ")";
+        status.hidden = false;
+      });
+    }
+  </script>
+</body>
+</html>

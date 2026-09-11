@@ -119,6 +119,19 @@ export function classifyFieldDetailed(element: HTMLElement): FieldClassification
   return pickWinner(votes);
 }
 
+/**
+ * Semantic context of a form field: its label, name, placeholder and
+ * aria-label. Used to redact a field's text with the same context a human
+ * sees, so "Order reference: 9876543210" is not treated as a bare phone.
+ */
+export function fieldContext(element: HTMLElement): string {
+  if (!isFormField(element)) return "";
+  return [labelText(element), element.getAttribute("name"), element.getAttribute("placeholder"), element.getAttribute("aria-label")]
+    .filter((part): part is string => Boolean(part && part.trim()))
+    .map((part) => part.replace(/[_-]+/g, " ").trim())
+    .join(" ");
+}
+
 /** Current value of a form field, or "" when there is nothing to protect. */
 export function fieldValue(element: HTMLElement): string {
   return isFormField(element) ? element.value.trim() : "";
@@ -219,6 +232,61 @@ const PHONE_PATTERNS = [
   /(?<!\d)\(?\d{3}\)?[\s-]\d{3}[\s-]\d{4}(?!\d)/g, // 555-123-4567
 ];
 
+/**
+ * "Label: value" lines, as seen in OCR output and visible page text. The label
+ * decides the type (a semantic signal); the value must also have the right
+ * shape for numeric types so "OTP: contact support" is not redacted.
+ */
+const LABELLED_VALUE = /\b(otp|one[\s-]?time (?:code|password)|verification code|passw(?:or)?d|passcode|cvv|cvc|card(?: number| no\.?)?|phone|mobile|e-?mail)\s*[:=]\s*([^\s,;|]+(?:[ \-]\d{3,6}){0,4})/gi;
+
+/** Redaction output; must never be picked up as a value by any detector. */
+const PLACEHOLDER_SHAPE = /^\[[A-Z]+_\d+\]$/;
+
+const LABEL_SHAPES: ReadonlyArray<readonly [RegExp, PiiType, RegExp]> = [
+  [/^(otp|one|verification)/i, "OTP", /^\d{4,8}$/],
+  [/^pass/i, "PASSWORD", /^\S{4,}$/],
+  [/^cv/i, "CVV", /^\d{3,4}$/],
+  [/^card/i, "CARD", /^(?:\d[ -]?){12,18}\d$/],
+  [/^phone|^mobile/i, "PHONE", /^\+?[\d ()-]{8,16}$/],
+  [/^e-?mail/i, "EMAIL", /^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i],
+];
+
+/** PII type named by a label text ("Card number", "OTP", "Verification code"), or null. */
+export function labelType(text: string): PiiType | null {
+  const normalized = text.replace(/[_-]+/g, " ");
+  for (const [pattern, type] of KEYWORD_RULES) if (pattern.test(normalized)) return type;
+  return null;
+}
+
+/** Whether a value has the shape a PII label of this type demands. A password must contain a digit or symbol. */
+export function valueMatchesShape(type: PiiType, value: string): boolean {
+  const shapes: Record<PiiType, RegExp> = {
+    OTP: /^\d{4,8}$/,
+    CVV: /^\d{3,4}$/,
+    CARD: /^(?:\d[ -]?){12,18}\d$/,
+    PHONE: /^\+?[\d ()-]{8,16}$/,
+    EMAIL: /^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i,
+    PASSWORD: /^(?=.*[\d•*#@!$%^&_])\S{4,}$/,
+  };
+  return shapes[type].test(value.trim());
+}
+
+/** Finds label:value pairs. The value's position is returned so it can be redacted in place. */
+export function findLabelledValues(text: string): TextMatch[] {
+  const matches: TextMatch[] = [];
+  LABELLED_VALUE.lastIndex = 0;
+  for (const match of text.matchAll(LABELLED_VALUE)) {
+    const label = match[1];
+    const value = match[2].replace(/[.,;:]+$/, "");
+    if (PLACEHOLDER_SHAPE.test(value)) continue; // already redacted, never a value
+    const rule = LABEL_SHAPES.find(([labelPattern]) => labelPattern.test(label));
+    if (!rule || !rule[2].test(value)) continue;
+    const start = (match.index ?? 0) + match[0].lastIndexOf(value);
+    matches.push({ type: rule[1], value, index: start });
+  }
+  return matches;
+}
+
 /** Words shortly before a digit run that mark it as an identifier, not a phone. */
 const IDENTIFIER_CONTEXT = /\b(order|invoice|ref(erence)?|tracking|txn|transaction|receipt|ticket)\b[^\n]{0,20}$/i;
 const PHONE_CONTEXT = /\b(phone|mobile|tel|call|contact|whatsapp)\b/i;
@@ -246,6 +314,14 @@ export function findTextMatches(text: string): TextMatch[] {
       matches.push({ type, value: match[0], index: start });
     }
   };
+
+  // Semantic label:value pairs first, so "OTP: 123456" is typed by its label.
+  for (const labelled of findLabelledValues(text)) {
+    const end = labelled.index + labelled.value.length;
+    if (overlaps(claimed, labelled.index, end)) continue;
+    claimed.push([labelled.index, end]);
+    matches.push(labelled);
+  }
 
   collect(EMAIL_PATTERN, "EMAIL");
   for (const pattern of CARD_PATTERNS) collect(pattern, "CARD", (v) => luhnValid(digitsOf(v)));

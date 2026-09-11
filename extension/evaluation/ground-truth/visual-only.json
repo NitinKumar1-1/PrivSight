@@ -1,0 +1,57 @@
+{
+  "case": "visual-only",
+  "task": "Find the cheapest black shirt and click Buy Now",
+  "expected_target": "el_buy_a",
+  "expected_text": [
+    "ShirtStore",
+    "Products",
+    "About",
+    "Black Shirts"
+  ],
+  "canvas_only_text": [
+    "Black Shirt A",
+    "Price: Rs 499",
+    "Black Shirt B",
+    "Price: Rs 899",
+    "Black Shirt C",
+    "Price: Rs 699"
+  ],
+  "expected_prices": [
+    {
+      "amount": 499,
+      "text": "Price: Rs 499",
+      "canvas": true
+    },
+    {
+      "amount": 899,
+      "text": "Price: Rs 899",
+      "canvas": true
+    },
+    {
+      "amount": 699,
+      "text": "Price: Rs 699",
+      "canvas": true
+    }
+  ],
+  "expected_buttons": [
+    "Buy Now A",
+    "Buy Now B",
+    "Buy Now C"
+  ],
+  "expected_pii": [],
+  "non_pii": [
+    "Price: Rs 499",
+    "Price: Rs 899",
+    "Price: Rs 699",
+    "Black Shirt A",
+    "Black Shirt B",
+    "Black Shirt C",
+    "Buy Now A",
+    "Buy Now B",
+    "Buy Now C"
+  ],
+  "extra_text": [
+    "Visual-only fixture: every product name and price is drawn on a canvas. The DOM contains the buttons only.",
+    "ShirtStore is a local demo page used to test browser automation."
+  ]
+}

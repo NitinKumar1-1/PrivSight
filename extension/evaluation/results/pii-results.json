@@ -1,0 +1,49 @@
+{
+  "generatedAt": "2026-09-11T21:38:27.194Z",
+  "pii": {
+    "visual_channel": {
+      "tp": 18,
+      "fp": 0,
+      "fn": 1,
+      "precision": {
+        "value": 1,
+        "of": "18/18"
+      },
+      "recall": {
+        "value": 0.947,
+        "of": "18/19"
+      }
+    },
+    "dom_channel": {
+      "tp": 13,
+      "fp": 0,
+      "fn": 3,
+      "precision": {
+        "value": 1,
+        "of": "13/13"
+      },
+      "recall": {
+        "value": 0.813,
+        "of": "13/16"
+      },
+      "cases_blocked_by_firewall": 1,
+      "non_pii_withheld_by_block": 3
+    },
+    "combined": {
+      "tp": 20,
+      "fp": 2,
+      "fn": 0,
+      "precision": {
+        "value": 0.909,
+        "of": "20/22"
+      },
+      "recall": {
+        "value": 1,
+        "of": "20/20"
+      },
+      "cases_blocked_by_firewall": 0,
+      "non_pii_withheld_by_block": 0
+    },
+    "note": "A firewall block sends nothing: it counts as protected (TP) and the withheld non-PII is reported separately as over-blocking, not as a false positive."
+  }
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Eval - PII Layouts</title>
+  <style>
+    body { margin: 0; padding: 24px; font-family: system-ui, "Segoe UI", Roboto, sans-serif; background: #f4f5f7; color: #1f2937; font-size: 16px; }
+    h1 { font-size: 20px; margin: 0 0 16px; }
+    h2 { font-size: 14px; color: #6b7280; margin: 20px 0 8px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .panel { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; }
+    .row { display: grid; grid-template-columns: 180px 1fr; gap: 12px; align-items: center; margin: 8px 0; }
+    .row label { font-weight: 600; color: #374151; }
+    .box { display: inline-block; min-width: 260px; padding: 8px 10px; border: 1px solid #d1d5db; border-radius: 6px; background: #fff; }
+    .inline { margin: 6px 0; }
+    .stack { margin: 10px 0; }
+    .stack .lbl { font-weight: 600; color: #374151; font-size: 13px; }
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  </style>
+</head>
+<body>
+  <h1>PII layouts (all values are fake test data)</h1>
+
+  <!-- Every value element carries data-gt (pii:TYPE or nonpii) so ground-truth boxes come from page geometry. -->
+  <div class="two">
+    <div class="panel">
+      <h2>Label and value on one line</h2>
+      <div class="inline">Email: <span data-gt="pii:EMAIL">demo@example.com</span></div>
+      <div class="inline">Phone: <span data-gt="pii:PHONE">9999999999</span></div>
+      <div class="inline">Card: <span data-gt="pii:CARD">4111 1111 1111 1111</span></div>
+      <div class="inline">OTP: <span data-gt="pii:OTP">123456</span></div>
+
+      <h2>Label left, boxed value right (form-like)</h2>
+      <div class="row"><label>Card number</label><span class="box" data-gt="pii:CARD">5555 5555 5555 4444</span></div>
+      <div class="row"><label>OTP</label><span class="box" data-gt="pii:OTP">654321</span></div>
+      <div class="row"><label>Password</label><span class="box" data-gt="pii:PASSWORD">Secret#2026</span></div>
+      <div class="row"><label>Mobile</label><span class="box" data-gt="pii:PHONE">+91 98765 43210</span></div>
+
+      <h2>Label above value</h2>
+      <div class="stack"><div class="lbl">Verification code</div><div class="box" data-gt="pii:OTP">4821</div></div>
+      <div class="stack"><div class="lbl">Email address</div><div class="box" data-gt="pii:EMAIL">buyer.two@shop.example</div></div>
+    </div>
+
+    <div class="panel">
+      <h2>Non-sensitive values that must stay</h2>
+      <div class="inline">Price: <span data-gt="nonpii">₹699</span></div>
+      <div class="inline">Order ID: <span data-gt="nonpii">1234567890</span></div>
+      <div class="inline">Invoice: <span data-gt="nonpii">5551234567</span></div>
+      <div class="inline">Tracking: <span data-gt="nonpii">7788990011</span></div>
+      <div class="inline">Date: <span data-gt="nonpii">12/09/2026</span></div>
+      <div class="inline">Quantity: <span data-gt="nonpii">12</span></div>
+      <div class="inline">PIN code: <span data-gt="nonpii">560001</span></div>
+      <div class="row"><label>Order reference</label><span class="box" data-gt="nonpii">ORD-2024-5821</span></div>
+      <div class="row"><label>Ticket</label><span class="box" data-gt="nonpii">88451200</span></div>
+      <div class="row"><label>Quantity</label><span class="box" data-gt="nonpii">2</span></div>
+      <div class="stack"><div class="lbl">Delivery slot</div><div class="box" data-gt="nonpii">14:00 to 16:00</div></div>
+      <div class="stack"><div class="lbl">Product</div><div class="box" data-gt="nonpii">Black Shirt C</div></div>
+    </div>
+  </div>
+</body>
+</html>

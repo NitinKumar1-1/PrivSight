@@ -22,12 +22,43 @@ export interface PageInfo {
   text: string;
 }
 
+export interface VisualBBox {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+export type VisualObservationType = "text" | "price" | "button" | "input";
+
+/**
+ * One sanitized observation from the local vision/OCR engine. Text has been
+ * through the same redactor as page text. Never image data.
+ */
+export interface VisualObservation {
+  type: VisualObservationType;
+  text: string;
+  bbox: VisualBBox;
+  confidence: number;
+  /** data-ps-id of the live DOM element this label was mapped to, or null. */
+  target: string | null;
+}
+
+export interface VisualContext {
+  engine: string;
+  observations: VisualObservation[];
+  /** Human-readable DOM-versus-vision disagreements. DOM wins; the model is told. */
+  conflicts: string[];
+}
+
 export interface ReasonRequest {
   task: string;
   /** Sanitized page: sensitive values are already replaced by placeholders. */
   page: PageInfo;
   /** Placeholder names present in the page, e.g. ["[EMAIL_1]", "[PHONE_1]"]. Never values. */
   placeholders: string[];
+  /** Sanitized structured visual observations. Absent when vision was unavailable. */
+  visual?: VisualContext;
 }
 
 export interface ActionResponse {

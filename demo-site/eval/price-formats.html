@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Eval - Price Formats</title>
+  <style>
+    body { margin: 0; padding: 24px; font-family: system-ui, "Segoe UI", Roboto, sans-serif; background: #f4f5f7; color: #1f2937; }
+    h1 { font-size: 20px; margin: 0 0 16px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .cell { padding: 16px; border-radius: 8px; background: #fff; border: 1px solid #e5e7eb; }
+    .cell.gray { background: #e5e7eb; }
+    .cell.dark { background: #1f2937; color: #f9fafb; }
+    .cell.green { background: #065f46; color: #ecfdf5; }
+    .name { font-weight: 700; margin-bottom: 6px; }
+    .s14 { font-size: 14px; } .s18 { font-size: 18px; } .s24 { font-size: 24px; } .s32 { font-size: 32px; }
+  </style>
+</head>
+<body>
+  <h1>Price formats</h1>
+  <!-- Every priced element carries data-gt so the fixture renderer can record its box from page geometry. -->
+  <div class="grid">
+    <div class="cell"><div class="name" data-gt="text">Shirt One</div><div class="s14" data-gt="price" data-amount="699">₹699</div></div>
+    <div class="cell"><div class="name" data-gt="text">Shirt Two</div><div class="s18" data-gt="price" data-amount="799">Price: ₹799</div></div>
+    <div class="cell"><div class="name" data-gt="text">Shirt Three</div><div class="s24" data-gt="price" data-amount="899">Rs 899</div></div>
+    <div class="cell gray"><div class="name" data-gt="text">Shirt Four</div><div class="s32" data-gt="price" data-amount="499">INR 499</div></div>
+    <div class="cell"><div class="name" data-gt="text">Shirt Five</div><div class="s24" data-gt="price" data-amount="399">₹ 399</div></div>
+    <div class="cell"><div class="name" data-gt="text">Shirt Six</div><div class="s18" data-gt="price" data-amount="1299">Rs. 1,299</div></div>
+    <div class="cell dark"><div class="name" data-gt="text">Shirt Seven</div><div class="s24" data-gt="price" data-amount="2499">MRP ₹2,499</div></div>
+    <div class="cell"><div class="name" data-gt="text">Shirt Eight</div><div class="s14" data-gt="price" data-amount="1099">Price: Rs 1099</div></div>
+    <div class="cell green"><div class="name" data-gt="text">Shirt Nine</div><div class="s32" data-gt="price" data-amount="599">₹599</div></div>
+    <div class="cell"><div class="name" data-gt="text">Shirt Ten</div><div class="s18" data-gt="price" data-amount="149">INR 149.00</div></div>
+    <div class="cell gray"><div class="name" data-gt="text">Shirt Eleven</div><div class="s24" data-gt="price" data-amount="999">Price ₹999</div></div>
+    <div class="cell"><div class="name" data-gt="text">Shirt Twelve</div><div class="s32" data-gt="price" data-amount="3499">Rs 3499</div></div>
+  </div>
+</body>
+</html>

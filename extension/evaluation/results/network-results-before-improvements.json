@@ -1,0 +1,445 @@
+{
+  "generatedAt": "2026-09-11T20:48:20.976Z",
+  "note": "Evidence per /reason request from real browser traffic. Bodies were verified sanitized; only field presence, sizes and placeholder names are stored.",
+  "requests": [
+    {
+      "scenario": "index.html",
+      "bytes": 1833,
+      "fields": [
+        "task",
+        "page",
+        "placeholders",
+        "visual"
+      ],
+      "placeholders": [
+        "[EMAIL_1]",
+        "[PHONE_1]",
+        "[PASSWORD_1]",
+        "[CARD_1]",
+        "[OTP_1]"
+      ],
+      "elements": 10,
+      "page_text_chars": 365,
+      "visual_observations": 2,
+      "visual_conflicts": 3,
+      "raw_pii_present": false,
+      "image_data_present": false,
+      "base64_run_present": false
+    },
+    {
+      "scenario": "index.html",
+      "bytes": 1833,
+      "fields": [
+        "task",
+        "page",
+        "placeholders",
+        "visual"
+      ],
+      "placeholders": [
+        "[EMAIL_1]",
+        "[PHONE_1]",
+        "[PASSWORD_1]",
+        "[CARD_1]",
+        "[OTP_1]"
+      ],
+      "elements": 10,
+      "page_text_chars": 365,
+      "visual_observations": 2,
+      "visual_conflicts": 3,
+      "raw_pii_present": false,
+      "image_data_present": false,
+      "base64_run_present": false
+    },
+    {
+      "scenario": "index.html",
+      "bytes": 1833,
+      "fields": [
+        "task",
+        "page",
+        "placeholders",
+        "visual"
+      ],
+      "placeholders": [
+        "[EMAIL_1]",
+        "[PHONE_1]",
+        "[PASSWORD_1]",
+        "[CARD_1]",
+        "[OTP_1]"
+      ],
+      "elements": 10,
+      "page_text_chars": 365,
+      "visual_observations": 2,
+      "visual_conflicts": 3,
+      "raw_pii_present": false,
+      "image_data_present": false,
+      "base64_run_present": false
+    },
+    {
+      "scenario": "index.html",
+      "bytes": 1833,
+      "fields": [
+        "task",
+        "page",
+        "placeholders",
+        "visual"
+      ],
+      "placeholders": [
+        "[EMAIL_1]",
+        "[PHONE_1]",
+        "[PASSWORD_1]",
+        "[CARD_1]",
+        "[OTP_1]"
+      ],
+      "elements": 10,
+      "page_text_chars": 365,
+      "visual_observations": 2,
+      "visual_conflicts": 3,
+      "raw_pii_present": false,
+      "image_data_present": false,
+      "base64_run_present": false
+    },
+    {
+      "scenario": "index.html",
+      "bytes": 1833,
+      "fields": [
+        "task",
+        "page",
+        "placeholders",
+        "visual"
+      ],
+      "placeholders": [
+        "[EMAIL_1]",
+        "[PHONE_1]",
+        "[PASSWORD_1]",
+        "[CARD_1]",
+        "[OTP_1]"
+      ],
+      "elements": 10,
+      "page_text_chars": 365,
+      "visual_observations": 2,
+      "visual_conflicts": 3,
+      "raw_pii_present": false,
+      "image_data_present": false,
+      "base64_run_present": false
+    },
+    {
+      "scenario": "index.html",
+      "bytes": 1833,
+      "fields": [
+        "task",
+        "page",
+        "placeholders",
+        "visual"
+      ],
+      "placeholders": [
+        "[EMAIL_1]",
+        "[PHONE_1]",
+        "[PASSWORD_1]",
+        "[CARD_1]",
+        "[OTP_1]"
+      ],
+      "elements": 10,
+      "page_text_chars": 365,
+      "visual_observations": 2,
+      "visual_conflicts": 3,
+      "raw_pii_present": false,
+      "image_data_present": false,
+      "base64_run_present": false
+    },
+    {
+      "scenario": "index.html",
+      "bytes": 1833,
+      "fields": [
+        "task",
+        "page",
+        "placeholders",
+        "visual"
+      ],
+      "placeholders": [
+        "[EMAIL_1]",
+        "[PHONE_1]",
+        "[PASSWORD_1]",
+        "[CARD_1]",
+        "[OTP_1]"
+      ],
+      "elements": 10,
+      "page_text_chars": 365,
+      "visual_observations": 2,
+      "visual_conflicts": 3,
+      "raw_pii_present": false,
+      "image_data_present": false,
+      "base64_run_present": false
+    },
+    {
+      "scenario": "index.html",
+      "bytes": 1833,
+      "fields": [
+        "task",
+        "page",
+        "placeholders",
+        "visual"
+      ],
+      "placeholders": [
+        "[EMAIL_1]",
+        "[PHONE_1]",
+        "[PASSWORD_1]",
+        "[CARD_1]",
+        "[OTP_1]"
+      ],
+      "elements": 10,
+      "page_text_chars": 365,
+      "visual_observations": 2,
+      "visual_conflicts": 3,
+      "raw_pii_present": false,
+      "image_data_present": false,
+      "base64_run_present": false
+    },
+    {
+      "scenario": "index.html",
+      "bytes": 1833,
+      "fields": [
+        "task",
+        "page",
+        "placeholders",
+        "visual"
+      ],
+      "placeholders": [
+        "[EMAIL_1]",
+        "[PHONE_1]",
+        "[PASSWORD_1]",
+        "[CARD_1]",
+        "[OTP_1]"
+      ],
+      "elements": 10,
+      "page_text_chars": 365,
+      "visual_observations": 2,
+      "visual_conflicts": 3,
+      "raw_pii_present": false,
+      "image_data_present": false,
+      "base64_run_present": false
+    },
+    {
+      "scenario": "index.html",
+      "bytes": 1833,
+      "fields": [
+        "task",
+        "page",
+        "placeholders",
+        "visual"
+      ],
+      "placeholders": [
+        "[EMAIL_1]",
+        "[PHONE_1]",
+        "[PASSWORD_1]",
+        "[CARD_1]",
+        "[OTP_1]"
+      ],
+      "elements": 10,
+      "page_text_chars": 365,
+      "visual_observations": 2,
+      "visual_conflicts": 3,
+      "raw_pii_present": false,
+      "image_data_present": false,
+      "base64_run_present": false
+    },
+    {
+      "scenario": "index.html",
+      "bytes": 1833,
+      "fields": [
+        "task",
+        "page",
+        "placeholders",
+        "visual"
+      ],
+      "placeholders": [
+        "[EMAIL_1]",
+        "[PHONE_1]",
+        "[PASSWORD_1]",
+        "[CARD_1]",
+        "[OTP_1]"
+      ],
+      "elements": 10,
+      "page_text_chars": 365,
+      "visual_observations": 2,
+      "visual_conflicts": 3,
+      "raw_pii_present": false,
+      "image_data_present": false,
+      "base64_run_present": false
+    },
+    {
+      "scenario": "index.html",
+      "bytes": 1833,
+      "fields": [
+        "task",
+        "page",
+        "placeholders",
+        "visual"
+      ],
+      "placeholders": [
+        "[EMAIL_1]",
+        "[PHONE_1]",
+        "[PASSWORD_1]",
+        "[CARD_1]",
+        "[OTP_1]"
+      ],
+      "elements": 10,
+      "page_text_chars": 365,
+      "visual_observations": 2,
+      "visual_conflicts": 3,
+      "raw_pii_present": false,
+      "image_data_present": false,
+      "base64_run_present": false
+    },
+    {
+      "scenario": "index.html",
+      "bytes": 1772,
+      "fields": [
+        "task",
+        "page",
+        "placeholders",
+        "visual"
+      ],
+      "placeholders": [
+        "[EMAIL_1]",
+        "[PHONE_1]",
+        "[PASSWORD_1]",
+        "[CARD_1]",
+        "[OTP_1]"
+      ],
+      "elements": 10,
+      "page_text_chars": 365,
+      "visual_observations": 2,
+      "visual_conflicts": 2,
+      "raw_pii_present": false,
+      "image_data_present": false,
+      "base64_run_present": false
+    },
+    {
+      "scenario": "index.html",
+      "bytes": 1772,
+      "fields": [
+        "task",
+        "page",
+        "placeholders",
+        "visual"
+      ],
+      "placeholders": [
+        "[EMAIL_1]",
+        "[PHONE_1]",
+        "[PASSWORD_1]",
+        "[CARD_1]",
+        "[OTP_1]"
+      ],
+      "elements": 10,
+      "page_text_chars": 365,
+      "visual_observations": 2,
+      "visual_conflicts": 2,
+      "raw_pii_present": false,
+      "image_data_present": false,
+      "base64_run_present": false
+    },
+    {
+      "scenario": "index.html",
+      "bytes": 1839,
+      "fields": [
+        "task",
+        "page",
+        "placeholders",
+        "visual"
+      ],
+      "placeholders": [
+        "[EMAIL_1]",
+        "[PHONE_1]",
+        "[PASSWORD_1]",
+        "[CARD_1]",
+        "[OTP_1]",
+        "[CARD_2]"
+      ],
+      "elements": 10,
+      "page_text_chars": 365,
+      "visual_observations": 2,
+      "visual_conflicts": 3,
+      "raw_pii_present": false,
+      "image_data_present": false,
+      "base64_run_present": false
+    },
+    {
+      "scenario": "index.html",
+      "bytes": 1833,
+      "fields": [
+        "task",
+        "page",
+        "placeholders",
+        "visual"
+      ],
+      "placeholders": [
+        "[EMAIL_1]",
+        "[PHONE_1]",
+        "[PASSWORD_1]",
+        "[CARD_1]",
+        "[OTP_1]"
+      ],
+      "elements": 10,
+      "page_text_chars": 365,
+      "visual_observations": 2,
+      "visual_conflicts": 3,
+      "raw_pii_present": false,
+      "image_data_present": false,
+      "base64_run_present": false
+    },
+    {
+      "scenario": "dynamic.html?delay=1500",
+      "bytes": 1703,
+      "fields": [
+        "task",
+        "page",
+        "placeholders",
+        "visual"
+      ],
+      "placeholders": [],
+      "elements": 5,
+      "page_text_chars": 409,
+      "visual_observations": 4,
+      "visual_conflicts": 3,
+      "raw_pii_present": false,
+      "image_data_present": false,
+      "base64_run_present": false
+    },
+    {
+      "scenario": "dynamic.html?delay=300&vanish=4000",
+      "bytes": 1714,
+      "fields": [
+        "task",
+        "page",
+        "placeholders",
+        "visual"
+      ],
+      "placeholders": [],
+      "elements": 5,
+      "page_text_chars": 409,
+      "visual_observations": 4,
+      "visual_conflicts": 3,
+      "raw_pii_present": false,
+      "image_data_present": false,
+      "base64_run_present": false
+    },
+    {
+      "scenario": "dynamic.html?delay=300&vanish=4000",
+      "bytes": 1790,
+      "fields": [
+        "task",
+        "page",
+        "placeholders",
+        "visual"
+      ],
+      "placeholders": [],
+      "elements": 4,
+      "page_text_chars": 408,
+      "visual_observations": 5,
+      "visual_conflicts": 3,
+      "raw_pii_present": false,
+      "image_data_present": false,
+      "base64_run_present": false
+    }
+  ]
+}

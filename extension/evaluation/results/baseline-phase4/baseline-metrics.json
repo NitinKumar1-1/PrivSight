@@ -1,0 +1,102 @@
+{
+  "frozen_from": "Phase 4 final (eval/results.json + e2e/chrome-results.json)",
+  "visual": {
+    "expected_text_recall": "35/35",
+    "canvas_only_text_recall": "14/14",
+    "price_recall_strict": "4/12",
+    "price_recall_amount_recoverable": "12/12",
+    "button_recall": "3/12",
+    "ocr_line_precision": "60/70"
+  },
+  "pii_visual_channel": {
+    "tp": 8,
+    "fp": 0,
+    "fn": 2,
+    "precision": "8/8",
+    "recall": "8/10"
+  },
+  "redaction": {
+    "removed": "7/7",
+    "preserved": "50/50"
+  },
+  "ocr_recognize_ms_node": [
+    1373,
+    912,
+    1148,
+    843
+  ],
+  "browser_scenarios": {
+    "index": {
+      "total_ms": "10032 ms",
+      "ocr_ms": "1522 ms",
+      "cloud_ms": "6200 ms",
+      "clicked": "buy_c"
+    },
+    "visual": {
+      "total_ms": "7638 ms",
+      "ocr_ms": "1094 ms",
+      "cloud_ms": "5413 ms",
+      "clicked": "buy_c"
+    },
+    "visual-privacy": {
+      "total_ms": "7358 ms",
+      "ocr_ms": "1330 ms",
+      "cloud_ms": "5137 ms",
+      "clicked": "buy_c"
+    },
+    "dynamic-delay": {
+      "total_ms": "7534 ms",
+      "ocr_ms": "1123 ms",
+      "cloud_ms": "5292 ms",
+      "clicked": "buy_c"
+    },
+    "dynamic-stale": {
+      "total_ms": "15158 ms",
+      "ocr_ms": "1028 ms",
+      "cloud_ms": "5262 ms",
+      "clicked": "(none)"
+    },
+    "swap-A": {
+      "total_ms": "7385 ms",
+      "ocr_ms": "1239 ms",
+      "cloud_ms": "5167 ms",
+      "clicked": "buy_a"
+    },
+    "swap-B": {
+      "total_ms": "7326 ms",
+      "ocr_ms": "1013 ms",
+      "cloud_ms": "5127 ms",
+      "clicked": "buy_b"
+    },
+    "visual-only": {
+      "total_ms": "9460 ms",
+      "ocr_ms": "1465 ms",
+      "cloud_ms": "6112 ms",
+      "clicked": "buy_a"
+    },
+    "e2e-run-1": {
+      "total_ms": "7459 ms",
+      "ocr_ms": "1295 ms",
+      "cloud_ms": "5221 ms",
+      "clicked": "buy_c"
+    },
+    "e2e-run-2": {
+      "total_ms": "7730 ms",
+      "ocr_ms": "1296 ms",
+      "cloud_ms": "5480 ms",
+      "clicked": "buy_c"
+    },
+    "e2e-run-3": {
+      "total_ms": "7394 ms",
+      "ocr_ms": "1300 ms",
+      "cloud_ms": "5209 ms",
+      "clicked": "buy_c"
+    },
+    "restored": {
+      "total_ms": "7329 ms",
+      "ocr_ms": "1599 ms",
+      "cloud_ms": "5136 ms",
+      "clicked": "buy_c"
+    }
+  }
+}

@@ -1,0 +1,2112 @@
+{
+  "generatedAt": "2026-09-11T21:38:27.194Z",
+  "engine": "tesseract.js 7 LSTM (wasm)",
+  "host": "vitest jsdom + Node worker (WebAssembly); fixtures rendered by Playwright Chromium at device scale 2, OCR at scale 1",
+  "ocrPasses": 2,
+  "thresholds": {
+    "minConfidence": 0.55,
+    "iou": 0.5,
+    "maskCoverage": 0.9
+  },
+  "cases": {
+    "shirtstore-basic": {
+      "role": "DOM + vision, PII in DOM text and fields",
+      "counts": {
+        "ocr_lines": 34,
+        "lines_scored": 27,
+        "lines_correct": 26,
+        "text_found": 14,
+        "text_expected": 14,
+        "task_relevant_found": 8,
+        "task_relevant_recoverable": 11,
+        "task_relevant_expected": 11,
+        "price_exact": 0,
+        "price_recoverable": 3,
+        "price_expected": 3,
+        "buttons_found": 3,
+        "buttons_expected": 3,
+        "boxes_expected": 15,
+        "boxes_iou_matched": 13,
+        "boxes_covered": 14,
+        "false_lines": 1,
+        "pii_visual": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 1
+        },
+        "pii_dom": {
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "blocked": null,
+          "withheld": 0
+        },
+        "pii_combined": {
+          "tp": 5,
+          "fp": 1,
+          "fn": 0,
+          "blocked": null,
+          "withheld": 0
+        },
+        "mask_boxes": 6,
+        "mask_boxes_covered": 6,
+        "preserved": 20,
+        "to_preserve": 20,
+        "ocr_recognize_ms": 3029,
+        "dom_pipeline_ms": 102.05,
+        "combined_pipeline_ms": 29.116,
+        "observations_sent": 6,
+        "conflicts": 3
+      },
+      "detail": {
+        "text_missed": [],
+        "task_relevant_missed": [
+          "Price: ₹799",
+          "Price: ₹899",
+          "Price: ₹699"
+        ],
+        "prices": [
+          {
+            "text": "Price: ₹799",
+            "format": "rupee-sign",
+            "canvas": false,
+            "exact": false,
+            "recoverable": true
+          },
+          {
+            "text": "Price: ₹899",
+            "format": "rupee-sign",
+            "canvas": false,
+            "exact": false,
+            "recoverable": true
+          },
+          {
+            "text": "Price: ₹699",
+            "format": "rupee-sign",
+            "canvas": false,
+            "exact": false,
+            "recoverable": true
+          }
+        ],
+        "buttons": [
+          {
+            "label": "Buy Now A",
+            "style": "demo",
+            "found": true
+          },
+          {
+            "label": "Buy Now B",
+            "style": "demo",
+            "found": true
+          },
+          {
+            "label": "Buy Now C",
+            "style": "demo",
+            "found": true
+          }
+        ],
+        "boxes": [
+          {
+            "kind": "text",
+            "text": "Black Shirt A",
+            "iou": 0.978,
+            "coverage": 0.984,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "text",
+            "text": "Black Shirt B",
+            "iou": 0.971,
+            "coverage": 0.976,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "text",
+            "text": "Black Shirt C",
+            "iou": 0.968,
+            "coverage": 0.973,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "Price: ₹799",
+            "iou": 0.93,
+            "coverage": 0.934,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "Price: ₹899",
+            "iou": 0.926,
+            "coverage": 0.931,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "Price: ₹699",
+            "iou": 0.926,
+            "coverage": 0.93,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "button",
+            "text": "Buy Now A",
+            "iou": 0.76,
+            "coverage": 0.979,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "button",
+            "text": "Buy Now B",
+            "iou": 0.832,
+            "coverage": 0.893,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "button",
+            "text": "Buy Now C",
+            "iou": 0.837,
+            "coverage": 0.899,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "pii:EMAIL",
+            "text": "<pii:EMAIL>",
+            "iou": 0.641,
+            "coverage": 1,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "pii:PHONE",
+            "text": "<pii:PHONE>",
+            "iou": 0.486,
+            "coverage": 0.989,
+            "matched": false,
+            "covered": true
+          },
+          {
+            "kind": "pii:EMAIL",
+            "text": "<pii:EMAIL>",
+            "iou": 0.786,
+            "coverage": 0.862,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "pii:PHONE",
+            "text": "<pii:PHONE>",
+            "iou": 0.933,
+            "coverage": 0.98,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "pii:CARD",
+            "text": "<pii:CARD>",
+            "iou": 0,
+            "coverage": 0,
+            "matched": false,
+            "covered": false
+          },
+          {
+            "kind": "pii:OTP",
+            "text": "<pii:OTP>",
+            "iou": 0.924,
+            "coverage": 0.97,
+            "matched": true,
+            "covered": true
+          }
+        ],
+        "pii_visual_missed": [
+          "CARD (field)"
+        ],
+        "pii_visual_false_positive_types": [],
+        "pii_dom_missed": [],
+        "pii_dom_false": [],
+        "pii_combined_missed": [],
+        "pii_combined_false": [],
+        "combined_verdict": "allowed",
+        "masks": [
+          {
+            "kind": "pii:EMAIL",
+            "coverage": 1,
+            "iou": 0.854,
+            "masked": true
+          },
+          {
+            "kind": "pii:PHONE",
+            "coverage": 1,
+            "iou": 0.736,
+            "masked": true
+          },
+          {
+            "kind": "pii:EMAIL",
+            "coverage": 0.965,
+            "iou": 0.802,
+            "masked": true
+          },
+          {
+            "kind": "pii:PHONE",
+            "coverage": 1,
+            "iou": 0.744,
+            "masked": true
+          },
+          {
+            "kind": "pii:CARD",
+            "coverage": 1,
+            "iou": 0.749,
+            "masked": true
+          },
+          {
+            "kind": "pii:OTP",
+            "coverage": 1,
+            "iou": 0.733,
+            "masked": true
+          }
+        ],
+        "not_preserved": []
+      }
+    },
+    "visual-fallback": {
+      "role": "one product name/price only on canvas",
+      "counts": {
+        "ocr_lines": 18,
+        "lines_scored": 15,
+        "lines_correct": 14,
+        "text_found": 8,
+        "text_expected": 8,
+        "task_relevant_found": 10,
+        "task_relevant_recoverable": 12,
+        "task_relevant_expected": 12,
+        "price_exact": 1,
+        "price_recoverable": 3,
+        "price_expected": 3,
+        "buttons_found": 3,
+        "buttons_expected": 3,
+        "boxes_expected": 9,
+        "boxes_iou_matched": 9,
+        "boxes_covered": 9,
+        "false_lines": 1,
+        "pii_visual": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "pii_dom": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "blocked": null,
+          "withheld": 0
+        },
+        "pii_combined": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "blocked": null,
+          "withheld": 0
+        },
+        "mask_boxes": 0,
+        "mask_boxes_covered": 0,
+        "preserved": 12,
+        "to_preserve": 12,
+        "ocr_recognize_ms": 2156,
+        "dom_pipeline_ms": 6.481,
+        "combined_pipeline_ms": 8.27,
+        "observations_sent": 7,
+        "conflicts": 2
+      },
+      "detail": {
+        "text_missed": [],
+        "task_relevant_missed": [
+          "Price: ₹799",
+          "Price: ₹899"
+        ],
+        "prices": [
+          {
+            "text": "Price: ₹799",
+            "format": "rupee-sign",
+            "canvas": false,
+            "exact": false,
+            "recoverable": true
+          },
+          {
+            "text": "Price: ₹899",
+            "format": "rupee-sign",
+            "canvas": false,
+            "exact": false,
+            "recoverable": true
+          },
+          {
+            "text": "Price: Rs 699",
+            "format": "Rs/INR",
+            "canvas": true,
+            "exact": true,
+            "recoverable": true
+          }
+        ],
+        "buttons": [
+          {
+            "label": "Buy Now A",
+            "style": "demo",
+            "found": true
+          },
+          {
+            "label": "Buy Now B",
+            "style": "demo",
+            "found": true
+          },
+          {
+            "label": "Buy Now C",
+            "style": "demo",
+            "found": true
+          }
+        ],
+        "boxes": [
+          {
+            "kind": "text",
+            "text": "Black Shirt A",
+            "iou": 0.978,
+            "coverage": 0.984,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "text",
+            "text": "Black Shirt B",
+            "iou": 0.971,
+            "coverage": 0.976,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "Price: ₹799",
+            "iou": 0.93,
+            "coverage": 0.934,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "Price: ₹899",
+            "iou": 0.926,
+            "coverage": 0.931,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "button",
+            "text": "Buy Now A",
+            "iou": 0.76,
+            "coverage": 0.979,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "button",
+            "text": "Buy Now B",
+            "iou": 0.832,
+            "coverage": 0.893,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "button",
+            "text": "Buy Now C",
+            "iou": 0.767,
+            "coverage": 0.856,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "text",
+            "text": "Black Shirt C",
+            "iou": 0.973,
+            "coverage": 0.976,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "Price: Rs 699",
+            "iou": 0.916,
+            "coverage": 0.925,
+            "matched": true,
+            "covered": true
+          }
+        ],
+        "pii_visual_missed": [],
+        "pii_visual_false_positive_types": [],
+        "pii_dom_missed": [],
+        "pii_dom_false": [],
+        "pii_combined_missed": [],
+        "pii_combined_false": [],
+        "combined_verdict": "allowed",
+        "masks": [],
+        "not_preserved": []
+      }
+    },
+    "visual-only": {
+      "role": "all names/prices only on canvas; dark-on-light buttons",
+      "counts": {
+        "ocr_lines": 16,
+        "lines_scored": 15,
+        "lines_correct": 13,
+        "text_found": 10,
+        "text_expected": 10,
+        "task_relevant_found": 14,
+        "task_relevant_recoverable": 14,
+        "task_relevant_expected": 14,
+        "price_exact": 3,
+        "price_recoverable": 3,
+        "price_expected": 3,
+        "buttons_found": 3,
+        "buttons_expected": 3,
+        "boxes_expected": 9,
+        "boxes_iou_matched": 9,
+        "boxes_covered": 9,
+        "false_lines": 2,
+        "pii_visual": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "pii_dom": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "blocked": null,
+          "withheld": 0
+        },
+        "pii_combined": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "blocked": null,
+          "withheld": 0
+        },
+        "mask_boxes": 0,
+        "mask_boxes_covered": 0,
+        "preserved": 10,
+        "to_preserve": 10,
+        "ocr_recognize_ms": 2101,
+        "dom_pipeline_ms": 10.01,
+        "combined_pipeline_ms": 7.933,
+        "observations_sent": 11,
+        "conflicts": 0
+      },
+      "detail": {
+        "text_missed": [],
+        "task_relevant_missed": [],
+        "prices": [
+          {
+            "text": "Price: Rs 499",
+            "format": "Rs/INR",
+            "canvas": true,
+            "exact": true,
+            "recoverable": true
+          },
+          {
+            "text": "Price: Rs 899",
+            "format": "Rs/INR",
+            "canvas": true,
+            "exact": true,
+            "recoverable": true
+          },
+          {
+            "text": "Price: Rs 699",
+            "format": "Rs/INR",
+            "canvas": true,
+            "exact": true,
+            "recoverable": true
+          }
+        ],
+        "buttons": [
+          {
+            "label": "Buy Now A",
+            "style": "demo",
+            "found": true
+          },
+          {
+            "label": "Buy Now B",
+            "style": "demo",
+            "found": true
+          },
+          {
+            "label": "Buy Now C",
+            "style": "demo",
+            "found": true
+          }
+        ],
+        "boxes": [
+          {
+            "kind": "button",
+            "text": "Buy Now A",
+            "iou": 0.774,
+            "coverage": 0.867,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "button",
+            "text": "Buy Now B",
+            "iou": 0.77,
+            "coverage": 0.861,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "button",
+            "text": "Buy Now C",
+            "iou": 0.767,
+            "coverage": 0.856,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "text",
+            "text": "Black Shirt A",
+            "iou": 0.974,
+            "coverage": 0.978,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "Price: Rs 499",
+            "iou": 0.916,
+            "coverage": 0.926,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "text",
+            "text": "Black Shirt B",
+            "iou": 0.979,
+            "coverage": 0.983,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "Price: Rs 899",
+            "iou": 0.92,
+            "coverage": 0.93,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "text",
+            "text": "Black Shirt C",
+            "iou": 0.973,
+            "coverage": 0.976,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "Price: Rs 699",
+            "iou": 0.916,
+            "coverage": 0.925,
+            "matched": true,
+            "covered": true
+          }
+        ],
+        "pii_visual_missed": [],
+        "pii_visual_false_positive_types": [],
+        "pii_dom_missed": [],
+        "pii_dom_false": [],
+        "pii_combined_missed": [],
+        "pii_combined_false": [],
+        "combined_verdict": "allowed",
+        "masks": [],
+        "not_preserved": []
+      }
+    },
+    "visual-privacy": {
+      "role": "PII only on canvas next to non-PII numbers",
+      "counts": {
+        "ocr_lines": 25,
+        "lines_scored": 24,
+        "lines_correct": 24,
+        "text_found": 14,
+        "text_expected": 14,
+        "task_relevant_found": 8,
+        "task_relevant_recoverable": 11,
+        "task_relevant_expected": 11,
+        "price_exact": 0,
+        "price_recoverable": 3,
+        "price_expected": 3,
+        "buttons_found": 3,
+        "buttons_expected": 3,
+        "boxes_expected": 16,
+        "boxes_iou_matched": 16,
+        "boxes_covered": 16,
+        "false_lines": 0,
+        "pii_visual": {
+          "tp": 4,
+          "fp": 0,
+          "fn": 0
+        },
+        "pii_dom": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "blocked": null,
+          "withheld": 0
+        },
+        "pii_combined": {
+          "tp": 4,
+          "fp": 0,
+          "fn": 0,
+          "blocked": null,
+          "withheld": 0
+        },
+        "mask_boxes": 4,
+        "mask_boxes_covered": 0,
+        "preserved": 13,
+        "to_preserve": 13,
+        "ocr_recognize_ms": 2704,
+        "dom_pipeline_ms": 7.686,
+        "combined_pipeline_ms": 10.851,
+        "observations_sent": 12,
+        "conflicts": 3
+      },
+      "detail": {
+        "text_missed": [],
+        "task_relevant_missed": [
+          "Price: ₹799",
+          "Price: ₹899",
+          "Price: ₹699"
+        ],
+        "prices": [
+          {
+            "text": "Price: ₹799",
+            "format": "rupee-sign",
+            "canvas": false,
+            "exact": false,
+            "recoverable": true
+          },
+          {
+            "text": "Price: ₹899",
+            "format": "rupee-sign",
+            "canvas": false,
+            "exact": false,
+            "recoverable": true
+          },
+          {
+            "text": "Price: ₹699",
+            "format": "rupee-sign",
+            "canvas": false,
+            "exact": false,
+            "recoverable": true
+          }
+        ],
+        "buttons": [
+          {
+            "label": "Buy Now A",
+            "style": "demo",
+            "found": true
+          },
+          {
+            "label": "Buy Now B",
+            "style": "demo",
+            "found": true
+          },
+          {
+            "label": "Buy Now C",
+            "style": "demo",
+            "found": true
+          }
+        ],
+        "boxes": [
+          {
+            "kind": "text",
+            "text": "Black Shirt A",
+            "iou": 0.919,
+            "coverage": 0.954,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "text",
+            "text": "Black Shirt B",
+            "iou": 0.912,
+            "coverage": 0.945,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "text",
+            "text": "Black Shirt C",
+            "iou": 0.91,
+            "coverage": 0.943,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "Price: ₹799",
+            "iou": 0.872,
+            "coverage": 0.904,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "Price: ₹899",
+            "iou": 0.869,
+            "coverage": 0.9,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "Price: ₹699",
+            "iou": 0.869,
+            "coverage": 0.9,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "button",
+            "text": "Buy Now A",
+            "iou": 0.76,
+            "coverage": 0.979,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "button",
+            "text": "Buy Now B",
+            "iou": 0.789,
+            "coverage": 0.867,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "button",
+            "text": "Buy Now C",
+            "iou": 0.793,
+            "coverage": 0.873,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "pii:EMAIL",
+            "text": "<pii:EMAIL>",
+            "iou": 0.943,
+            "coverage": 0.958,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "pii:PHONE",
+            "text": "<pii:PHONE>",
+            "iou": 0.969,
+            "coverage": 0.969,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "pii:CARD",
+            "text": "<pii:CARD>",
+            "iou": 0.938,
+            "coverage": 0.953,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "pii:OTP",
+            "text": "<pii:OTP>",
+            "iou": 0.928,
+            "coverage": 0.951,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "nonpii",
+            "text": "Order ID: 8845120033",
+            "iou": 0.978,
+            "coverage": 0.978,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "nonpii",
+            "text": "Member since: 12/03/2024",
+            "iou": 0.95,
+            "coverage": 0.963,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "text",
+            "text": "Signed in as",
+            "iou": 0.904,
+            "coverage": 0.94,
+            "matched": true,
+            "covered": true
+          }
+        ],
+        "pii_visual_missed": [],
+        "pii_visual_false_positive_types": [],
+        "pii_dom_missed": [],
+        "pii_dom_false": [],
+        "pii_combined_missed": [],
+        "pii_combined_false": [],
+        "combined_verdict": "allowed",
+        "masks": [
+          {
+            "kind": "pii:EMAIL",
+            "coverage": 0.764,
+            "iou": 0.668,
+            "masked": false
+          },
+          {
+            "kind": "pii:PHONE",
+            "coverage": 0.618,
+            "iou": 0.547,
+            "masked": false
+          },
+          {
+            "kind": "pii:CARD",
+            "coverage": 0.763,
+            "iou": 0.664,
+            "masked": false
+          },
+          {
+            "kind": "pii:OTP",
+            "coverage": 0.587,
+            "iou": 0.508,
+            "masked": false
+          }
+        ],
+        "not_preserved": []
+      }
+    },
+    "price-formats": {
+      "role": "12 prices: rupee sign, Rs, INR, sizes 14 to 32 px, light/gray/dark/green backgrounds",
+      "counts": {
+        "ocr_lines": 28,
+        "lines_scored": 23,
+        "lines_correct": 23,
+        "text_found": 13,
+        "text_expected": 13,
+        "task_relevant_found": 20,
+        "task_relevant_recoverable": 21,
+        "task_relevant_expected": 24,
+        "price_exact": 7,
+        "price_recoverable": 8,
+        "price_expected": 12,
+        "buttons_found": 0,
+        "buttons_expected": 0,
+        "boxes_expected": 24,
+        "boxes_iou_matched": 22,
+        "boxes_covered": 22,
+        "false_lines": 0,
+        "pii_visual": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "pii_dom": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "blocked": null,
+          "withheld": 0
+        },
+        "pii_combined": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "blocked": null,
+          "withheld": 0
+        },
+        "mask_boxes": 0,
+        "mask_boxes_covered": 0,
+        "preserved": 21,
+        "to_preserve": 21,
+        "ocr_recognize_ms": 1831,
+        "dom_pipeline_ms": 3.622,
+        "combined_pipeline_ms": 2.844,
+        "observations_sent": 3,
+        "conflicts": 0
+      },
+      "detail": {
+        "text_missed": [],
+        "task_relevant_missed": [
+          "₹699",
+          "Price: ₹799",
+          "MRP ₹2,499",
+          "₹599"
+        ],
+        "prices": [
+          {
+            "text": "₹699",
+            "format": "rupee-sign",
+            "size": 14,
+            "bg": "white",
+            "canvas": false,
+            "exact": false,
+            "recoverable": false
+          },
+          {
+            "text": "Price: ₹799",
+            "format": "rupee-sign",
+            "size": 18,
+            "bg": "white",
+            "canvas": false,
+            "exact": false,
+            "recoverable": true
+          },
+          {
+            "text": "Rs 899",
+            "format": "Rs",
+            "size": 24,
+            "bg": "white",
+            "canvas": false,
+            "exact": true,
+            "recoverable": true
+          },
+          {
+            "text": "INR 499",
+            "format": "INR",
+            "size": 32,
+            "bg": "gray",
+            "canvas": false,
+            "exact": true,
+            "recoverable": true
+          },
+          {
+            "text": "₹ 399",
+            "format": "rupee-sign",
+            "size": 24,
+            "bg": "white",
+            "canvas": false,
+            "exact": false,
+            "recoverable": false
+          },
+          {
+            "text": "Rs. 1,299",
+            "format": "Rs",
+            "size": 18,
+            "bg": "white",
+            "canvas": false,
+            "exact": true,
+            "recoverable": true
+          },
+          {
+            "text": "MRP ₹2,499",
+            "format": "rupee-sign",
+            "size": 24,
+            "bg": "dark",
+            "canvas": false,
+            "exact": false,
+            "recoverable": false
+          },
+          {
+            "text": "Price: Rs 1099",
+            "format": "Rs",
+            "size": 14,
+            "bg": "white",
+            "canvas": false,
+            "exact": true,
+            "recoverable": true
+          },
+          {
+            "text": "₹599",
+            "format": "rupee-sign",
+            "size": 32,
+            "bg": "green",
+            "canvas": false,
+            "exact": false,
+            "recoverable": false
+          },
+          {
+            "text": "INR 149.00",
+            "format": "INR",
+            "size": 18,
+            "bg": "white",
+            "canvas": false,
+            "exact": true,
+            "recoverable": true
+          },
+          {
+            "text": "Price ₹999",
+            "format": "rupee-sign",
+            "size": 24,
+            "bg": "gray",
+            "canvas": false,
+            "exact": true,
+            "recoverable": true
+          },
+          {
+            "text": "Rs 3499",
+            "format": "Rs",
+            "size": 32,
+            "bg": "white",
+            "canvas": false,
+            "exact": true,
+            "recoverable": true
+          }
+        ],
+        "buttons": [],
+        "boxes": [
+          {
+            "kind": "text",
+            "text": "Shirt One",
+            "iou": 0.913,
+            "coverage": 0.95,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "₹699",
+            "iou": 0,
+            "coverage": 0,
+            "matched": false,
+            "covered": false
+          },
+          {
+            "kind": "text",
+            "text": "Shirt Two",
+            "iou": 0.905,
+            "coverage": 0.942,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "Price: ₹799",
+            "iou": 0.941,
+            "coverage": 0.976,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "text",
+            "text": "Shirt Three",
+            "iou": 0.912,
+            "coverage": 0.95,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "Rs 899",
+            "iou": 0.805,
+            "coverage": 0.873,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "text",
+            "text": "Shirt Four",
+            "iou": 0.911,
+            "coverage": 0.952,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "INR 499",
+            "iou": 0.793,
+            "coverage": 0.876,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "text",
+            "text": "Shirt Five",
+            "iou": 0.906,
+            "coverage": 0.943,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "₹ 399",
+            "iou": 0.807,
+            "coverage": 0.875,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "text",
+            "text": "Shirt Six",
+            "iou": 0.906,
+            "coverage": 0.944,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "Rs. 1,299",
+            "iou": 0.769,
+            "coverage": 0.868,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "text",
+            "text": "Shirt Seven",
+            "iou": 0.898,
+            "coverage": 0.935,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "MRP ₹2,499",
+            "iou": 0.705,
+            "coverage": 0.824,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "text",
+            "text": "Shirt Eight",
+            "iou": 0.742,
+            "coverage": 0.834,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "price",
+            "text": "Price: Rs 1099",
+            "iou": 0.93,
+            "coverage": 0.975,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "text",
+            "text": "Shirt Nine",
+            "iou": 0.907,
+            "coverage": 0.944,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "₹599",
+            "iou": 0,
+            "coverage": 0,
+            "matched": false,
+            "covered": false
+          },
+          {
+            "kind": "text",
+            "text": "Shirt Ten",
+            "iou": 0.902,
+            "coverage": 0.938,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "INR 149.00",
+            "iou": 0.901,
+            "coverage": 0.935,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "text",
+            "text": "Shirt Eleven",
+            "iou": 0.908,
+            "coverage": 0.946,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "Price ₹999",
+            "iou": 0.869,
+            "coverage": 0.943,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "text",
+            "text": "Shirt Twelve",
+            "iou": 0.912,
+            "coverage": 0.95,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "price",
+            "text": "Rs 3499",
+            "iou": 0.793,
+            "coverage": 0.876,
+            "matched": true,
+            "covered": false
+          }
+        ],
+        "pii_visual_missed": [],
+        "pii_visual_false_positive_types": [],
+        "pii_dom_missed": [],
+        "pii_dom_false": [],
+        "pii_combined_missed": [],
+        "pii_combined_false": [],
+        "combined_verdict": "allowed",
+        "masks": [],
+        "not_preserved": []
+      }
+    },
+    "buttons": {
+      "role": "12 button labels in 8 colour styles and 3 sizes",
+      "counts": {
+        "ocr_lines": 10,
+        "lines_scored": 8,
+        "lines_correct": 7,
+        "text_found": 1,
+        "text_expected": 1,
+        "task_relevant_found": 7,
+        "task_relevant_recoverable": 7,
+        "task_relevant_expected": 12,
+        "price_exact": 0,
+        "price_recoverable": 0,
+        "price_expected": 0,
+        "buttons_found": 7,
+        "buttons_expected": 12,
+        "boxes_expected": 12,
+        "boxes_iou_matched": 7,
+        "boxes_covered": 7,
+        "false_lines": 1,
+        "pii_visual": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "pii_dom": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "blocked": null,
+          "withheld": 0
+        },
+        "pii_combined": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "blocked": null,
+          "withheld": 0
+        },
+        "mask_boxes": 0,
+        "mask_boxes_covered": 0,
+        "preserved": 8,
+        "to_preserve": 8,
+        "ocr_recognize_ms": 1424,
+        "dom_pipeline_ms": 18.489,
+        "combined_pipeline_ms": 16.731,
+        "observations_sent": 7,
+        "conflicts": 0
+      },
+      "detail": {
+        "text_missed": [],
+        "task_relevant_missed": [
+          "Buy Now B",
+          "Apply Coupon",
+          "Place Order",
+          "Remove",
+          "Continue"
+        ],
+        "prices": [],
+        "buttons": [
+          {
+            "label": "Buy Now A",
+            "style": "white-on-orange",
+            "found": true
+          },
+          {
+            "label": "Buy Now B",
+            "style": "dark-on-light",
+            "found": false
+          },
+          {
+            "label": "Buy Now C",
+            "style": "white-on-blue",
+            "found": true
+          },
+          {
+            "label": "Add to Cart",
+            "style": "blue-outline",
+            "found": true
+          },
+          {
+            "label": "Checkout",
+            "style": "white-on-green",
+            "found": true
+          },
+          {
+            "label": "Apply Coupon",
+            "style": "dark-on-yellow",
+            "found": false
+          },
+          {
+            "label": "Place Order",
+            "style": "white-on-black",
+            "found": false
+          },
+          {
+            "label": "Remove",
+            "style": "white-on-red",
+            "found": false
+          },
+          {
+            "label": "Buy Now D",
+            "style": "white-on-orange-small",
+            "found": true
+          },
+          {
+            "label": "Buy Now E",
+            "style": "white-on-orange-large",
+            "found": true
+          },
+          {
+            "label": "Continue",
+            "style": "dark-on-light-in-dark-cell",
+            "found": false
+          },
+          {
+            "label": "View Details",
+            "style": "white-on-blue-small",
+            "found": true
+          }
+        ],
+        "boxes": [
+          {
+            "kind": "button",
+            "text": "Buy Now A",
+            "iou": 0.796,
+            "coverage": 0.88,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "button",
+            "text": "Buy Now B",
+            "iou": 0,
+            "coverage": 0,
+            "matched": false,
+            "covered": false
+          },
+          {
+            "kind": "button",
+            "text": "Buy Now C",
+            "iou": 0.791,
+            "coverage": 0.874,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "button",
+            "text": "Add to Cart",
+            "iou": 0.996,
+            "coverage": 1,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "button",
+            "text": "Checkout",
+            "iou": 0.575,
+            "coverage": 0.988,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "button",
+            "text": "Apply Coupon",
+            "iou": 0,
+            "coverage": 0,
+            "matched": false,
+            "covered": false
+          },
+          {
+            "kind": "button",
+            "text": "Place Order",
+            "iou": 0,
+            "coverage": 0,
+            "matched": false,
+            "covered": false
+          },
+          {
+            "kind": "button",
+            "text": "Remove",
+            "iou": 0,
+            "coverage": 0,
+            "matched": false,
+            "covered": false
+          },
+          {
+            "kind": "button",
+            "text": "Buy Now D",
+            "iou": 0.817,
+            "coverage": 0.89,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "button",
+            "text": "Buy Now E",
+            "iou": 0.811,
+            "coverage": 0.874,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "button",
+            "text": "Continue",
+            "iou": 0,
+            "coverage": 0,
+            "matched": false,
+            "covered": false
+          },
+          {
+            "kind": "button",
+            "text": "View Details",
+            "iou": 0.933,
+            "coverage": 0.933,
+            "matched": true,
+            "covered": true
+          }
+        ],
+        "pii_visual_missed": [],
+        "pii_visual_false_positive_types": [],
+        "pii_dom_missed": [],
+        "pii_dom_false": [],
+        "pii_combined_missed": [],
+        "pii_combined_false": [],
+        "combined_verdict": "allowed",
+        "masks": [],
+        "not_preserved": []
+      }
+    },
+    "pii-layouts": {
+      "role": "PII in same-line, form-row and stacked layouts next to 12 non-PII values",
+      "counts": {
+        "ocr_lines": 42,
+        "lines_scored": 41,
+        "lines_correct": 41,
+        "text_found": 16,
+        "text_expected": 16,
+        "task_relevant_found": 1,
+        "task_relevant_recoverable": 1,
+        "task_relevant_expected": 1,
+        "price_exact": 0,
+        "price_recoverable": 1,
+        "price_expected": 1,
+        "buttons_found": 0,
+        "buttons_expected": 0,
+        "boxes_expected": 22,
+        "boxes_iou_matched": 17,
+        "boxes_covered": 22,
+        "false_lines": 0,
+        "pii_visual": {
+          "tp": 10,
+          "fp": 0,
+          "fn": 0
+        },
+        "pii_dom": {
+          "tp": 7,
+          "fp": 0,
+          "fn": 3,
+          "blocked": null,
+          "withheld": 0
+        },
+        "pii_combined": {
+          "tp": 10,
+          "fp": 0,
+          "fn": 0,
+          "blocked": null,
+          "withheld": 0
+        },
+        "mask_boxes": 10,
+        "mask_boxes_covered": 10,
+        "preserved": 17,
+        "to_preserve": 17,
+        "ocr_recognize_ms": 2870,
+        "dom_pipeline_ms": 2.612,
+        "combined_pipeline_ms": 5.342,
+        "observations_sent": 0,
+        "conflicts": 1
+      },
+      "detail": {
+        "text_missed": [],
+        "task_relevant_missed": [],
+        "prices": [
+          {
+            "text": "₹699",
+            "format": "rupee-sign",
+            "canvas": false,
+            "exact": false,
+            "recoverable": true
+          }
+        ],
+        "buttons": [],
+        "boxes": [
+          {
+            "kind": "pii:EMAIL",
+            "text": "<pii:EMAIL>",
+            "iou": 0.596,
+            "coverage": 0.84,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "pii:PHONE",
+            "text": "<pii:PHONE>",
+            "iou": 0.573,
+            "coverage": 0.995,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "pii:CARD",
+            "text": "<pii:CARD>",
+            "iou": 0.712,
+            "coverage": 0.983,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "pii:OTP",
+            "text": "<pii:OTP>",
+            "iou": 0.522,
+            "coverage": 0.949,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "pii:CARD",
+            "text": "<pii:CARD>",
+            "iou": 0.869,
+            "coverage": 0.947,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "pii:OTP",
+            "text": "<pii:OTP>",
+            "iou": 0.824,
+            "coverage": 0.895,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "pii:PASSWORD",
+            "text": "<pii:PASSWORD>",
+            "iou": 0.865,
+            "coverage": 0.943,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "pii:PHONE",
+            "text": "<pii:PHONE>",
+            "iou": 0.864,
+            "coverage": 0.941,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "pii:OTP",
+            "text": "<pii:OTP>",
+            "iou": 0.817,
+            "coverage": 0.928,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "pii:EMAIL",
+            "text": "<pii:EMAIL>",
+            "iou": 0.744,
+            "coverage": 0.836,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "nonpii",
+            "text": "₹699",
+            "iou": 0.406,
+            "coverage": 0.94,
+            "matched": false,
+            "covered": true
+          },
+          {
+            "kind": "nonpii",
+            "text": "<nonpii:10-digit>",
+            "iou": 0.509,
+            "coverage": 0.995,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "nonpii",
+            "text": "<nonpii:10-digit>",
+            "iou": 0.535,
+            "coverage": 0.948,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "nonpii",
+            "text": "<nonpii:10-digit>",
+            "iou": 0.392,
+            "coverage": 0.971,
+            "matched": false,
+            "covered": true
+          },
+          {
+            "kind": "nonpii",
+            "text": "12/09/2026",
+            "iou": 0.531,
+            "coverage": 0.88,
+            "matched": true,
+            "covered": false
+          },
+          {
+            "kind": "nonpii",
+            "text": "12",
+            "iou": 0.134,
+            "coverage": 0.906,
+            "matched": false,
+            "covered": true
+          },
+          {
+            "kind": "nonpii",
+            "text": "<nonpii:6-digit>",
+            "iou": 0.368,
+            "coverage": 0.947,
+            "matched": false,
+            "covered": true
+          },
+          {
+            "kind": "nonpii",
+            "text": "ORD-2024-5821",
+            "iou": 0.853,
+            "coverage": 0.928,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "nonpii",
+            "text": "<nonpii:8-digit>",
+            "iou": 0.863,
+            "coverage": 0.941,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "nonpii",
+            "text": "2",
+            "iou": 0.143,
+            "coverage": 0.928,
+            "matched": false,
+            "covered": true
+          },
+          {
+            "kind": "nonpii",
+            "text": "14:00 to 16:00",
+            "iou": 0.859,
+            "coverage": 0.935,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "nonpii",
+            "text": "Black Shirt C",
+            "iou": 0.899,
+            "coverage": 0.935,
+            "matched": true,
+            "covered": true
+          }
+        ],
+        "pii_visual_missed": [],
+        "pii_visual_false_positive_types": [],
+        "pii_dom_missed": [
+          "OTP (form-row)",
+          "PASSWORD (form-row)",
+          "OTP (stacked)"
+        ],
+        "pii_dom_false": [],
+        "pii_combined_missed": [],
+        "pii_combined_false": [],
+        "combined_verdict": "allowed",
+        "masks": [
+          {
+            "kind": "pii:EMAIL",
+            "coverage": 0.938,
+            "iou": 0.76,
+            "masked": true
+          },
+          {
+            "kind": "pii:PHONE",
+            "coverage": 1,
+            "iou": 0.739,
+            "masked": true
+          },
+          {
+            "kind": "pii:CARD",
+            "coverage": 0.976,
+            "iou": 0.745,
+            "masked": true
+          },
+          {
+            "kind": "pii:OTP",
+            "coverage": 1,
+            "iou": 0.741,
+            "masked": true
+          },
+          {
+            "kind": "pii:CARD",
+            "coverage": 1,
+            "iou": 0.749,
+            "masked": true
+          },
+          {
+            "kind": "pii:OTP",
+            "coverage": 0.976,
+            "iou": 0.73,
+            "masked": true
+          },
+          {
+            "kind": "pii:PASSWORD",
+            "coverage": 1,
+            "iou": 0.742,
+            "masked": true
+          },
+          {
+            "kind": "pii:PHONE",
+            "coverage": 1,
+            "iou": 0.751,
+            "masked": true
+          },
+          {
+            "kind": "pii:OTP",
+            "coverage": 0.971,
+            "iou": 0.711,
+            "masked": true
+          },
+          {
+            "kind": "pii:EMAIL",
+            "coverage": 0.938,
+            "iou": 0.764,
+            "masked": true
+          }
+        ],
+        "not_preserved": []
+      }
+    },
+    "pii-collision": {
+      "role": "same digits as OTP and as quantity on one page; expected fail-closed behaviour is measured, not hidden",
+      "counts": {
+        "ocr_lines": 6,
+        "lines_scored": 5,
+        "lines_correct": 5,
+        "text_found": 1,
+        "text_expected": 1,
+        "task_relevant_found": 1,
+        "task_relevant_recoverable": 1,
+        "task_relevant_expected": 1,
+        "price_exact": 1,
+        "price_recoverable": 1,
+        "price_expected": 1,
+        "buttons_found": 0,
+        "buttons_expected": 0,
+        "boxes_expected": 4,
+        "boxes_iou_matched": 2,
+        "boxes_covered": 4,
+        "false_lines": 0,
+        "pii_visual": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "pii_dom": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "blocked": "Privacy Firewall blocked request: OTP leakage detected",
+          "withheld": 3
+        },
+        "pii_combined": {
+          "tp": 1,
+          "fp": 1,
+          "fn": 0,
+          "blocked": null,
+          "withheld": 0
+        },
+        "mask_boxes": 1,
+        "mask_boxes_covered": 1,
+        "preserved": 2,
+        "to_preserve": 2,
+        "ocr_recognize_ms": 1212,
+        "dom_pipeline_ms": 1.734,
+        "combined_pipeline_ms": 1.458,
+        "observations_sent": 0,
+        "conflicts": 0
+      },
+      "detail": {
+        "text_missed": [],
+        "task_relevant_missed": [],
+        "prices": [
+          {
+            "text": "₹699",
+            "format": "rupee-sign",
+            "canvas": false,
+            "exact": true,
+            "recoverable": true
+          }
+        ],
+        "buttons": [],
+        "boxes": [
+          {
+            "kind": "pii:OTP",
+            "text": "<pii:OTP>",
+            "iou": 0.505,
+            "coverage": 0.929,
+            "matched": true,
+            "covered": true
+          },
+          {
+            "kind": "nonpii",
+            "text": "<nonpii:6-digit>",
+            "iou": 0.288,
+            "coverage": 0.928,
+            "matched": false,
+            "covered": true
+          },
+          {
+            "kind": "nonpii",
+            "text": "₹699",
+            "iou": 0.391,
+            "coverage": 0.921,
+            "matched": false,
+            "covered": true
+          },
+          {
+            "kind": "nonpii",
+            "text": "Black Shirt C",
+            "iou": 0.53,
+            "coverage": 0.933,
+            "matched": true,
+            "covered": true
+          }
+        ],
+        "pii_visual_missed": [],
+        "pii_visual_false_positive_types": [],
+        "pii_dom_missed": [],
+        "pii_dom_false": [],
+        "pii_combined_missed": [],
+        "pii_combined_false": [
+          "<nonpii:6-digit>"
+        ],
+        "combined_verdict": "allowed",
+        "masks": [
+          {
+            "kind": "pii:OTP",
+            "coverage": 1,
+            "iou": 0.741,
+            "masked": true
+          }
+        ],
+        "not_preserved": []
+      }
+    }
+  },
+  "summary": {
+    "visual": {
+      "ocr_line_precision": {
+        "value": 0.968,
+        "of": "153/158"
+      },
+      "ocr_text_recall": {
+        "value": 1,
+        "of": "77/77"
+      },
+      "task_relevant_recall_strict": {
+        "value": 0.802,
+        "of": "69/86"
+      },
+      "task_relevant_recall_recoverable": {
+        "value": 0.907,
+        "of": "78/86"
+      },
+      "price_exact": {
+        "value": 0.462,
+        "of": "12/26"
+      },
+      "price_recoverable": {
+        "value": 0.846,
+        "of": "22/26"
+      },
+      "price_by_format": {
+        "rupee-sign": {
+          "exact": "2/16",
+          "recoverable": "12/16"
+        },
+        "Rs/INR": {
+          "exact": "4/4",
+          "recoverable": "4/4"
+        },
+        "Rs": {
+          "exact": "4/4",
+          "recoverable": "4/4"
+        },
+        "INR": {
+          "exact": "2/2",
+          "recoverable": "2/2"
+        }
+      },
+      "button_recall": {
+        "value": 0.792,
+        "of": "19/24"
+      },
+      "button_by_style": {
+        "demo": "12/12",
+        "white-on-orange": "1/1",
+        "dark-on-light": "0/1",
+        "white-on-blue": "1/1",
+        "blue-outline": "1/1",
+        "white-on-green": "1/1",
+        "dark-on-yellow": "0/1",
+        "white-on-black": "0/1",
+        "white-on-red": "0/1",
+        "white-on-orange-small": "1/1",
+        "white-on-orange-large": "1/1",
+        "dark-on-light-in-dark-cell": "0/1",
+        "white-on-blue-small": "1/1"
+      }
+    },
+    "boxes": {
+      "metric": "IoU >= 0.5 between ground-truth box and any OCR line box (primary); ground-truth box covered >= 0.9 by one line box (secondary)",
+      "expected": 111,
+      "matched_iou": 95,
+      "matched_iou_or_covered": 103,
+      "missed": 8,
+      "false_lines": 5,
+      "recall_iou": {
+        "value": 0.856,
+        "of": "95/111"
+      },
+      "recall_covered": {
+        "value": 0.928,
+        "of": "103/111"
+      }
+    },
+    "pii": {
+      "visual_channel": {
+        "tp": 18,
+        "fp": 0,
+        "fn": 1,
+        "precision": {
+          "value": 1,
+          "of": "18/18"
+        },
+        "recall": {
+          "value": 0.947,
+          "of": "18/19"
+        }
+      },
+      "dom_channel": {
+        "tp": 13,
+        "fp": 0,
+        "fn": 3,
+        "precision": {
+          "value": 1,
+          "of": "13/13"
+        },
+        "recall": {
+          "value": 0.813,
+          "of": "13/16"
+        },
+        "cases_blocked_by_firewall": 1,
+        "non_pii_withheld_by_block": 3
+      },
+      "combined": {
+        "tp": 20,
+        "fp": 2,
+        "fn": 0,
+        "precision": {
+          "value": 0.909,
+          "of": "20/22"
+        },
+        "recall": {
+          "value": 1,
+          "of": "20/20"
+        },
+        "cases_blocked_by_firewall": 0,
+        "non_pii_withheld_by_block": 0
+      },
+      "note": "A firewall block sends nothing: it counts as protected (TP) and the withheld non-PII is reported separately as over-blocking, not as a false positive."
+    },
+    "redaction": {
+      "sensitive_removed": {
+        "value": 1,
+        "of": "20/20"
+      },
+      "non_sensitive_removed": 2,
+      "precision": {
+        "value": 0.909,
+        "of": "20/22"
+      },
+      "task_relevant_preserved": {
+        "value": 1,
+        "of": "103/103"
+      },
+      "pii_boxes_masked": {
+        "value": 0.81,
+        "of": "17/21"
+      }
+    },
+    "timing": {
+      "engine_load_ms_cold": 353,
+      "ocr_recognize_ms": {
+        "n": 8,
+        "min": 1212,
+        "mean": 2165.875,
+        "median": 2156,
+        "max": 3029
+      },
+      "ocr_second_pass_ms": {
+        "n": 8,
+        "min": 671,
+        "mean": 1167.375,
+        "median": 1121,
+        "max": 1584
+      },
+      "dom_pipeline_ms": {
+        "n": 8,
+        "min": 1.734,
+        "mean": 19.086,
+        "median": 7.686,
+        "max": 102.05
+      },
+      "combined_pipeline_ms": {
+        "n": 8,
+        "min": 1.458,
+        "mean": 10.318,
+        "median": 8.27,
+        "max": 29.116
+      }
+    }
+  }
+}

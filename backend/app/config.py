@@ -28,6 +28,9 @@ class Settings:
     llm_timeout_seconds: float
     # Print the exact (sanitized) prompt sent to the provider and its raw reply.
     llm_debug: bool
+    # Optional Gemini thinking budget (tokens). None = provider default. 0 asks the
+    # model to skip its reasoning phase, which can cut latency; measured in Phase 5.
+    gemini_thinking_budget: int | None
 
 
 def load_settings() -> Settings:
@@ -38,12 +41,18 @@ def load_settings() -> Settings:
         gemini_fallback_models=_model_list(os.getenv("GEMINI_FALLBACK_MODELS")),
         llm_timeout_seconds=float(os.getenv("LLM_TIMEOUT_SECONDS", str(DEFAULT_TIMEOUT_SECONDS))),
         llm_debug=_flag(os.getenv("LLM_DEBUG")),
+        gemini_thinking_budget=_optional_int(os.getenv("GEMINI_THINKING_BUDGET")),
     )
 
 
 def _secret(value: str | None) -> str | None:
     cleaned = (value or "").strip()
     return None if cleaned in KEY_PLACEHOLDERS else cleaned
+
+
+def _optional_int(value: str | None) -> int | None:
+    cleaned = (value or "").strip()
+    return int(cleaned) if cleaned.lstrip("-").isdigit() else None
 
 
 def _flag(value: str | None) -> bool:

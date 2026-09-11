@@ -1,0 +1,82 @@
+{
+  "case": "visual-privacy",
+  "task": "Find the cheapest black shirt and click Buy Now",
+  "expected_target": "el_buy_c",
+  "expected_text": [
+    "ShirtStore",
+    "Products",
+    "About",
+    "Black Shirts",
+    "Black Shirt A",
+    "Black Shirt B",
+    "Black Shirt C"
+  ],
+  "canvas_only_text": [
+    "Signed in as",
+    "Email: demo@example.com",
+    "Phone: 9999999999",
+    "Card: 4111 1111 1111 1111",
+    "OTP: 123456",
+    "Order ID: 8845120033",
+    "Member since: 12/03/2024"
+  ],
+  "expected_prices": [
+    {
+      "amount": 799,
+      "text": "Price: ₹799"
+    },
+    {
+      "amount": 899,
+      "text": "Price: ₹899"
+    },
+    {
+      "amount": 699,
+      "text": "Price: ₹699"
+    }
+  ],
+  "expected_buttons": [
+    "Buy Now A",
+    "Buy Now B",
+    "Buy Now C"
+  ],
+  "expected_pii": [
+    {
+      "type": "EMAIL",
+      "value": "demo@example.com",
+      "where": "canvas"
+    },
+    {
+      "type": "PHONE",
+      "value": "9999999999",
+      "where": "canvas"
+    },
+    {
+      "type": "CARD",
+      "value": "4111 1111 1111 1111",
+      "where": "canvas"
+    },
+    {
+      "type": "OTP",
+      "value": "123456",
+      "where": "canvas"
+    }
+  ],
+  "non_pii": [
+    "Order ID: 8845120033",
+    "Member since: 12/03/2024",
+    "Price: ₹799",
+    "Price: ₹899",
+    "Price: ₹699",
+    "Black Shirt A",
+    "Black Shirt B",
+    "Black Shirt C",
+    "Buy Now A",
+    "Buy Now B",
+    "Buy Now C",
+    "Signed in as"
+  ],
+  "extra_text": [
+    "Visual-privacy fixture: the account panel below is drawn on a canvas. The fake values exist only as pixels, so only local vision can see them. All values are test data.",
+    "ShirtStore is a local demo page used to test browser automation. All account details shown are fake test values."
+  ]
+}

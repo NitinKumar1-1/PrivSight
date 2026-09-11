@@ -17,6 +17,7 @@ from collections.abc import Callable, Sequence
 import httpx
 
 from app.llm.base import LLMRequestError, LLMResponseError
+from app.safe_print import safe_print
 from app.llm.parser import parse_action
 from app.llm.prompt import RESPONSE_SCHEMA, SYSTEM_INSTRUCTION, build_user_prompt
 from app.schemas import ActionResponse, ReasonRequest
@@ -41,8 +42,10 @@ class GeminiReasoner:
         fallback_models: Sequence[str] = (),
         sleep: Callable[[float], None] = time.sleep,
         debug: bool = False,
+        thinking_budget: int | None = None,
     ) -> None:
         self._debug = debug
+        self._thinking_budget = thinking_budget
         self._api_key = api_key
         self._models = [model, *[m for m in fallback_models if m and m != model]]
         self._timeout = timeout_seconds
@@ -70,18 +73,21 @@ class GeminiReasoner:
     @staticmethod
     def _dump(title: str, body: str) -> None:
         rule = "-" * 70
-        for line in ("[llm-debug] " + title, rule, body, rule):
-            print(line)
+        for line in (f"[llm-debug] {title}", rule, body, rule):
+            safe_print(line)
 
     def _build_payload(self, request: ReasonRequest) -> dict:
+        generation_config: dict = {
+            "temperature": 0,
+            "responseMimeType": "application/json",
+            "responseSchema": RESPONSE_SCHEMA,
+        }
+        if self._thinking_budget is not None:
+            generation_config["thinkingConfig"] = {"thinkingBudget": self._thinking_budget}
         return {
             "system_instruction": {"parts": [{"text": SYSTEM_INSTRUCTION}]},
             "contents": [{"role": "user", "parts": [{"text": build_user_prompt(request)}]}],
-            "generationConfig": {
-                "temperature": 0,
-                "responseMimeType": "application/json",
-                "responseSchema": RESPONSE_SCHEMA,
-            },
+            "generationConfig": generation_config,
         }
 
     def _post(self, payload: dict) -> dict:

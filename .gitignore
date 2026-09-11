@@ -5,3 +5,4 @@ __pycache__/
 .venv/
 .pytest_cache/
 .env
+extension/evaluation/results/local/

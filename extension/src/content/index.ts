@@ -11,17 +11,18 @@ chrome.runtime.onMessage.addListener(
     message: ContentMessage,
     _sender,
     sendResponse: (r: ExtractPageResult | ExecuteActionResult | PingResult) => void,
-  ) => {
+  ): true | undefined => {
     switch (message.type) {
       case "PING":
         sendResponse({ ok: true });
         return;
       case "EXTRACT_PAGE":
-        sendResponse(handleExtractPage(message.task));
-        return;
+        handleExtractPage(message.task, message.ocr).then(sendResponse);
+        return true; // async response
       case "EXECUTE_ACTION":
         sendResponse(handleExecuteAction(message.action));
         return;
     }
+    return undefined;
   },
 );

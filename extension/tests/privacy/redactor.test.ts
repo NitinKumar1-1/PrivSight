@@ -45,6 +45,22 @@ describe("Redactor.redactText", () => {
   });
 });
 
+describe("Redactor.redactText: numeric values are digit-bounded", () => {
+  it("does not redact an OTP's digits when they sit inside a longer order or invoice number", () => {
+    const r = new Redactor();
+    r.placeholderFor("OTP", "123456");
+    expect(r.redactText("Order ID: 1234567890 and Invoice #5551234567")).toBe("Order ID: 1234567890 and Invoice #5551234567");
+    expect(r.redactText("OTP 123456 sent")).toBe("OTP [OTP_1] sent");
+  });
+
+  it("still replaces a spaced card value and an email anywhere", () => {
+    const r = new Redactor();
+    r.placeholderFor("CARD", "4111 1111 1111 1111");
+    r.placeholderFor("EMAIL", "demo@example.com");
+    expect(r.redactText("pay 4111 1111 1111 1111 mail:demo@example.com;")).toBe("pay [CARD_1] mail:[EMAIL_1];");
+  });
+});
+
 describe("Redactor.resolve and summary", () => {
   it("resolves a placeholder locally and never exposes values in the summary", () => {
     const r = new Redactor();

@@ -30,6 +30,10 @@ Rules:
 8. Never attempt to recover, infer or request the value behind a placeholder.
 9. Never include scripts, URLs with javascript: or data: schemes, CSS selectors or code of any kind.
    Your output is validated locally before anything runs; an action that breaks these rules is discarded.
+10. A VISUAL OBSERVATIONS section, when present, comes from a local on-device OCR engine reading the
+    current screen. Use it for information the page text lacks (for example text drawn on a canvas).
+    A visual "button" observation names the element ID it was matched to; use that ID, never a
+    position. If a CONFLICT line says the page text and the visual reading disagree, trust the page text.
 """
 
 # OpenAPI-style schema accepted by Gemini's responseSchema. Keeps the model's
@@ -68,5 +72,21 @@ def build_user_prompt(request: ReasonRequest) -> str:
     else:
         lines.append("REDACTED PLACEHOLDERS PRESENT: none")
 
-    lines.extend(["", "PAGE TEXT:", page.text or "(empty)", "", "Return the single JSON action now."])
+    lines.extend(["", "PAGE TEXT:", page.text or "(empty)"])
+
+    if request.visual is not None:
+        lines.extend(
+            ["", f"VISUAL OBSERVATIONS (local OCR engine: {request.visual.engine}; type | text | target | confidence):"]
+        )
+        if request.visual.observations:
+            lines.extend(
+                f"- {obs.type} | {obs.text} | {obs.target or '-'} | {obs.confidence:.2f}"
+                for obs in request.visual.observations
+            )
+        else:
+            lines.append("- (none)")
+        for conflict in request.visual.conflicts:
+            lines.append(f"CONFLICT: {conflict}")
+
+    lines.extend(["", "Return the single JSON action now."])
     return "\n".join(lines)

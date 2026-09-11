@@ -87,6 +87,33 @@ def test_prompt_contains_only_sanitized_request_fields():
     assert "[EMAIL_1]" in prompt
 
 
+def test_prompt_includes_visual_observations_and_conflicts_when_present():
+    request = ReasonRequest.model_validate(
+        {
+            **REQUEST.model_dump(),
+            "visual": {
+                "engine": "tesseract.js 7 LSTM (wasm)",
+                "observations": [
+                    {"type": "text", "text": "Black Shirt C", "bbox": {"x": 1, "y": 2, "width": 30, "height": 10}, "confidence": 0.93, "target": None},
+                    {"type": "price", "text": "Price: Rs 699", "bbox": {"x": 1, "y": 20, "width": 30, "height": 10}, "confidence": 0.9, "target": None},
+                    {"type": "button", "text": "Buy Now C", "bbox": {"x": 1, "y": 40, "width": 30, "height": 10}, "confidence": 0.88, "target": "el_buy_c"},
+                ],
+                "conflicts": ["Black Shirt A: page text says 799, vision read 7799"],
+            },
+        }
+    )
+    prompt = build_user_prompt(request)
+    assert "VISUAL OBSERVATIONS (local OCR engine: tesseract.js 7 LSTM (wasm)" in prompt
+    assert "- price | Price: Rs 699 | - | 0.90" in prompt
+    assert "- button | Buy Now C | el_buy_c | 0.88" in prompt
+    assert "CONFLICT: Black Shirt A: page text says 799, vision read 7799" in prompt
+    assert "trust the page text" in SYSTEM_INSTRUCTION
+
+
+def test_prompt_has_no_visual_section_without_visual_context():
+    assert "VISUAL OBSERVATIONS" not in build_user_prompt(REQUEST)
+
+
 def test_system_instruction_explains_placeholders_and_json_only():
     assert "[EMAIL_1]" in SYSTEM_INSTRUCTION
     assert "exactly one JSON object" in SYSTEM_INSTRUCTION
@@ -107,6 +134,7 @@ def settings(**overrides) -> Settings:
         "gemini_fallback_models": ("m2",),
         "llm_timeout_seconds": 5.0,
         "llm_debug": False,
+        "gemini_thinking_budget": None,
     }
     return Settings(**{**base, **overrides})
 
@@ -180,6 +208,20 @@ def test_gemini_sends_key_in_header_and_sanitized_prompt_in_body():
     user_text = body["contents"][0]["parts"][0]["text"]
     assert user_text == build_user_prompt(REQUEST)
     assert "[EMAIL_1]" in user_text
+
+
+def test_gemini_thinking_budget_is_sent_only_when_configured():
+    seen: list[dict] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        seen.append(json.loads(request.content))
+        return gemini_reply(GOOD_JSON)
+
+    client = httpx.Client(transport=httpx.MockTransport(handler))
+    GeminiReasoner(api_key="k", model="m", timeout_seconds=5.0, client=client).reason(REQUEST)
+    assert "thinkingConfig" not in seen[-1]["generationConfig"]
+    GeminiReasoner(api_key="k", model="m", timeout_seconds=5.0, client=client, thinking_budget=0).reason(REQUEST)
+    assert seen[-1]["generationConfig"]["thinkingConfig"] == {"thinkingBudget": 0}
 
 
 def test_gemini_debug_prints_sanitized_prompt_and_reply_but_never_the_key(capsys):

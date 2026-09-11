@@ -5,15 +5,19 @@
 
 import { placeholderType, sensitiveTypeOf } from "../privacy/sanitize";
 import type { ExecuteActionResult, ExtractPageResult } from "../shared/messages";
+import type { OcrResult } from "../vision/types";
 import { EXECUTOR_SUPPORTED_ACTIONS, validateAction, type ValidationContext } from "./action-validator";
 import { findElementByPsId } from "./element-ids";
 import { executeAction } from "./executor";
 import { prepareRequest } from "./perception";
+import { waitForDomSettle } from "./settle";
 
-export function handleExtractPage(task: string): ExtractPageResult {
+/** Waits for the DOM to stop mutating, then extracts, fuses, redacts and runs the firewall. */
+export async function handleExtractPage(task: string, ocr: OcrResult | null = null): Promise<ExtractPageResult> {
   try {
-    const { summary, firewall } = prepareRequest(task);
-    return { ok: true, summary, firewall };
+    await waitForDomSettle();
+    const { summary, firewall, visualPrivacy } = prepareRequest(task, ocr);
+    return { ok: true, summary, firewall, visualPrivacy };
   } catch (error) {
     return { ok: false, error: error instanceof Error ? error.message : String(error) };
   }

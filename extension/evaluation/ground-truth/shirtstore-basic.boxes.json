@@ -1,0 +1,127 @@
+{
+  "case": "shirtstore-basic",
+  "page": "index.html",
+  "scale": 2,
+  "boxes": [
+    {
+      "kind": "text",
+      "text": "Black Shirt A",
+      "x": 454,
+      "y": 781.875,
+      "width": 192.65625,
+      "height": 24
+    },
+    {
+      "kind": "text",
+      "text": "Black Shirt B",
+      "x": 1040.65625,
+      "y": 781.875,
+      "width": 190.65625,
+      "height": 24
+    },
+    {
+      "kind": "text",
+      "text": "Black Shirt C",
+      "x": 1627.3125,
+      "y": 781.875,
+      "width": 190.125,
+      "height": 24
+    },
+    {
+      "kind": "price",
+      "text": "Price: ₹799",
+      "x": 454,
+      "y": 835.875,
+      "width": 158.125,
+      "height": 24
+    },
+    {
+      "kind": "price",
+      "text": "Price: ₹899",
+      "x": 1040.65625,
+      "y": 835.875,
+      "width": 158.71875,
+      "height": 24
+    },
+    {
+      "kind": "price",
+      "text": "Price: ₹699",
+      "x": 1627.3125,
+      "y": 835.875,
+      "width": 158.8125,
+      "height": 24
+    },
+    {
+      "kind": "button",
+      "text": "Buy Now A",
+      "x": 614.6875,
+      "y": 919.875,
+      "width": 157.25,
+      "height": 28
+    },
+    {
+      "kind": "button",
+      "text": "Buy Now B",
+      "x": 1200.8125,
+      "y": 919.875,
+      "width": 158.34375,
+      "height": 28
+    },
+    {
+      "kind": "button",
+      "text": "Buy Now C",
+      "x": 1787.46875,
+      "y": 919.875,
+      "width": 158.34375,
+      "height": 28
+    },
+    {
+      "kind": "pii:EMAIL",
+      "text": "demo@example.com",
+      "x": 736.71875,
+      "y": 198,
+      "width": 246.3125,
+      "height": 26
+    },
+    {
+      "kind": "pii:PHONE",
+      "text": "9999999999",
+      "x": 1135.65625,
+      "y": 202,
+      "width": 153.96875,
+      "height": 18
+    },
+    {
+      "kind": "pii:EMAIL",
+      "text": "demo@example.com",
+      "x": 1126,
+      "y": 1211.875,
+      "width": 299.046875,
+      "height": 32
+    },
+    {
+      "kind": "pii:PHONE",
+      "text": "9999999999",
+      "x": 1126,
+      "y": 1314.875,
+      "width": 172.5,
+      "height": 22
+    },
+    {
+      "kind": "pii:CARD",
+      "text": "4111 1111 1111 1111",
+      "x": 1126,
+      "y": 1510.875,
+      "width": 237.953125,
+      "height": 22
+    },
+    {
+      "kind": "pii:OTP",
+      "text": "123456",
+      "x": 1126,
+      "y": 1608.875,
+      "width": 102.46875,
+      "height": 22
+    }
+  ]
+}

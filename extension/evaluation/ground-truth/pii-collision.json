@@ -1,0 +1,32 @@
+{
+  "case": "pii-collision",
+  "expected_text": [
+    "Collision case (fake test data)"
+  ],
+  "expected_prices": [
+    {
+      "amount": 699,
+      "text": "₹699"
+    }
+  ],
+  "expected_buttons": [],
+  "expected_pii": [
+    {
+      "type": "OTP",
+      "value": "123456",
+      "layout": "same-line"
+    }
+  ],
+  "non_pii": [
+    "123456",
+    "₹699",
+    "Black Shirt C"
+  ],
+  "note": "Quantity 123456 carries the same digits as the OTP. The verifier cannot tell them apart in the serialized body and is expected to block (fail closed).",
+  "extra_text": [
+    "OTP:",
+    "Quantity:",
+    "Price:",
+    "Product:"
+  ]
+}

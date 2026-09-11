@@ -46,7 +46,7 @@ export interface KnownValue {
 export type ApprovedPayload = string & { readonly __privsightApproved: unique symbol };
 
 export interface LeakageCheck {
-  name: "structure" | "known-values" | "patterns";
+  name: "structure" | "image-data" | "known-values" | "patterns";
   passed: boolean;
 }
 

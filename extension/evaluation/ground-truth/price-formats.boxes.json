@@ -1,0 +1,211 @@
+{
+  "case": "price-formats",
+  "page": "eval/price-formats.html",
+  "scale": 2,
+  "boxes": [
+    {
+      "kind": "text",
+      "text": "Shirt One",
+      "x": 82,
+      "y": 177,
+      "width": 142.1875,
+      "height": 24
+    },
+    {
+      "kind": "price",
+      "text": "₹699",
+      "amount": 699,
+      "x": 82,
+      "y": 231,
+      "width": 60.375,
+      "height": 20
+    },
+    {
+      "kind": "text",
+      "text": "Shirt Two",
+      "x": 915.3125,
+      "y": 177,
+      "width": 143.46875,
+      "height": 24
+    },
+    {
+      "kind": "price",
+      "text": "Price: ₹799",
+      "amount": 799,
+      "x": 915.3125,
+      "y": 233,
+      "width": 172.15625,
+      "height": 26
+    },
+    {
+      "kind": "text",
+      "text": "Shirt Three",
+      "x": 1748.65625,
+      "y": 177,
+      "width": 166.5,
+      "height": 24
+    },
+    {
+      "kind": "price",
+      "text": "Rs 899",
+      "amount": 899,
+      "x": 1748.65625,
+      "y": 237,
+      "width": 139.875,
+      "height": 34
+    },
+    {
+      "kind": "text",
+      "text": "Shirt Four",
+      "x": 82,
+      "y": 399,
+      "width": 149.53125,
+      "height": 24
+    },
+    {
+      "kind": "price",
+      "text": "INR 499",
+      "amount": 499,
+      "x": 82,
+      "y": 464,
+      "width": 224.21875,
+      "height": 46
+    },
+    {
+      "kind": "text",
+      "text": "Shirt Five",
+      "x": 915.3125,
+      "y": 399,
+      "width": 141.3125,
+      "height": 24
+    },
+    {
+      "kind": "price",
+      "text": "₹ 399",
+      "amount": 399,
+      "x": 915.3125,
+      "y": 459,
+      "width": 116.65625,
+      "height": 34
+    },
+    {
+      "kind": "text",
+      "text": "Shirt Six",
+      "x": 1748.65625,
+      "y": 399,
+      "width": 125.9375,
+      "height": 24
+    },
+    {
+      "kind": "price",
+      "text": "Rs. 1,299",
+      "amount": 1299,
+      "x": 1748.65625,
+      "y": 453,
+      "width": 139.90625,
+      "height": 30
+    },
+    {
+      "kind": "text",
+      "text": "Shirt Seven",
+      "x": 82,
+      "y": 643,
+      "width": 170.1875,
+      "height": 24
+    },
+    {
+      "kind": "price",
+      "text": "MRP ₹2,499",
+      "amount": 2499,
+      "x": 82,
+      "y": 700,
+      "width": 251.625,
+      "height": 40
+    },
+    {
+      "kind": "text",
+      "text": "Shirt Eight",
+      "x": 915.3125,
+      "y": 639,
+      "width": 158.90625,
+      "height": 32
+    },
+    {
+      "kind": "price",
+      "text": "Price: Rs 1099",
+      "amount": 1099,
+      "x": 915.3125,
+      "y": 697,
+      "width": 170.1875,
+      "height": 20
+    },
+    {
+      "kind": "text",
+      "text": "Shirt Nine",
+      "x": 1748.65625,
+      "y": 643,
+      "width": 152.28125,
+      "height": 24
+    },
+    {
+      "kind": "price",
+      "text": "₹599",
+      "amount": 599,
+      "x": 1748.65625,
+      "y": 708,
+      "width": 138,
+      "height": 46
+    },
+    {
+      "kind": "text",
+      "text": "Shirt Ten",
+      "x": 82,
+      "y": 887,
+      "width": 133.78125,
+      "height": 24
+    },
+    {
+      "kind": "price",
+      "text": "INR 149.00",
+      "amount": 149,
+      "x": 82,
+      "y": 943,
+      "width": 172.75,
+      "height": 26
+    },
+    {
+      "kind": "text",
+      "text": "Shirt Eleven",
+      "x": 915.3125,
+      "y": 887,
+      "width": 178.375,
+      "height": 24
+    },
+    {
+      "kind": "price",
+      "text": "Price ₹999",
+      "amount": 999,
+      "x": 915.3125,
+      "y": 947,
+      "width": 219.125,
+      "height": 34
+    },
+    {
+      "kind": "text",
+      "text": "Shirt Twelve",
+      "x": 1748.65625,
+      "y": 887,
+      "width": 184.65625,
+      "height": 24
+    },
+    {
+      "kind": "price",
+      "text": "Rs 3499",
+      "amount": 3499,
+      "x": 1748.65625,
+      "y": 952,
+      "width": 220.96875,
+      "height": 46
+    }
+  ]
+}

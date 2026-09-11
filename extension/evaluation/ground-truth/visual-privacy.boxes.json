@@ -1,0 +1,135 @@
+{
+  "case": "visual-privacy",
+  "page": "visual-privacy.html",
+  "scale": 2,
+  "boxes": [
+    {
+      "kind": "text",
+      "text": "Black Shirt A",
+      "x": 454,
+      "y": 1115.125,
+      "width": 192.65625,
+      "height": 24
+    },
+    {
+      "kind": "text",
+      "text": "Black Shirt B",
+      "x": 1040.65625,
+      "y": 1115.125,
+      "width": 190.65625,
+      "height": 24
+    },
+    {
+      "kind": "text",
+      "text": "Black Shirt C",
+      "x": 1627.3125,
+      "y": 1115.125,
+      "width": 190.125,
+      "height": 24
+    },
+    {
+      "kind": "price",
+      "text": "Price: ₹799",
+      "x": 454,
+      "y": 1169.125,
+      "width": 158.125,
+      "height": 24
+    },
+    {
+      "kind": "price",
+      "text": "Price: ₹899",
+      "x": 1040.65625,
+      "y": 1169.125,
+      "width": 158.71875,
+      "height": 24
+    },
+    {
+      "kind": "price",
+      "text": "Price: ₹699",
+      "x": 1627.3125,
+      "y": 1169.125,
+      "width": 158.8125,
+      "height": 24
+    },
+    {
+      "kind": "button",
+      "text": "Buy Now A",
+      "x": 614.6875,
+      "y": 1253.125,
+      "width": 157.25,
+      "height": 28
+    },
+    {
+      "kind": "button",
+      "text": "Buy Now B",
+      "x": 1200.8125,
+      "y": 1253.125,
+      "width": 158.34375,
+      "height": 28
+    },
+    {
+      "kind": "button",
+      "text": "Buy Now C",
+      "x": 1787.46875,
+      "y": 1253.125,
+      "width": 158.34375,
+      "height": 28
+    },
+    {
+      "kind": "pii:EMAIL",
+      "text": "Email: demo@example.com",
+      "x": 460,
+      "y": 385.178125,
+      "width": 390.28125,
+      "height": 31.31484375
+    },
+    {
+      "kind": "pii:PHONE",
+      "text": "Phone: 9999999999",
+      "x": 460,
+      "y": 445.7875,
+      "width": 277.828125,
+      "height": 24.243750000000002
+    },
+    {
+      "kind": "pii:CARD",
+      "text": "Card: 4111 1111 1111 1111",
+      "x": 460,
+      "y": 506.396875,
+      "width": 384.0625,
+      "height": 24.243750000000002
+    },
+    {
+      "kind": "pii:OTP",
+      "text": "OTP: 123456",
+      "x": 1320,
+      "y": 386.18828125000005,
+      "width": 176.578125,
+      "height": 23.23359375
+    },
+    {
+      "kind": "nonpii",
+      "text": "Order ID: 8845120033",
+      "x": 1320,
+      "y": 445.7875,
+      "width": 309.875,
+      "height": 24.243750000000002
+    },
+    {
+      "kind": "nonpii",
+      "text": "Member since: 12/03/2024",
+      "x": 1320,
+      "y": 506.396875,
+      "width": 378.0625,
+      "height": 28.284375000000004
+    },
+    {
+      "kind": "text",
+      "text": "Signed in as",
+      "x": 460,
+      "y": 312.446875,
+      "width": 192.0302734375,
+      "height": 34.345312500000006
+    }
+  ]
+}

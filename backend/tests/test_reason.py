@@ -128,6 +128,30 @@ def test_malformed_model_output_returns_502_not_500():
     assert "not valid JSON" in response.json()["detail"]
 
 
+def test_reason_rejects_unknown_fields_such_as_a_screenshot(reasoner):
+    for extra in ({"screenshot": "data:image/png;base64,AAAA"}, {"page": {**VALID_REQUEST["page"], "image": "x"}}):
+        response = client.post("/reason", json={**VALID_REQUEST, **extra})
+        assert response.status_code == 422, extra
+    assert reasoner.requests == []
+
+
+def test_reason_accepts_sanitized_visual_context_and_rejects_image_fields_inside_it(reasoner):
+    visual = {
+        "engine": "tesseract.js 7 LSTM (wasm)",
+        "observations": [
+            {"type": "price", "text": "Price: Rs 699", "bbox": {"x": 1, "y": 2, "width": 3, "height": 4}, "confidence": 0.9, "target": None}
+        ],
+        "conflicts": [],
+    }
+    assert client.post("/reason", json={**VALID_REQUEST, "visual": visual}).status_code == 200
+    assert reasoner.requests[-1].visual.observations[0].text == "Price: Rs 699"
+
+    bad = {**visual, "observations": [{**visual["observations"][0], "image": "AAAA"}]}
+    assert client.post("/reason", json={**VALID_REQUEST, "visual": bad}).status_code == 422
+    bad_type = {**visual, "observations": [{**visual["observations"][0], "type": "screenshot"}]}
+    assert client.post("/reason", json={**VALID_REQUEST, "visual": bad_type}).status_code == 422
+
+
 def test_reason_rejects_missing_page(reasoner):
     response = client.post("/reason", json={"task": "x"})
     assert response.status_code == 422

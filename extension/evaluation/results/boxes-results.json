@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-09-11T21:38:27.194Z",
+  "boxes": {
+    "metric": "IoU >= 0.5 between ground-truth box and any OCR line box (primary); ground-truth box covered >= 0.9 by one line box (secondary)",
+    "expected": 111,
+    "matched_iou": 95,
+    "matched_iou_or_covered": 103,
+    "missed": 8,
+    "false_lines": 5,
+    "recall_iou": {
+      "value": 0.856,
+      "of": "95/111"
+    },
+    "recall_covered": {
+      "value": 0.928,
+      "of": "103/111"
+    }
+  }
+}

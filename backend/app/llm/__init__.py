@@ -28,6 +28,7 @@ def create_reasoner(settings: Settings) -> LLMReasoner:
             timeout_seconds=settings.llm_timeout_seconds,
             fallback_models=settings.gemini_fallback_models,
             debug=settings.llm_debug,
+            thinking_budget=settings.gemini_thinking_budget,
         )
 
     if settings.llm_provider == "stub":

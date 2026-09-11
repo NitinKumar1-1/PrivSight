@@ -77,7 +77,7 @@ describe("live price-swap reasoning through the full pipeline", () => {
       loadPage(htmlWithPrices(scenario.prices));
 
       // 1. Real extraction + detection + redaction + firewall.
-      const extracted = handleExtractPage(TASK);
+      const extracted = await handleExtractPage(TASK);
       expect(extracted.ok).toBe(true);
       if (!extracted.ok) return;
       expect(extracted.firewall.verdict).toBe("allowed");

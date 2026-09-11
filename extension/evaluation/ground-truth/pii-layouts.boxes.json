@@ -1,0 +1,183 @@
+{
+  "case": "pii-layouts",
+  "page": "eval/pii-layouts.html",
+  "scale": 2,
+  "boxes": [
+    {
+      "kind": "pii:EMAIL",
+      "text": "demo@example.com",
+      "x": 173.25,
+      "y": 267,
+      "width": 299.0625,
+      "height": 32
+    },
+    {
+      "kind": "pii:PHONE",
+      "text": "9999999999",
+      "x": 187.34375,
+      "y": 326,
+      "width": 172.5,
+      "height": 22
+    },
+    {
+      "kind": "pii:CARD",
+      "text": "4111 1111 1111 1111",
+      "x": 163.78125,
+      "y": 380,
+      "width": 302.3125,
+      "height": 22
+    },
+    {
+      "kind": "pii:OTP",
+      "text": "123456",
+      "x": 155.09375,
+      "y": 434,
+      "width": 103.5,
+      "height": 22
+    },
+    {
+      "kind": "pii:CARD",
+      "text": "5555 5555 5555 4444",
+      "x": 488,
+      "y": 588,
+      "width": 302.3125,
+      "height": 22
+    },
+    {
+      "kind": "pii:OTP",
+      "text": "654321",
+      "x": 488,
+      "y": 682,
+      "width": 103.5,
+      "height": 22
+    },
+    {
+      "kind": "pii:PASSWORD",
+      "text": "Secret#2026",
+      "x": 488,
+      "y": 776,
+      "width": 175.125,
+      "height": 22
+    },
+    {
+      "kind": "pii:PHONE",
+      "text": "+91 98765 43210",
+      "x": 488,
+      "y": 870,
+      "width": 246.4375,
+      "height": 22
+    },
+    {
+      "kind": "pii:OTP",
+      "text": "4821",
+      "x": 104,
+      "y": 1080,
+      "width": 69,
+      "height": 22
+    },
+    {
+      "kind": "pii:EMAIL",
+      "text": "buyer.two@shop.example",
+      "x": 104,
+      "y": 1207,
+      "width": 365.25,
+      "height": 32
+    },
+    {
+      "kind": "nonpii",
+      "text": "₹699",
+      "x": 1414.03125,
+      "y": 272,
+      "width": 69,
+      "height": 22
+    },
+    {
+      "kind": "nonpii",
+      "text": "1234567890",
+      "x": 1467.375,
+      "y": 326,
+      "width": 172.5,
+      "height": 22
+    },
+    {
+      "kind": "nonpii",
+      "text": "5551234567",
+      "x": 1445.6875,
+      "y": 380,
+      "width": 172.5,
+      "height": 22
+    },
+    {
+      "kind": "nonpii",
+      "text": "7788990011",
+      "x": 1462.5,
+      "y": 434,
+      "width": 172.5,
+      "height": 22
+    },
+    {
+      "kind": "nonpii",
+      "text": "12/09/2026",
+      "x": 1412,
+      "y": 486,
+      "width": 162.9375,
+      "height": 26
+    },
+    {
+      "kind": "nonpii",
+      "text": "12",
+      "x": 1467.25,
+      "y": 542,
+      "width": 34.5,
+      "height": 22
+    },
+    {
+      "kind": "nonpii",
+      "text": "560001",
+      "x": 1473.96875,
+      "y": 596,
+      "width": 103.5,
+      "height": 22
+    },
+    {
+      "kind": "nonpii",
+      "text": "ORD-2024-5821",
+      "x": 1736,
+      "y": 672,
+      "width": 229.3125,
+      "height": 22
+    },
+    {
+      "kind": "nonpii",
+      "text": "88451200",
+      "x": 1736,
+      "y": 766,
+      "width": 138,
+      "height": 22
+    },
+    {
+      "kind": "nonpii",
+      "text": "2",
+      "x": 1736,
+      "y": 860,
+      "width": 17.25,
+      "height": 22
+    },
+    {
+      "kind": "nonpii",
+      "text": "14:00 to 16:00",
+      "x": 1352,
+      "y": 992,
+      "width": 199,
+      "height": 22
+    },
+    {
+      "kind": "nonpii",
+      "text": "Black Shirt C",
+      "x": 1352,
+      "y": 1123,
+      "width": 175.25,
+      "height": 24
+    }
+  ]
+}

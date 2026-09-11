@@ -5,7 +5,7 @@
   <title>PrivSight</title>
   <style>
     body {
-      width: 360px;
+      width: 380px;
       margin: 0;
       padding: 14px;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -38,12 +38,7 @@
     button:disabled { background: #9ca3af; cursor: default; }
     h2 { font-size: 13px; margin: 14px 0 6px; }
 
-    .badge-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 14px;
-    }
+    .badge-row { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; }
     .badge-row h2 { margin: 0; }
     .badge {
       padding: 3px 10px;
@@ -65,20 +60,22 @@
       border: 1px solid #e5e7eb;
       border-radius: 6px;
     }
-    #pipeline li {
-      display: flex;
-      justify-content: space-between;
-      padding: 3px 0;
-      cursor: help;
-    }
-    #pipeline .state {
-      font-size: 11px;
-      font-weight: 700;
-      color: #9ca3af;
-    }
+    #pipeline li { display: flex; justify-content: space-between; padding: 3px 0; cursor: help; }
+    #pipeline li.group { font-size: 11px; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 4px; cursor: default; }
+    #pipeline .state { font-size: 11px; font-weight: 700; color: #9ca3af; }
     #pipeline li[data-state="pass"] .state { color: #15803d; }
     #pipeline li[data-state="fail"] .state { color: #b91c1c; }
+    #pipeline li[data-state="fallback"] .state { color: #b45309; }
     #pipeline li[data-state="skipped"] .state { color: #6b7280; }
+
+    .previews { display: flex; gap: 8px; margin-top: 6px; }
+    .previews figure { flex: 1; margin: 0; }
+    .previews figcaption { font-size: 11px; color: #6b7280; margin-bottom: 3px; }
+    .previews img { width: 100%; border: 1px solid #e5e7eb; border-radius: 4px; background: #f3f4f6; min-height: 60px; }
+
+    #metrics { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; margin: 6px 0 0; font-size: 12px; }
+    #metrics dt { color: #6b7280; }
+    #metrics dd { margin: 0; font-variant-numeric: tabular-nums; }
 
     #status {
       list-style: none;
@@ -120,21 +117,38 @@
     <span id="privacy-badge" class="badge idle">IDLE</span>
   </div>
   <ul id="pipeline">
-    <li data-stage="detect" data-state="pending"><span>Local PII detection</span><span class="state">PENDING</span></li>
+    <li class="group"><span>Perception (local)</span></li>
+    <li data-stage="dom" data-state="pending"><span>DOM perception</span><span class="state">PENDING</span></li>
+    <li data-stage="vision" data-state="pending"><span>Local vision (neural OCR)</span><span class="state">PENDING</span></li>
+    <li class="group"><span>Privacy (local)</span></li>
+    <li data-stage="detect" data-state="pending"><span>PII detection</span><span class="state">PENDING</span></li>
+    <li data-stage="visual-redaction" data-state="pending"><span>Visual redaction</span><span class="state">PENDING</span></li>
     <li data-stage="leakage" data-state="pending"><span>Leakage verification</span><span class="state">PENDING</span></li>
     <li data-stage="firewall" data-state="pending"><span>Privacy Firewall</span><span class="state">PENDING</span></li>
-    <li data-stage="reason" data-state="pending"><span>Cloud reasoning</span><span class="state">PENDING</span></li>
-    <li data-stage="validate" data-state="pending"><span>Local action validator</span><span class="state">PENDING</span></li>
+    <li class="group"><span>Reasoning (cloud)</span></li>
+    <li data-stage="reason" data-state="pending"><span>Cloud LLM</span><span class="state">PENDING</span></li>
+    <li class="group"><span>Safety (local)</span></li>
+    <li data-stage="validate" data-state="pending"><span>Action validator</span><span class="state">PENDING</span></li>
     <li data-stage="execute" data-state="pending"><span>Browser execution</span><span class="state">PENDING</span></li>
   </ul>
   <p class="hint">Hover a row for details. Raw values are never shown.</p>
+
+  <h2>Local screen previews</h2>
+  <div class="previews">
+    <figure><figcaption>Captured (local)</figcaption><img id="preview-raw" alt="raw capture preview"></figure>
+    <figure><figcaption>Masked (local)</figcaption><img id="preview-masked" alt="masked capture preview"></figure>
+  </div>
+  <p class="hint" id="preview-note"></p>
+
+  <h2>Measured this run</h2>
+  <dl id="metrics"></dl>
 
   <h2>Status</h2>
   <ul id="status"></ul>
 
   <details>
     <summary>Sanitized payload sent to backend</summary>
-    <p class="hint">Exact request body. Sensitive values appear only as placeholders.</p>
+    <p class="hint">Exact request body. Sensitive values appear only as placeholders. No image data.</p>
     <pre id="payload">(run a task to see the payload)</pre>
   </details>
 

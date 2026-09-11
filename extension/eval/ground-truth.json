@@ -1,0 +1,252 @@
+{
+  "_note": "Ground truth for the evaluation fixtures. Fixtures are real Chrome (headless, device scale 2) screenshots of the demo pages. expected_pii lists values that are readable on screen; the password field renders as dots and is therefore not expected from OCR. negatives are lines that must NOT be classified as PII.",
+  "fixtures": [
+    {
+      "file": "shirtstore.png",
+      "page": "demo-site/index.html",
+      "expected_text": [
+        "ShirtStore",
+        "Products",
+        "About",
+        "Signed in as",
+        "Black Shirts",
+        "Black Shirt A",
+        "Black Shirt B",
+        "Black Shirt C",
+        "Delivery details",
+        "Email",
+        "Phone",
+        "Password",
+        "Card number",
+        "OTP"
+      ],
+      "expected_prices": [
+        799,
+        899,
+        699
+      ],
+      "expected_buttons": [
+        "Buy Now A",
+        "Buy Now B",
+        "Buy Now C"
+      ],
+      "expected_pii": [
+        {
+          "type": "EMAIL",
+          "value": "demo@example.com"
+        },
+        {
+          "type": "PHONE",
+          "value": "9999999999"
+        },
+        {
+          "type": "CARD",
+          "value": "4111 1111 1111 1111"
+        },
+        {
+          "type": "OTP",
+          "value": "123456"
+        }
+      ],
+      "negatives": [
+        "Price: \u20b9799",
+        "Price: \u20b9899",
+        "Price: \u20b9699",
+        "Black Shirt A",
+        "Black Shirt B",
+        "Black Shirt C",
+        "Buy Now A",
+        "Buy Now B",
+        "Buy Now C",
+        "Delivery details"
+      ],
+      "extra_text": [
+        "ShirtStore is a local demo page used to test browser automation. All account details shown are fake test values.",
+        "Price: \u20b9799",
+        "Price: \u20b9899",
+        "Price: \u20b9699",
+        "Buy Now A",
+        "Buy Now B",
+        "Buy Now C",
+        "demo@example.com",
+        "9999999999",
+        "4111 1111 1111 1111",
+        "123456"
+      ]
+    },
+    {
+      "file": "visual.png",
+      "page": "demo-site/visual.html",
+      "expected_text": [
+        "ShirtStore",
+        "Products",
+        "About",
+        "Black Shirts",
+        "Black Shirt A",
+        "Black Shirt B",
+        "Black Shirt C"
+      ],
+      "canvas_only_text": [
+        "Black Shirt C",
+        "Price: Rs 699"
+      ],
+      "expected_prices": [
+        799,
+        899,
+        699
+      ],
+      "expected_buttons": [
+        "Buy Now A",
+        "Buy Now B",
+        "Buy Now C"
+      ],
+      "expected_pii": [],
+      "negatives": [
+        "Price: \u20b9799",
+        "Price: \u20b9899",
+        "Price: Rs 699",
+        "Black Shirt C",
+        "Buy Now C"
+      ],
+      "extra_text": [
+        "Visual-fallback fixture: the third product's name and price are drawn on a canvas, so they exist on screen but not in the DOM text.",
+        "ShirtStore is a local demo page used to test browser automation.",
+        "Price: \u20b9799",
+        "Price: \u20b9899",
+        "Price: Rs 699",
+        "Buy Now A",
+        "Buy Now B",
+        "Buy Now C"
+      ]
+    },
+    {
+      "file": "visual-privacy.png",
+      "page": "demo-site/visual-privacy.html",
+      "expected_text": [
+        "ShirtStore",
+        "Products",
+        "About",
+        "Signed in as",
+        "Black Shirts",
+        "Black Shirt A",
+        "Black Shirt B",
+        "Black Shirt C",
+        "Order ID",
+        "Member since"
+      ],
+      "canvas_only_text": [
+        "Email: demo@example.com",
+        "Phone: 9999999999",
+        "Card: 4111 1111 1111 1111",
+        "OTP: 123456",
+        "Order ID: 8845120033",
+        "Member since: 12/03/2024"
+      ],
+      "expected_prices": [
+        799,
+        899,
+        699
+      ],
+      "expected_buttons": [
+        "Buy Now A",
+        "Buy Now B",
+        "Buy Now C"
+      ],
+      "expected_pii": [
+        {
+          "type": "EMAIL",
+          "value": "demo@example.com"
+        },
+        {
+          "type": "PHONE",
+          "value": "9999999999"
+        },
+        {
+          "type": "CARD",
+          "value": "4111 1111 1111 1111"
+        },
+        {
+          "type": "OTP",
+          "value": "123456"
+        }
+      ],
+      "negatives": [
+        "Order ID: 8845120033",
+        "Member since: 12/03/2024",
+        "Price: \u20b9799",
+        "Price: \u20b9899",
+        "Price: \u20b9699",
+        "Black Shirt A",
+        "Black Shirt B",
+        "Black Shirt C",
+        "Buy Now A",
+        "Buy Now B",
+        "Buy Now C",
+        "Signed in as"
+      ],
+      "extra_text": [
+        "Visual-privacy fixture: the account panel below is drawn on a canvas. The fake values exist only as pixels, so only local vision can see them. All values are test data.",
+        "ShirtStore is a local demo page used to test browser automation. All account details shown are fake test values.",
+        "Price: \u20b9799",
+        "Price: \u20b9899",
+        "Price: \u20b9699",
+        "Buy Now A",
+        "Buy Now B",
+        "Buy Now C",
+        "Email: demo@example.com",
+        "Phone: 9999999999",
+        "Card: 4111 1111 1111 1111",
+        "OTP: 123456",
+        "Order ID: 8845120033",
+        "Member since: 12/03/2024"
+      ]
+    },
+    {
+      "file": "visual-only.png",
+      "page": "demo-site/visual-only.html",
+      "expected_text": [
+        "ShirtStore",
+        "Products",
+        "About",
+        "Black Shirts"
+      ],
+      "canvas_only_text": [
+        "Black Shirt A",
+        "Price: Rs 499",
+        "Black Shirt B",
+        "Price: Rs 899",
+        "Black Shirt C",
+        "Price: Rs 699"
+      ],
+      "expected_prices": [
+        499,
+        899,
+        699
+      ],
+      "expected_buttons": [
+        "Buy Now A",
+        "Buy Now B",
+        "Buy Now C"
+      ],
+      "expected_pii": [],
+      "negatives": [
+        "Price: Rs 499",
+        "Price: Rs 899",
+        "Price: Rs 699",
+        "Black Shirt A",
+        "Black Shirt B",
+        "Black Shirt C",
+        "Buy Now A",
+        "Buy Now B",
+        "Buy Now C"
+      ],
+      "extra_text": [
+        "Visual-only fixture: every product name and price is drawn on a canvas. The DOM contains the buttons only.",
+        "ShirtStore is a local demo page used to test browser automation.",
+        "Buy Now A",
+        "Buy Now B",
+        "Buy Now C"
+      ]
+    }
+  ]
+}

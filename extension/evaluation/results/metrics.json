@@ -1,0 +1,763 @@
+{
+  "generatedAt": "2026-09-11T21:34:02.702Z",
+  "sources": {
+    "evaluation": "2026-09-11T21:28:19.616Z",
+    "evaluation_before": "2026-09-11T20:30:28.112Z",
+    "latency": "2026-09-11T20:52:13.546Z",
+    "latency_before": "2026-09-11T20:48:20.976Z",
+    "network": "2026-09-11T20:52:13.546Z"
+  },
+  "engine": {
+    "vision": "tesseract.js 7 LSTM (wasm)",
+    "ocrPasses": 2,
+    "host": "vitest jsdom + Node worker (WebAssembly); fixtures rendered by Playwright Chromium at device scale 2, OCR at scale 1",
+    "onnx": "NOT USED",
+    "webgpu": "available on the test machine, NOT USED by the OCR engine",
+    "wasm": "USED (SIMD LSTM core)"
+  },
+  "visual_context": {
+    "ocr_line_precision": {
+      "before": "131/134",
+      "after": "153/158",
+      "after_pct": "96.8%"
+    },
+    "ocr_text_recall": {
+      "before": "77/77",
+      "after": "77/77",
+      "after_pct": "100.0%"
+    },
+    "task_relevant_recall_strict": {
+      "before": "51/86",
+      "after": "69/86",
+      "after_pct": "80.2%"
+    },
+    "task_relevant_recall_recoverable": {
+      "before": "59/86",
+      "after": "78/86",
+      "after_pct": "90.7%"
+    },
+    "price_exact": {
+      "before": "11/26",
+      "after": "12/26",
+      "after_pct": "46.2%",
+      "by_format": {
+        "rupee-sign": {
+          "exact": "2/16",
+          "recoverable": "12/16"
+        },
+        "Rs/INR": {
+          "exact": "4/4",
+          "recoverable": "4/4"
+        },
+        "Rs": {
+          "exact": "4/4",
+          "recoverable": "4/4"
+        },
+        "INR": {
+          "exact": "2/2",
+          "recoverable": "2/2"
+        }
+      }
+    },
+    "price_recoverable": {
+      "before": "19/26",
+      "after": "22/26",
+      "after_pct": "84.6%"
+    },
+    "button_recall": {
+      "before": "3/24",
+      "after": "19/24",
+      "after_pct": "79.2%",
+      "by_style": {
+        "demo": "12/12",
+        "white-on-orange": "1/1",
+        "dark-on-light": "0/1",
+        "white-on-blue": "1/1",
+        "blue-outline": "1/1",
+        "white-on-green": "1/1",
+        "dark-on-yellow": "0/1",
+        "white-on-black": "0/1",
+        "white-on-red": "0/1",
+        "white-on-orange-small": "1/1",
+        "white-on-orange-large": "1/1",
+        "dark-on-light-in-dark-cell": "0/1",
+        "white-on-blue-small": "1/1"
+      }
+    }
+  },
+  "boxes": {
+    "metric": "IoU >= 0.5 between ground-truth box and any OCR line box (primary); ground-truth box covered >= 0.9 by one line box (secondary)",
+    "expected": 111,
+    "matched_iou": {
+      "before": 78,
+      "after": 95
+    },
+    "matched_iou_or_covered": {
+      "before": 83,
+      "after": 103
+    },
+    "missed": 8,
+    "false_lines": {
+      "before": 3,
+      "after": 5
+    },
+    "recall_iou_pct": "85.6%",
+    "recall_covered_pct": "92.8%"
+  },
+  "pii": {
+    "visual_channel": {
+      "before": {
+        "tp": 14,
+        "fp": 0,
+        "fn": 5,
+        "precision": {
+          "value": 1,
+          "of": "14/14"
+        },
+        "recall": {
+          "value": 0.737,
+          "of": "14/19"
+        }
+      },
+      "after": {
+        "tp": 18,
+        "fp": 0,
+        "fn": 1,
+        "precision": {
+          "value": 1,
+          "of": "18/18"
+        },
+        "recall": {
+          "value": 0.947,
+          "of": "18/19"
+        }
+      }
+    },
+    "dom_channel": {
+      "before": {
+        "tp": 13,
+        "fp": 0,
+        "fn": 3,
+        "precision": {
+          "value": 1,
+          "of": "13/13"
+        },
+        "recall": {
+          "value": 0.813,
+          "of": "13/16"
+        },
+        "cases_blocked_by_firewall": 1,
+        "non_pii_withheld_by_block": 3
+      },
+      "after": {
+        "tp": 13,
+        "fp": 0,
+        "fn": 3,
+        "precision": {
+          "value": 1,
+          "of": "13/13"
+        },
+        "recall": {
+          "value": 0.813,
+          "of": "13/16"
+        },
+        "cases_blocked_by_firewall": 1,
+        "non_pii_withheld_by_block": 3
+      }
+    },
+    "combined": {
+      "before": {
+        "tp": 17,
+        "fp": 2,
+        "fn": 3,
+        "precision": {
+          "value": 0.895,
+          "of": "17/19"
+        },
+        "recall": {
+          "value": 0.85,
+          "of": "17/20"
+        },
+        "cases_blocked_by_firewall": 1,
+        "non_pii_withheld_by_block": 3
+      },
+      "after": {
+        "tp": 20,
+        "fp": 2,
+        "fn": 0,
+        "precision": {
+          "value": 0.909,
+          "of": "20/22"
+        },
+        "recall": {
+          "value": 1,
+          "of": "20/20"
+        },
+        "cases_blocked_by_firewall": 0,
+        "non_pii_withheld_by_block": 0
+      }
+    }
+  },
+  "redaction": {
+    "before": {
+      "sensitive_removed": {
+        "value": 0.85,
+        "of": "17/20"
+      },
+      "non_sensitive_removed": 2,
+      "precision": {
+        "value": 0.895,
+        "of": "17/19"
+      },
+      "task_relevant_preserved": {
+        "value": 1,
+        "of": "83/83"
+      },
+      "pii_boxes_masked": {
+        "value": 0.667,
+        "of": "14/21"
+      }
+    },
+    "after": {
+      "sensitive_removed": {
+        "value": 1,
+        "of": "20/20"
+      },
+      "non_sensitive_removed": 2,
+      "precision": {
+        "value": 0.909,
+        "of": "20/22"
+      },
+      "task_relevant_preserved": {
+        "value": 1,
+        "of": "103/103"
+      },
+      "pii_boxes_masked": {
+        "value": 0.81,
+        "of": "17/21"
+      }
+    }
+  },
+  "timing_node": {
+    "before": {
+      "engine_load_ms_cold": 377,
+      "ocr_recognize_ms": {
+        "n": 8,
+        "min": 446,
+        "mean": 913.25,
+        "median": 1007,
+        "max": 1450
+      },
+      "dom_pipeline_ms": {
+        "n": 8,
+        "min": 0.717,
+        "mean": 16.929,
+        "median": 7.941,
+        "max": 93.271
+      },
+      "combined_pipeline_ms": {
+        "n": 8,
+        "min": 0.532,
+        "mean": 7.765,
+        "median": 8.494,
+        "max": 21.29
+      }
+    },
+    "after": {
+      "engine_load_ms_cold": 303,
+      "ocr_recognize_ms": {
+        "n": 8,
+        "min": 1041,
+        "mean": 1906.375,
+        "median": 1922,
+        "max": 2689
+      },
+      "ocr_second_pass_ms": {
+        "n": 8,
+        "min": 569,
+        "mean": 1018.125,
+        "median": 1017,
+        "max": 1409
+      },
+      "dom_pipeline_ms": {
+        "n": 8,
+        "min": 1.434,
+        "mean": 15.869,
+        "median": 6.543,
+        "max": 88.05
+      },
+      "combined_pipeline_ms": {
+        "n": 8,
+        "min": 2.191,
+        "mean": 8.387,
+        "median": 9.496,
+        "max": 19.374
+      }
+    }
+  },
+  "latency_browser": {
+    "before": {
+      "runs": 10,
+      "cold_runs": 1,
+      "total_ms": {
+        "n": 10,
+        "min": 7222,
+        "mean": 7815,
+        "median": 7411,
+        "p95": 9514,
+        "max": 9514
+      },
+      "local_perception_ms": {
+        "n": 10,
+        "min": 1089,
+        "mean": 1350,
+        "median": 1200,
+        "p95": 2859,
+        "max": 2859
+      },
+      "ocr_recognize_ms": {
+        "n": 10,
+        "min": 1083,
+        "mean": 1232,
+        "median": 1196,
+        "p95": 1713,
+        "max": 1713
+      },
+      "capture_ms": {
+        "n": 10,
+        "min": 47,
+        "mean": 68,
+        "median": 69,
+        "p95": 102,
+        "max": 102
+      },
+      "privacy_ms": {
+        "n": 10,
+        "min": 324,
+        "mean": 841,
+        "median": 925,
+        "p95": 979,
+        "max": 979
+      },
+      "cloud_ms": {
+        "n": 10,
+        "min": 5036,
+        "mean": 5463,
+        "median": 5189,
+        "p95": 7168,
+        "max": 7168
+      },
+      "validate_execute_ms": {
+        "n": 10,
+        "min": 27,
+        "mean": 31,
+        "median": 31,
+        "p95": 35,
+        "max": 35
+      },
+      "breakdown_share_of_total_mean": {
+        "local_perception_pct": 17.3,
+        "privacy_pct": 10.8,
+        "cloud_pct": 69.9,
+        "validate_execute_pct": 0.4,
+        "capture_pct": 0.9
+      },
+      "warm_only": {
+        "runs": 9,
+        "total_ms": {
+          "n": 9,
+          "min": 7222,
+          "mean": 7626,
+          "median": 7394,
+          "p95": 9412,
+          "max": 9412
+        },
+        "local_perception_ms": {
+          "n": 9,
+          "min": 1089,
+          "mean": 1182,
+          "median": 1190,
+          "p95": 1268,
+          "max": 1268
+        }
+      },
+      "cold_only": {
+        "runs": 1,
+        "total_ms": {
+          "n": 1,
+          "min": 9514,
+          "mean": 9514,
+          "median": 9514,
+          "p95": null,
+          "max": 9514
+        },
+        "local_perception_ms": {
+          "n": 1,
+          "min": 2859,
+          "mean": 2859,
+          "median": 2859,
+          "p95": null,
+          "max": 2859
+        },
+        "ocr_load_ms": {
+          "n": 1,
+          "min": 1136,
+          "mean": 1136,
+          "median": 1136,
+          "p95": null,
+          "max": 1136
+        }
+      }
+    },
+    "after": {
+      "runs": 10,
+      "cold_runs": 1,
+      "total_ms": {
+        "n": 10,
+        "min": 7592,
+        "mean": 8413,
+        "median": 7924,
+        "p95": 13610,
+        "max": 13610
+      },
+      "local_perception_ms": {
+        "n": 10,
+        "min": 2068,
+        "mean": 2309,
+        "median": 2174,
+        "p95": 3900,
+        "max": 3900
+      },
+      "ocr_recognize_ms": {
+        "n": 10,
+        "min": 1965,
+        "mean": 2082,
+        "median": 2068,
+        "p95": 2568,
+        "max": 2568
+      },
+      "capture_ms": {
+        "n": 10,
+        "min": 54,
+        "mean": 66,
+        "median": 66,
+        "p95": 79,
+        "max": 79
+      },
+      "privacy_ms": {
+        "n": 10,
+        "min": 324,
+        "mean": 330,
+        "median": 330,
+        "p95": 336,
+        "max": 336
+      },
+      "cloud_ms": {
+        "n": 10,
+        "min": 4979,
+        "mean": 5617,
+        "median": 5297,
+        "p95": 9023,
+        "max": 9023
+      },
+      "validate_execute_ms": {
+        "n": 10,
+        "min": 27,
+        "mean": 33,
+        "median": 32,
+        "p95": 57,
+        "max": 57
+      },
+      "breakdown_share_of_total_mean": {
+        "local_perception_pct": 27.4,
+        "privacy_pct": 3.9,
+        "cloud_pct": 66.8,
+        "validate_execute_pct": 0.4,
+        "capture_pct": 0.8
+      },
+      "warm_only": {
+        "runs": 9,
+        "total_ms": {
+          "n": 9,
+          "min": 7592,
+          "mean": 7836,
+          "median": 7904,
+          "p95": 8005,
+          "max": 8005
+        },
+        "local_perception_ms": {
+          "n": 9,
+          "min": 2068,
+          "mean": 2132,
+          "median": 2127,
+          "p95": 2214,
+          "max": 2214
+        }
+      },
+      "cold_only": {
+        "runs": 1,
+        "total_ms": {
+          "n": 1,
+          "min": 13610,
+          "mean": 13610,
+          "median": 13610,
+          "p95": null,
+          "max": 13610
+        },
+        "local_perception_ms": {
+          "n": 1,
+          "min": 3900,
+          "mean": 3900,
+          "median": 3900,
+          "p95": null,
+          "max": 3900
+        },
+        "ocr_load_ms": {
+          "n": 1,
+          "min": 1143,
+          "mean": 1143,
+          "median": 1143,
+          "p95": null,
+          "max": 1143
+        }
+      }
+    },
+    "price_swap": [
+      {
+        "scenario": "index.html",
+        "expected": "el_buy_a",
+        "clicked": "buy_a",
+        "success": true,
+        "totalMs": 7858,
+        "cloudMs": 5152,
+        "rounds": 1
+      },
+      {
+        "scenario": "index.html",
+        "expected": "el_buy_a",
+        "clicked": "buy_a",
+        "success": true,
+        "totalMs": 8092,
+        "cloudMs": 5333,
+        "rounds": 1
+      },
+      {
+        "scenario": "index.html",
+        "expected": "el_buy_b",
+        "clicked": "buy_b",
+        "success": true,
+        "totalMs": 8221,
+        "cloudMs": 5464,
+        "rounds": 1
+      },
+      {
+        "scenario": "index.html",
+        "expected": "el_buy_b",
+        "clicked": "buy_b",
+        "success": true,
+        "totalMs": 7861,
+        "cloudMs": 5208,
+        "rounds": 1
+      },
+      {
+        "scenario": "index.html",
+        "expected": "el_buy_c",
+        "clicked": "buy_c",
+        "success": true,
+        "totalMs": 7709,
+        "cloudMs": 5042,
+        "rounds": 1
+      },
+      {
+        "scenario": "index.html",
+        "expected": "el_buy_c",
+        "clicked": "buy_c",
+        "success": true,
+        "totalMs": 7972,
+        "cloudMs": 5338,
+        "rounds": 1
+      }
+    ],
+    "dynamic": [
+      {
+        "scenario": "dynamic.html?delay=1500",
+        "clicked": "buy_c",
+        "success": true,
+        "totalMs": 7900,
+        "rounds": 1
+      }
+    ],
+    "stale": [
+      {
+        "scenario": "dynamic.html?delay=300&vanish=4000",
+        "clicked": "(none)",
+        "rounds": 2,
+        "totalMs": 14996,
+        "reasonRequests": 2,
+        "safe": true
+      }
+    ]
+  },
+  "network": {
+    "reason_requests": 19,
+    "max_bytes": 1965,
+    "raw_pii_present_any": false,
+    "image_data_present_any": false,
+    "base64_run_any": false,
+    "fields": [
+      "task",
+      "page",
+      "placeholders",
+      "visual"
+    ]
+  },
+  "visual_context_accuracy_interpretation": {
+    "single_accuracy_percentage": null,
+    "reason": "The OCR evaluation is an open-set detection problem: there is no defined set of true negatives, and precision is counted over OCR lines while recall is counted over ground-truth items, so the two counts cannot be combined into one accuracy or F1 figure without inventing a denominator.",
+    "sih_requirement": "Accuracy of visual context from the screen",
+    "measured_by": {
+      "false_detections": {
+        "metric": "OCR line precision",
+        "value": "153/158",
+        "pct": "96.8%"
+      },
+      "missed_visual_information": {
+        "metric": "OCR text recall",
+        "value": "77/77",
+        "pct": "100.0%"
+      },
+      "task_information_recovered_strict": {
+        "metric": "task-relevant recall (strict)",
+        "value": "69/86",
+        "pct": "80.2%"
+      },
+      "task_information_recovered_recoverable": {
+        "metric": "task-relevant recall (amount-recoverable)",
+        "value": "78/86",
+        "pct": "90.7%"
+      },
+      "task_critical_prices_exact": {
+        "metric": "exact price recognition",
+        "value": "12/26",
+        "pct": "46.2%"
+      },
+      "task_critical_prices_numeric": {
+        "metric": "numeric price recovery",
+        "value": "22/26",
+        "pct": "84.6%"
+      },
+      "task_critical_buttons": {
+        "metric": "button recognition",
+        "value": "19/24",
+        "pct": "79.2%"
+      },
+      "localisation": {
+        "metric": "box recall (IoU >= 0.5)",
+        "value": "95/111",
+        "pct": "85.6%"
+      }
+    }
+  },
+  "phase4_baseline": {
+    "frozen_from": "Phase 4 final (eval/results.json + e2e/chrome-results.json)",
+    "visual": {
+      "expected_text_recall": "35/35",
+      "canvas_only_text_recall": "14/14",
+      "price_recall_strict": "4/12",
+      "price_recall_amount_recoverable": "12/12",
+      "button_recall": "3/12",
+      "ocr_line_precision": "60/70"
+    },
+    "pii_visual_channel": {
+      "tp": 8,
+      "fp": 0,
+      "fn": 2,
+      "precision": "8/8",
+      "recall": "8/10"
+    },
+    "redaction": {
+      "removed": "7/7",
+      "preserved": "50/50"
+    },
+    "ocr_recognize_ms_node": [
+      1373,
+      912,
+      1148,
+      843
+    ],
+    "browser_scenarios": {
+      "index": {
+        "total_ms": "10032 ms",
+        "ocr_ms": "1522 ms",
+        "cloud_ms": "6200 ms",
+        "clicked": "buy_c"
+      },
+      "visual": {
+        "total_ms": "7638 ms",
+        "ocr_ms": "1094 ms",
+        "cloud_ms": "5413 ms",
+        "clicked": "buy_c"
+      },
+      "visual-privacy": {
+        "total_ms": "7358 ms",
+        "ocr_ms": "1330 ms",
+        "cloud_ms": "5137 ms",
+        "clicked": "buy_c"
+      },
+      "dynamic-delay": {
+        "total_ms": "7534 ms",
+        "ocr_ms": "1123 ms",
+        "cloud_ms": "5292 ms",
+        "clicked": "buy_c"
+      },
+      "dynamic-stale": {
+        "total_ms": "15158 ms",
+        "ocr_ms": "1028 ms",
+        "cloud_ms": "5262 ms",
+        "clicked": "(none)"
+      },
+      "swap-A": {
+        "total_ms": "7385 ms",
+        "ocr_ms": "1239 ms",
+        "cloud_ms": "5167 ms",
+        "clicked": "buy_a"
+      },
+      "swap-B": {
+        "total_ms": "7326 ms",
+        "ocr_ms": "1013 ms",
+        "cloud_ms": "5127 ms",
+        "clicked": "buy_b"
+      },
+      "visual-only": {
+        "total_ms": "9460 ms",
+        "ocr_ms": "1465 ms",
+        "cloud_ms": "6112 ms",
+        "clicked": "buy_a"
+      },
+      "e2e-run-1": {
+        "total_ms": "7459 ms",
+        "ocr_ms": "1295 ms",
+        "cloud_ms": "5221 ms",
+        "clicked": "buy_c"
+      },
+      "e2e-run-2": {
+        "total_ms": "7730 ms",
+        "ocr_ms": "1296 ms",
+        "cloud_ms": "5480 ms",
+        "clicked": "buy_c"
+      },
+      "e2e-run-3": {
+        "total_ms": "7394 ms",
+        "ocr_ms": "1300 ms",
+        "cloud_ms": "5209 ms",
+        "clicked": "buy_c"
+      },
+      "restored": {
+        "total_ms": "7329 ms",
+        "ocr_ms": "1599 ms",
+        "cloud_ms": "5136 ms",
+        "clicked": "buy_c"
+      }
+    }
+  }
+}

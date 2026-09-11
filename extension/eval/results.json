@@ -1,0 +1,256 @@
+{
+  "generatedAt": "2026-09-11T20:13:47.771Z",
+  "engine": "tesseract.js 7 LSTM (wasm)",
+  "host": "node (WebAssembly, no upscaling; fixtures rendered at device scale 2)",
+  "fixtures": {
+    "shirtstore.png": {
+      "counts": {
+        "ocr_lines": 27,
+        "lines_above_threshold": 23,
+        "text_found": 14,
+        "text_expected": 14,
+        "canvas_text_found": 0,
+        "canvas_text_expected": 0,
+        "prices_strict": 0,
+        "prices_recoverable": 3,
+        "prices_expected": 3,
+        "buttons_found": 0,
+        "buttons_expected": 3,
+        "lines_correct": 20,
+        "lines_incorrect": 3,
+        "pii_tp": 4,
+        "pii_fp": 0,
+        "pii_fn": 2,
+        "redaction_removed": 3,
+        "redaction_to_remove": 3,
+        "preserved": 17,
+        "to_preserve": 17,
+        "ocr_recognize_ms": 1820,
+        "ocr_load_ms": 411
+      },
+      "detail": {
+        "textMissed": [],
+        "canvasMissed": [],
+        "priceTexts": [
+          "Price: 7799",
+          "Price: 7899",
+          "Price: 7699"
+        ],
+        "buttonsMissed": [
+          "Buy Now A",
+          "Buy Now B",
+          "Buy Now C"
+        ],
+        "incorrectLines": [
+          "Price: 7799",
+          "Price: 7899",
+          "Price: 7699"
+        ],
+        "fpLines": [],
+        "fnValues": [
+          "4111111111111111",
+          "123456"
+        ],
+        "notPreserved": []
+      }
+    },
+    "visual.png": {
+      "counts": {
+        "ocr_lines": 15,
+        "lines_above_threshold": 12,
+        "text_found": 7,
+        "text_expected": 7,
+        "canvas_text_found": 2,
+        "canvas_text_expected": 2,
+        "prices_strict": 1,
+        "prices_recoverable": 3,
+        "prices_expected": 3,
+        "buttons_found": 0,
+        "buttons_expected": 3,
+        "lines_correct": 10,
+        "lines_incorrect": 2,
+        "pii_tp": 0,
+        "pii_fp": 0,
+        "pii_fn": 0,
+        "redaction_removed": 0,
+        "redaction_to_remove": 0,
+        "preserved": 10,
+        "to_preserve": 10,
+        "ocr_recognize_ms": 1248,
+        "ocr_load_ms": 0
+      },
+      "detail": {
+        "textMissed": [],
+        "canvasMissed": [],
+        "priceTexts": [
+          "Price: 7799",
+          "Price: 7899",
+          "Price: Rs 699"
+        ],
+        "buttonsMissed": [
+          "Buy Now A",
+          "Buy Now B",
+          "Buy Now C"
+        ],
+        "incorrectLines": [
+          "Price: 7799",
+          "Price: 7899"
+        ],
+        "fpLines": [],
+        "fnValues": [],
+        "notPreserved": []
+      }
+    },
+    "visual-privacy.png": {
+      "counts": {
+        "ocr_lines": 22,
+        "lines_above_threshold": 20,
+        "text_found": 10,
+        "text_expected": 10,
+        "canvas_text_found": 6,
+        "canvas_text_expected": 6,
+        "prices_strict": 0,
+        "prices_recoverable": 3,
+        "prices_expected": 3,
+        "buttons_found": 0,
+        "buttons_expected": 3,
+        "lines_correct": 17,
+        "lines_incorrect": 3,
+        "pii_tp": 4,
+        "pii_fp": 0,
+        "pii_fn": 0,
+        "redaction_removed": 4,
+        "redaction_to_remove": 4,
+        "preserved": 13,
+        "to_preserve": 13,
+        "ocr_recognize_ms": 1540,
+        "ocr_load_ms": 0
+      },
+      "detail": {
+        "textMissed": [],
+        "canvasMissed": [],
+        "priceTexts": [
+          "Price: 7799",
+          "Price: 7899",
+          "Price: 7699"
+        ],
+        "buttonsMissed": [
+          "Buy Now A",
+          "Buy Now B",
+          "Buy Now C"
+        ],
+        "incorrectLines": [
+          "Price: 7799",
+          "Price: 7899",
+          "Price: 7699"
+        ],
+        "fpLines": [],
+        "fnValues": [],
+        "notPreserved": []
+      }
+    },
+    "visual-only.png": {
+      "counts": {
+        "ocr_lines": 16,
+        "lines_above_threshold": 15,
+        "text_found": 4,
+        "text_expected": 4,
+        "canvas_text_found": 6,
+        "canvas_text_expected": 6,
+        "prices_strict": 3,
+        "prices_recoverable": 3,
+        "prices_expected": 3,
+        "buttons_found": 3,
+        "buttons_expected": 3,
+        "lines_correct": 13,
+        "lines_incorrect": 2,
+        "pii_tp": 0,
+        "pii_fp": 0,
+        "pii_fn": 0,
+        "redaction_removed": 0,
+        "redaction_to_remove": 0,
+        "preserved": 10,
+        "to_preserve": 10,
+        "ocr_recognize_ms": 1135,
+        "ocr_load_ms": 0
+      },
+      "detail": {
+        "textMissed": [],
+        "canvasMissed": [],
+        "priceTexts": [
+          "Price: Rs 499",
+          "Price: Rs 899",
+          "Price: Rs 699"
+        ],
+        "buttonsMissed": [],
+        "incorrectLines": [
+          "Buy NowA",
+          "Buy NowB"
+        ],
+        "fpLines": [],
+        "fnValues": [],
+        "notPreserved": []
+      }
+    }
+  },
+  "summary": {
+    "visual_context": {
+      "expected_text_recall": {
+        "value": 1,
+        "of": "35/35"
+      },
+      "canvas_only_text_recall": {
+        "value": 1,
+        "of": "14/14"
+      },
+      "price_recall_strict": {
+        "value": 0.333,
+        "of": "4/12"
+      },
+      "price_recall_amount_recoverable": {
+        "value": 1,
+        "of": "12/12"
+      },
+      "button_recall": {
+        "value": 0.25,
+        "of": "3/12"
+      },
+      "ocr_line_precision": {
+        "value": 0.857,
+        "of": "60/70"
+      }
+    },
+    "pii": {
+      "tp": 8,
+      "fp": 0,
+      "fn": 2,
+      "precision": {
+        "value": 1,
+        "of": "8/8"
+      },
+      "recall": {
+        "value": 0.8,
+        "of": "8/10"
+      }
+    },
+    "redaction": {
+      "sensitive_removed": {
+        "value": 1,
+        "of": "7/7"
+      },
+      "task_relevant_preserved": {
+        "value": 1,
+        "of": "50/50"
+      }
+    },
+    "timing_ms": {
+      "ocr_recognize_mean": 1436,
+      "ocr_recognize_each": [
+        1820,
+        1248,
+        1540,
+        1135
+      ]
+    }
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "case": "price-formats",
+  "expected_text": [
+    "Price formats",
+    "Shirt One",
+    "Shirt Two",
+    "Shirt Three",
+    "Shirt Four",
+    "Shirt Five",
+    "Shirt Six",
+    "Shirt Seven",
+    "Shirt Eight",
+    "Shirt Nine",
+    "Shirt Ten",
+    "Shirt Eleven",
+    "Shirt Twelve"
+  ],
+  "expected_prices": [
+    {
+      "amount": 699,
+      "text": "₹699",
+      "format": "rupee-sign",
+      "size": 14,
+      "bg": "white"
+    },
+    {
+      "amount": 799,
+      "text": "Price: ₹799",
+      "format": "rupee-sign",
+      "size": 18,
+      "bg": "white"
+    },
+    {
+      "amount": 899,
+      "text": "Rs 899",
+      "format": "Rs",
+      "size": 24,
+      "bg": "white"
+    },
+    {
+      "amount": 499,
+      "text": "INR 499",
+      "format": "INR",
+      "size": 32,
+      "bg": "gray"
+    },
+    {
+      "amount": 399,
+      "text": "₹ 399",
+      "format": "rupee-sign",
+      "size": 24,
+      "bg": "white"
+    },
+    {
+      "amount": 1299,
+      "text": "Rs. 1,299",
+      "format": "Rs",
+      "size": 18,
+      "bg": "white"
+    },
+    {
+      "amount": 2499,
+      "text": "MRP ₹2,499",
+      "format": "rupee-sign",
+      "size": 24,
+      "bg": "dark"
+    },
+    {
+      "amount": 1099,
+      "text": "Price: Rs 1099",
+      "format": "Rs",
+      "size": 14,
+      "bg": "white"
+    },
+    {
+      "amount": 599,
+      "text": "₹599",
+      "format": "rupee-sign",
+      "size": 32,
+      "bg": "green"
+    },
+    {
+      "amount": 149,
+      "text": "INR 149.00",
+      "format": "INR",
+      "size": 18,
+      "bg": "white"
+    },
+    {
+      "amount": 999,
+      "text": "Price ₹999",
+      "format": "rupee-sign",
+      "size": 24,
+      "bg": "gray"
+    },
+    {
+      "amount": 3499,
+      "text": "Rs 3499",
+      "format": "Rs",
+      "size": 32,
+      "bg": "white"
+    }
+  ],
+  "expected_buttons": [],
+  "expected_pii": [],
+  "non_pii": [
+    "₹699",
+    "Price: ₹799",
+    "Rs 899",
+    "INR 499",
+    "₹ 399",
+    "Rs. 1,299",
+    "MRP ₹2,499",
+    "Price: Rs 1099",
+    "₹599",
+    "INR 149.00",
+    "Price ₹999",
+    "Rs 3499"
+  ],
+  "extra_text": []
+}

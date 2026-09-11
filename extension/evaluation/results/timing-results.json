@@ -1,0 +1,34 @@
+{
+  "generatedAt": "2026-09-11T21:38:27.194Z",
+  "timing": {
+    "engine_load_ms_cold": 353,
+    "ocr_recognize_ms": {
+      "n": 8,
+      "min": 1212,
+      "mean": 2165.875,
+      "median": 2156,
+      "max": 3029
+    },
+    "ocr_second_pass_ms": {
+      "n": 8,
+      "min": 671,
+      "mean": 1167.375,
+      "median": 1121,
+      "max": 1584
+    },
+    "dom_pipeline_ms": {
+      "n": 8,
+      "min": 1.734,
+      "mean": 19.086,
+      "median": 7.686,
+      "max": 102.05
+    },
+    "combined_pipeline_ms": {
+      "n": 8,
+      "min": 1.458,
+      "mean": 10.318,
+      "median": 8.27,
+      "max": 29.116
+    }
+  }
+}

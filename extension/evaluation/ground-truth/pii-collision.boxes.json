@@ -1,0 +1,39 @@
+{
+  "case": "pii-collision",
+  "page": "eval/pii-collision.html",
+  "scale": 2,
+  "boxes": [
+    {
+      "kind": "pii:OTP",
+      "text": "123456",
+      "x": 155.09375,
+      "y": 211.5625,
+      "width": 103.5,
+      "height": 22
+    },
+    {
+      "kind": "nonpii",
+      "text": "123456",
+      "x": 219.25,
+      "y": 265.5625,
+      "width": 103.5,
+      "height": 22
+    },
+    {
+      "kind": "nonpii",
+      "text": "₹699",
+      "x": 166.03125,
+      "y": 319.5625,
+      "width": 69,
+      "height": 22
+    },
+    {
+      "kind": "nonpii",
+      "text": "Black Shirt C",
+      "x": 208.09375,
+      "y": 372.5625,
+      "width": 175.25,
+      "height": 24
+    }
+  ]
+}

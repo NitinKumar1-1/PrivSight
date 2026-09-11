@@ -45,7 +45,7 @@ describe("prepareRequest on the demo page (positive integration)", () => {
       expect(firewall.body).toContain(placeholder);
     }
     expect(firewall.checks.map((c) => `${c.name}:${c.passed}`)).toEqual([
-      "structure:true", "known-values:true", "patterns:true",
+      "structure:true", "image-data:true", "known-values:true", "patterns:true",
     ]);
 
     const parsed = JSON.parse(firewall.body) as ReasonRequest;

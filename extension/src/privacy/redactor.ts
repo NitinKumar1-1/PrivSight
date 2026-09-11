@@ -11,6 +11,13 @@
 import { findTextMatches } from "./detectors";
 import type { KnownValue, PiiType, PrivacySummary, Detection } from "./types";
 
+/** Redaction output; a detector must never re-register it as a value. */
+const PLACEHOLDER_SHAPE = /^\[[A-Z]+_\d+\]$/;
+
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 export class Redactor {
   private readonly counters = new Map<PiiType, number>();
   private readonly placeholderByValue = new Map<string, string>();
@@ -46,7 +53,7 @@ export class Redactor {
     if (!text) return text;
     let result = this.replaceKnownValues(text);
 
-    const matches = findTextMatches(result);
+    const matches = findTextMatches(result).filter((m) => !PLACEHOLDER_SHAPE.test(m.value));
     for (let i = matches.length - 1; i >= 0; i--) {
       const { type, value, index } = matches[i];
       const placeholder = this.placeholderFor(type, value);
@@ -87,7 +94,13 @@ export class Redactor {
     let result = text;
     for (const value of values) {
       if (!result.includes(value)) continue;
-      result = result.split(value).join(this.placeholderByValue.get(value) as string);
+      const placeholder = this.placeholderByValue.get(value) as string;
+      // A purely numeric value (OTP, phone) embedded inside a longer digit run
+      // is a different number (an order id that happens to contain the OTP's
+      // digits), so it is replaced only on digit boundaries.
+      result = /^[\d\s-]+$/.test(value)
+        ? result.replace(new RegExp(`(?<!\\d)${escapeRegExp(value)}(?!\\d)`, "g"), placeholder)
+        : result.split(value).join(placeholder);
     }
     return result;
   }

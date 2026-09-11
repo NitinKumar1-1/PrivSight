@@ -1,0 +1,248 @@
+{
+  "generatedAt": "2026-09-11T21:17:24.032Z",
+  "decision_rule": "SOLVED = eliminated with repeated measurement; IMPROVED = reduced; UNCHANGED = best safe option kept; NOT PRACTICAL = attempted and unsuitable",
+  "limitations": {
+    "A_rupee_price_ocr": {
+      "status": "UNCHANGED (visual) / mitigated by DOM conflict resolution",
+      "baseline": {
+        "price_exact": "11/26",
+        "rupee_sign_exact": "1/16",
+        "rs_inr_exact": "4/4 + 2/2"
+      },
+      "change_attempted": "grayscale, autocontrast, binarisation (160), inversion, polarity normalisation, page-segmentation modes 3/6/11; tessdata_best English model",
+      "result": "No preprocessing variant changed rupee-sign recognition (the fast English model has no usable glyph for U+20B9 and emits 7 or %). The larger tessdata_best model aborts in the bundled WebAssembly core (missing float dot-product export) and cannot be used without a different core build. Rs and INR formats are recognised exactly.",
+      "after": {
+        "price_exact": "12/26",
+        "rupee_sign_exact": "2/16",
+        "price_recoverable": "22/26"
+      },
+      "latency_impact": "none (no change kept)",
+      "resource_impact": "none",
+      "security_impact": "none",
+      "final_decision": "Keep DOM-first conflict resolution (DOM price wins, conflict reported). Visual-only rupee prices remain a documented limitation."
+    },
+    "B_button_label_ocr": {
+      "status": "IMPROVED",
+      "baseline": {
+        "button_recall": "3/24",
+        "by_style": {
+          "demo": "3/12",
+          "white-on-orange": "0/1",
+          "dark-on-light": "0/1",
+          "white-on-blue": "0/1",
+          "blue-outline": "0/1",
+          "white-on-green": "0/1",
+          "dark-on-yellow": "0/1",
+          "white-on-black": "0/1",
+          "white-on-red": "0/1",
+          "white-on-orange-small": "0/1",
+          "white-on-orange-large": "0/1",
+          "dark-on-light-in-dark-cell": "0/1",
+          "white-on-blue-small": "0/1"
+        }
+      },
+      "change_attempted": "second OCR pass on a polarity-normalised copy (|luma-128|*2) with automatic segmentation, merged where it adds lines; fused columns split at wide word gaps; only confident first-pass lines suppress second-pass lines",
+      "after": {
+        "button_recall": "19/24",
+        "by_style": {
+          "demo": "12/12",
+          "white-on-orange": "1/1",
+          "dark-on-light": "0/1",
+          "white-on-blue": "1/1",
+          "blue-outline": "1/1",
+          "white-on-green": "1/1",
+          "dark-on-yellow": "0/1",
+          "white-on-black": "0/1",
+          "white-on-red": "0/1",
+          "white-on-orange-small": "1/1",
+          "white-on-orange-large": "1/1",
+          "dark-on-light-in-dark-cell": "0/1",
+          "white-on-blue-small": "1/1"
+        },
+        "ocr_line_precision": "153/158",
+        "false_lines": 5
+      },
+      "before_precision": {
+        "ocr_line_precision": "131/134",
+        "false_lines": 3
+      },
+      "latency_impact": {
+        "node_ocr_mean_ms": {
+          "before": 913.25,
+          "after": 1879.5,
+          "second_pass_mean_ms": 1006.375
+        },
+        "browser_local_perception_median_ms": {
+          "before": 1200,
+          "after": 2174
+        },
+        "browser_total_median_ms": {
+          "before": 7411,
+          "after": 7924
+        }
+      },
+      "resource_impact": "one extra recognition per screen in the offscreen document; JS heap unchanged order (see latency.json)",
+      "security_impact": "none: the second pass runs on the same local canvas; nothing new leaves the device",
+      "final_decision": "KEEP. Remaining misses: dark-on-light labels inside light cells and some white-on-green/red/black/yellow styles."
+    },
+    "C_visual_pii_recall": {
+      "status": "IMPROVED",
+      "baseline": {
+        "tp": 14,
+        "fp": 0,
+        "fn": 5,
+        "precision": {
+          "value": 1,
+          "of": "14/14"
+        },
+        "recall": {
+          "value": 0.737,
+          "of": "14/19"
+        }
+      },
+      "change_attempted": "layout-proximity labelling: a short PII label line types the value in the neighbouring OCR line (same row to the right, or directly below) only when the value has the shape the label demands; second OCR pass also recovers values",
+      "after": {
+        "tp": 18,
+        "fp": 0,
+        "fn": 1,
+        "precision": {
+          "value": 1,
+          "of": "18/18"
+        },
+        "recall": {
+          "value": 0.947,
+          "of": "18/19"
+        }
+      },
+      "combined_before": {
+        "tp": 17,
+        "fp": 2,
+        "fn": 3,
+        "precision": {
+          "value": 0.895,
+          "of": "17/19"
+        },
+        "recall": {
+          "value": 0.85,
+          "of": "17/20"
+        },
+        "cases_blocked_by_firewall": 1,
+        "non_pii_withheld_by_block": 3
+      },
+      "combined_after": {
+        "tp": 20,
+        "fp": 2,
+        "fn": 0,
+        "precision": {
+          "value": 0.909,
+          "of": "20/22"
+        },
+        "recall": {
+          "value": 1,
+          "of": "20/20"
+        },
+        "cases_blocked_by_firewall": 0,
+        "non_pii_withheld_by_block": 0
+      },
+      "dom_channel": {
+        "tp": 13,
+        "fp": 0,
+        "fn": 3,
+        "precision": {
+          "value": 1,
+          "of": "13/13"
+        },
+        "recall": {
+          "value": 0.813,
+          "of": "13/16"
+        },
+        "cases_blocked_by_firewall": 1,
+        "non_pii_withheld_by_block": 3
+      },
+      "false_positives_after": 0,
+      "latency_impact": "negligible (pure post-processing over OCR lines)",
+      "security_impact": "recall up, precision unchanged at 100%; bare numbers without a PII label are never classified",
+      "final_decision": "KEEP. Remaining visual miss: a card number inside an input box that OCR misreads (Luhn fails); the DOM channel covers it."
+    },
+    "D_bare_mobile_shaped_values": {
+      "status": "UNCHANGED (fail closed)",
+      "baseline": "a bare 6..9-leading 10-digit value in a non-sensitive field, or a non-PII value sharing digits with a known OTP, blocks the request",
+      "change_attempted": "field text is redacted with its label as context (Phase 4 remaining tests); no verifier relaxation attempted in Phase 5",
+      "dom_only": {
+        "cases_blocked": 1,
+        "non_pii_withheld": 3
+      },
+      "combined_before": {
+        "cases_blocked": 1,
+        "non_pii_withheld": 3,
+        "non_pii_redacted": 2
+      },
+      "combined_after": {
+        "cases_blocked": 0,
+        "non_pii_withheld": 0,
+        "non_pii_redacted": 2
+      },
+      "privacy_impact": "none; a value that shares digits with a known secret is redacted everywhere (over-redaction) and, when the verifier still finds it, the request is blocked",
+      "final_decision": "Keep fail-closed. On pii-collision the DOM-only channel blocks the request (non-PII withheld); with vision the colliding quantity is redacted as the OTP and the request proceeds without the quantity. 0 leaks in either mode."
+    },
+    "E_onnx_webgpu": {
+      "status": "NOT PRACTICAL within Phase 5 (not attempted beyond feasibility)",
+      "tesseract_baseline": {
+        "n": 8,
+        "min": 1099,
+        "mean": 1879.5,
+        "median": 1962,
+        "max": 2657
+      },
+      "onnx": "NOT USED",
+      "webgpu": "adapter available on the test machine; NOT USED by the OCR engine",
+      "reason": "No small pretrained browser-side text detector with simple post-processing was within the time box; the WebAssembly OCR path met the perception requirement and its cost is a minority of end-to-end latency, which the cloud round trip dominates.",
+      "final_decision": "Not adopted. Architecture keeps a model-agnostic OCR engine interface."
+    },
+    "F_local_controller": {
+      "status": "UNCHANGED",
+      "current": "deterministic Local Browser Agent / Controller (bounded observe-perceive-sanitise-reason-validate-execute loop, at most two re-observations)",
+      "local_model_for_vision": "Tesseract.js 7 LSTM (WebAssembly)",
+      "local_model_for_reasoning": "none",
+      "investigation": "no lightweight local reasoning model was practical within the Phase 5 budget; adding one for wording alone was rejected",
+      "final_decision": "Keep the deterministic controller; describe it as orchestration, not as an AI model."
+    },
+    "G_firefox": {
+      "status": "NOT RUNTIME-TESTED",
+      "chrome": "tested (Chromium via Playwright, and Chrome manually)",
+      "firefox": "not installed on the development machine; portability designed (chrome.* isolated in src/host/chrome.ts) but not validated",
+      "final_decision": "Document only."
+    },
+    "H_cloud_latency": {
+      "status": "MEASURED (one arm failed)",
+      "baseline_cloud_ms": {
+        "n": 10,
+        "min": 5036,
+        "mean": 5463,
+        "median": 5189,
+        "p95": 7168,
+        "max": 7168
+      },
+      "request_bytes": 1688,
+      "change_attempted": "GEMINI_THINKING_BUDGET=0 (skip the model's reasoning phase); prompt/context size unchanged, privacy unchanged",
+      "experiment": {
+        "default_thinking": {
+          "ok": 1,
+          "correct": 1,
+          "ms": {
+            "min": 7539,
+            "mean": 7539,
+            "median": 7539,
+            "max": 7539
+          }
+        },
+        "thinking_budget_0": {
+          "ok": 0,
+          "correct": 0,
+          "ms": null
+        }
+      },
+      "final_decision": "see report"
+    }
+  }
+}

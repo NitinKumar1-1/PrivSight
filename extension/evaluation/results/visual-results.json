@@ -1,0 +1,66 @@
+{
+  "generatedAt": "2026-09-11T21:38:27.194Z",
+  "visual": {
+    "ocr_line_precision": {
+      "value": 0.968,
+      "of": "153/158"
+    },
+    "ocr_text_recall": {
+      "value": 1,
+      "of": "77/77"
+    },
+    "task_relevant_recall_strict": {
+      "value": 0.802,
+      "of": "69/86"
+    },
+    "task_relevant_recall_recoverable": {
+      "value": 0.907,
+      "of": "78/86"
+    },
+    "price_exact": {
+      "value": 0.462,
+      "of": "12/26"
+    },
+    "price_recoverable": {
+      "value": 0.846,
+      "of": "22/26"
+    },
+    "price_by_format": {
+      "rupee-sign": {
+        "exact": "2/16",
+        "recoverable": "12/16"
+      },
+      "Rs/INR": {
+        "exact": "4/4",
+        "recoverable": "4/4"
+      },
+      "Rs": {
+        "exact": "4/4",
+        "recoverable": "4/4"
+      },
+      "INR": {
+        "exact": "2/2",
+        "recoverable": "2/2"
+      }
+    },
+    "button_recall": {
+      "value": 0.792,
+      "of": "19/24"
+    },
+    "button_by_style": {
+      "demo": "12/12",
+      "white-on-orange": "1/1",
+      "dark-on-light": "0/1",
+      "white-on-blue": "1/1",
+      "blue-outline": "1/1",
+      "white-on-green": "1/1",
+      "dark-on-yellow": "0/1",
+      "white-on-black": "0/1",
+      "white-on-red": "0/1",
+      "white-on-orange-small": "1/1",
+      "white-on-orange-large": "1/1",
+      "dark-on-light-in-dark-cell": "0/1",
+      "white-on-blue-small": "1/1"
+    }
+  }
+}

@@ -33,7 +33,7 @@ describe("verifySerializedPayload: safe payloads", () => {
   it("TEST 1: passes a sanitized payload that uses placeholders", () => {
     const result = verifySerializedPayload(request(), KNOWN);
     expect(result.safe).toBe(true);
-    expect(result.checks.map((c) => c.name)).toEqual(["structure", "known-values", "patterns"]);
+    expect(result.checks.map((c) => c.name)).toEqual(["structure", "image-data", "known-values", "patterns"]);
     expect(result.checks.every((c) => c.passed)).toBe(true);
   });
 
@@ -80,6 +80,15 @@ describe("verifySerializedPayload: known raw values are blocked", () => {
     if (!digitsOnly.safe) expect(digitsOnly.type).toBe("CARD");
     const dashed = verifySerializedPayload(request({ text: "card 4111-1111-1111-1111" }), KNOWN);
     expect(dashed.safe).toBe(false);
+  });
+});
+
+describe("verifySerializedPayload: numeric known values are digit-bounded", () => {
+  it("does not treat an order id that contains the OTP digits as a leak, but still catches the OTP itself", () => {
+    expect(verifySerializedPayload(request({ text: "Order ID: 1234567890 Invoice #5551234567" }), KNOWN).safe).toBe(true);
+    const leak = verifySerializedPayload(request({ text: "code 123456 sent" }), KNOWN);
+    expect(leak.safe).toBe(false);
+    if (!leak.safe) expect(leak.type).toBe("OTP");
   });
 });
 

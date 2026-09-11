@@ -1,0 +1,103 @@
+{
+  "case": "buttons",
+  "page": "eval/buttons.html",
+  "scale": 2,
+  "boxes": [
+    {
+      "kind": "button",
+      "text": "Buy Now A",
+      "x": 368.03125,
+      "y": 195,
+      "width": 157.25,
+      "height": 28
+    },
+    {
+      "kind": "button",
+      "text": "Buy Now B",
+      "x": 1200.8125,
+      "y": 199,
+      "width": 158.34375,
+      "height": 28
+    },
+    {
+      "kind": "button",
+      "text": "Buy Now C",
+      "x": 2034.125,
+      "y": 195,
+      "width": 158.34375,
+      "height": 28
+    },
+    {
+      "kind": "button",
+      "text": "Add to Cart",
+      "x": 364.96875,
+      "y": 396,
+      "width": 163.34375,
+      "height": 22
+    },
+    {
+      "kind": "button",
+      "text": "Checkout",
+      "x": 1211.625,
+      "y": 392,
+      "width": 136.6875,
+      "height": 22
+    },
+    {
+      "kind": "button",
+      "text": "Apply Coupon",
+      "x": 2010.8125,
+      "y": 389,
+      "width": 204.96875,
+      "height": 28
+    },
+    {
+      "kind": "button",
+      "text": "Place Order",
+      "x": 362.4375,
+      "y": 586,
+      "width": 168.4375,
+      "height": 22
+    },
+    {
+      "kind": "button",
+      "text": "Remove",
+      "x": 1221.625,
+      "y": 586,
+      "width": 116.71875,
+      "height": 22
+    },
+    {
+      "kind": "button",
+      "text": "Buy Now D",
+      "x": 2049.96875,
+      "y": 575,
+      "width": 126.6875,
+      "height": 22
+    },
+    {
+      "kind": "button",
+      "text": "Buy Now E",
+      "x": 342.1875,
+      "y": 777,
+      "width": 208.90625,
+      "height": 38
+    },
+    {
+      "kind": "button",
+      "text": "Continue",
+      "x": 1214.96875,
+      "y": 776,
+      "width": 130,
+      "height": 22
+    },
+    {
+      "kind": "button",
+      "text": "View Details",
+      "x": 2043.46875,
+      "y": 763,
+      "width": 139.65625,
+      "height": 18
+    }
+  ]
+}

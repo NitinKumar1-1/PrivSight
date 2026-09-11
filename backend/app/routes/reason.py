@@ -12,6 +12,7 @@ from fastapi import APIRouter, Depends, HTTPException
 
 from app.config import load_settings
 from app.llm import LLMConfigError, LLMReasoner, LLMRequestError, LLMResponseError, create_reasoner
+from app.safe_print import safe_print
 from app.schemas import ActionResponse, ReasonRequest
 
 router = APIRouter()
@@ -48,6 +49,6 @@ def reason(request: ReasonRequest, reasoner: LLMReasoner = Depends(get_reasoner)
         f"[reason] provider={reasoner.name} action={action.action} "
         f"target={action.target} confidence={action.confidence:.2f}"
     )
-    print(f"[reason] model reasoning: {action.reason}")
+    safe_print(f"[reason] model reasoning: {action.reason}")
     return action
 

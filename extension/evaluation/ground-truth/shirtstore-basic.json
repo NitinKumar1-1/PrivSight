@@ -1,0 +1,88 @@
+{
+  "case": "shirtstore-basic",
+  "task": "Find the cheapest black shirt and click Buy Now",
+  "expected_target": "el_buy_c",
+  "expected_text": [
+    "ShirtStore",
+    "Products",
+    "About",
+    "Signed in as",
+    "Black Shirts",
+    "Black Shirt A",
+    "Black Shirt B",
+    "Black Shirt C",
+    "Delivery details",
+    "Email",
+    "Phone",
+    "Password",
+    "Card number",
+    "OTP"
+  ],
+  "expected_prices": [
+    {
+      "amount": 799,
+      "text": "Price: ₹799"
+    },
+    {
+      "amount": 899,
+      "text": "Price: ₹899"
+    },
+    {
+      "amount": 699,
+      "text": "Price: ₹699"
+    }
+  ],
+  "expected_buttons": [
+    "Buy Now A",
+    "Buy Now B",
+    "Buy Now C"
+  ],
+  "expected_pii": [
+    {
+      "type": "EMAIL",
+      "value": "demo@example.com",
+      "where": "dom-text,field"
+    },
+    {
+      "type": "PHONE",
+      "value": "9999999999",
+      "where": "dom-text,field"
+    },
+    {
+      "type": "PASSWORD",
+      "value": "DemoPassword123",
+      "where": "field",
+      "visible": false
+    },
+    {
+      "type": "CARD",
+      "value": "4111 1111 1111 1111",
+      "where": "field"
+    },
+    {
+      "type": "OTP",
+      "value": "123456",
+      "where": "field"
+    }
+  ],
+  "non_pii": [
+    "Price: ₹799",
+    "Price: ₹899",
+    "Price: ₹699",
+    "Black Shirt A",
+    "Black Shirt B",
+    "Black Shirt C",
+    "Buy Now A",
+    "Buy Now B",
+    "Buy Now C",
+    "Delivery details",
+    "ShirtStore"
+  ],
+  "extra_text": [
+    "ShirtStore is a local demo page used to test browser automation. All account details shown are fake test values.",
+    "demo@example.com",
+    "9999999999",
+    "4111 1111 1111 1111",
+    "123456"
+  ]
+}
