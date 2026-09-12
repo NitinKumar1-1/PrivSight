@@ -1,0 +1,322 @@
+{
+  "generatedAt": "2026-09-12T07:02:21.887Z",
+  "browser": "Playwright Chromium (headless) with the built extension",
+  "scenarios": [
+    {
+      "name": "shop-cart-cheapest",
+      "elapsedMs": 37798,
+      "state": "Complete",
+      "badge": "PROTECTED",
+      "pageInfo": "Page: ShirtStore Shop - Search and Cart (localhost:8080) · 9 interactive element(s) · 0 value(s) redacted · 8 visual observation(s)",
+      "stepLine": "5 (5 executed)",
+      "reasonRequests": 5,
+      "actions": [
+        "Action received: type el_q (confidence 100%) - Type 'black shirt' into the search box to find black shirts.",
+        "Action received: click el_search_btn (confidence 100%) - Click the search button to submit the query for 'black shirt'.",
+        "Action received: click el_view_black_shirt_c (confidence 95%) - Click on View Black Shirt C to open the product page for the cheapest black shirt (₹699).",
+        "Action received: click el_add_to_cart (confidence 100%) - Click Add to Cart to add the cheapest black shirt (Black Shirt C) to the cart.",
+        "Action received: done (confidence 100%) - The cheapest black shirt (Black Shirt C at ₹699) has been added to the cart."
+      ],
+      "executed": [
+        "Action executed: Typed 11 character(s) into el_q",
+        "Step 1 of 12 executed: type el_q \"black shirt\"",
+        "Action executed: Clicked el_search_btn",
+        "Step 2 of 12 executed: click el_search_btn",
+        "Action executed: Clicked el_view_black_shirt_c",
+        "Step 3 of 12 executed: click el_view_black_shirt_c",
+        "Action executed: Clicked el_add_to_cart",
+        "Step 4 of 12 executed: click el_add_to_cart",
+        "Action executed: Task reported as done",
+        "Step 5 of 12 executed: done"
+      ],
+      "status": [
+        "Local agent: observing the page...",
+        "Local PII detection: nothing sensitive found",
+        "Sending sanitized request to backend...",
+        "Action received: type el_q (confidence 100%) - Type 'black shirt' into the search box to find black shirts.",
+        "Action executed: Typed 11 character(s) into el_q",
+        "Step 1 of 12 executed: type el_q \"black shirt\"",
+        "Step 2 of 12: observing the page again...",
+        "Local PII detection: nothing sensitive found",
+        "Sending sanitized request to backend...",
+        "Action received: click el_search_btn (confidence 100%) - Click the search button to submit the query for 'black shirt'.",
+        "Action executed: Clicked el_search_btn",
+        "Step 2 of 12 executed: click el_search_btn",
+        "Step 3 of 12: observing the page again...",
+        "Local PII detection: nothing sensitive found",
+        "Sending sanitized request to backend...",
+        "Action received: click el_view_black_shirt_c (confidence 95%) - Click on View Black Shirt C to open the product page for the cheapest black shirt (₹699).",
+        "Action executed: Clicked el_view_black_shirt_c",
+        "Step 3 of 12 executed: click el_view_black_shirt_c",
+        "Step 4 of 12: observing the page again...",
+        "Local PII detection: nothing sensitive found",
+        "Sending sanitized request to backend...",
+        "Action received: click el_add_to_cart (confidence 100%) - Click Add to Cart to add the cheapest black shirt (Black Shirt C) to the cart.",
+        "Action executed: Clicked el_add_to_cart",
+        "Step 4 of 12 executed: click el_add_to_cart",
+        "Step 5 of 12: observing the page again...",
+        "Local PII detection: nothing sensitive found",
+        "Sending sanitized request to backend...",
+        "Action received: done (confidence 100%) - The cheapest black shirt (Black Shirt C at ₹699) has been added to the cart.",
+        "Action executed: Task reported as done",
+        "Step 5 of 12 executed: done"
+      ],
+      "page": {
+        "url": "http://localhost:8080/shop.html",
+        "title": "ShirtStore Shop - Search and Cart",
+        "cartCount": "1",
+        "cartItems": [
+          "Black Shirt C - ₹699"
+        ],
+        "flowLog": "search: \"black shirt\" -> 3 result(s)\nview: Black Shirt C\ncart: added Black Shirt C (699)",
+        "searchValue": "black shirt"
+      },
+      "reasonBodyBytes": [
+        1282,
+        1328,
+        2217,
+        2800,
+        3300
+      ],
+      "historyLengths": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "name": "shop-guard-injected",
+      "results": [
+        {
+          "validation": "blocked",
+          "code": "consequential_action",
+          "message": "Click on \"Buy Now\" blocked: it is a purchase action and the task does not ask for one"
+        },
+        {
+          "validation": "blocked",
+          "code": "consequential_action",
+          "message": "Click on \"Proceed to checkout\" blocked: it is a checkout action and the task does not ask for one"
+        },
+        {
+          "validation": "blocked",
+          "code": "consequential_action",
+          "message": "Click on \"Sign in\" blocked: it is a account action and the task does not ask for one"
+        },
+        {
+          "validation": "pass",
+          "message": "Clicked el_add_to_cart"
+        }
+      ]
+    },
+    {
+      "name": "shop-product-in-new-tab",
+      "elapsedMs": 59659,
+      "state": "Complete",
+      "badge": "PROTECTED",
+      "pageInfo": "Page: Black Shirt C - ShirtStore (localhost:8080) · 6 interactive element(s) · 0 value(s) redacted · 5 visual observation(s)",
+      "stepLine": "5 (5 executed)",
+      "reasonRequests": 5,
+      "actions": [
+        "Action received: type el_q (confidence 100%) - Type 'black shirt' into the search input box to search for black shirts.",
+        "Action received: click el_search_btn (confidence 100%) - Click the Search button to submit the query for black shirt.",
+        "Action received: click el_view_black_shirt_c (confidence 95%) - Open the cheapest black shirt (Black Shirt C at ₹699).",
+        "Action received: click el_add_to_cart (confidence 95%) - Click Add to Cart to add Black Shirt C to the cart.",
+        "Action received: done (confidence 100%) - The cheapest black shirt (Black Shirt C) has been added to the cart."
+      ],
+      "executed": [
+        "Action executed: Typed 11 character(s) into el_q",
+        "Step 1 of 12 executed: type el_q \"black shirt\"",
+        "Action executed: Clicked el_search_btn",
+        "Step 2 of 12 executed: click el_search_btn",
+        "Action executed: Clicked el_view_black_shirt_c",
+        "Step 3 of 12 executed: click el_view_black_shirt_c",
+        "Action executed: Clicked el_add_to_cart",
+        "Step 4 of 12 executed: click el_add_to_cart",
+        "Action executed: Task reported as done",
+        "Step 5 of 12 executed: done"
+      ],
+      "status": [
+        "Local agent: observing the page...",
+        "Local PII detection: nothing sensitive found",
+        "Sending sanitized request to backend...",
+        "Action received: type el_q (confidence 100%) - Type 'black shirt' into the search input box to search for black shirts.",
+        "Action executed: Typed 11 character(s) into el_q",
+        "Step 1 of 12 executed: type el_q \"black shirt\"",
+        "Step 2 of 12: observing the page again...",
+        "Local PII detection: nothing sensitive found",
+        "Sending sanitized request to backend...",
+        "Action received: click el_search_btn (confidence 100%) - Click the Search button to submit the query for black shirt.",
+        "Action executed: Clicked el_search_btn",
+        "Step 2 of 12 executed: click el_search_btn",
+        "Step 3 of 12: observing the page again...",
+        "Local PII detection: nothing sensitive found",
+        "Sending sanitized request to backend...",
+        "Action received: click el_view_black_shirt_c (confidence 95%) - Open the cheapest black shirt (Black Shirt C at ₹699).",
+        "The page opened a new tab; continuing there.",
+        "Action executed: Clicked el_view_black_shirt_c",
+        "Step 3 of 12 executed: click el_view_black_shirt_c",
+        "Step 4 of 12: observing the page again...",
+        "Local PII detection: nothing sensitive found",
+        "Sending sanitized request to backend...",
+        "Action received: click el_add_to_cart (confidence 95%) - Click Add to Cart to add Black Shirt C to the cart.",
+        "Action executed: Clicked el_add_to_cart",
+        "Step 4 of 12 executed: click el_add_to_cart",
+        "Step 5 of 12: observing the page again...",
+        "Local PII detection: nothing sensitive found",
+        "Sending sanitized request to backend...",
+        "Action received: done (confidence 100%) - The cheapest black shirt (Black Shirt C) has been added to the cart.",
+        "Action executed: Task reported as done",
+        "Step 5 of 12 executed: done"
+      ],
+      "page": {
+        "url": "http://localhost:8080/shop.html?newtab=1",
+        "title": "ShirtStore Shop - Search and Cart",
+        "cartCount": "0",
+        "cartItems": [],
+        "flowLog": "search: \"black shirt\" -> 3 result(s)",
+        "searchValue": "black shirt"
+      },
+      "reasonBodyBytes": [
+        1291,
+        1337,
+        2226,
+        2039,
+        2285
+      ],
+      "historyLengths": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "name": "shop-from-blank-tab",
+      "elapsedMs": 43278,
+      "state": "Complete",
+      "badge": "PROTECTED",
+      "pageInfo": "Page: ShirtStore Shop - Search and Cart (localhost:8080) · 9 interactive element(s) · 0 value(s) redacted · 5 visual observation(s)",
+      "stepLine": "5 (5 executed)",
+      "reasonRequests": 5,
+      "actions": [
+        "Action received: navigate (confidence 100%) - Navigate to localhost:8080/shop.html as specified in the task.",
+        "Action received: type el_q (confidence 100%) - Type 'black shirt' into the search input box to search for black shirts.",
+        "Action received: click el_search_btn (confidence 95%) - Click search button to display products matching 'black shirt'",
+        "Action received: click el_view_black_shirt_c (confidence 100%) - Click View Black Shirt C to open the cheapest black shirt (priced at ₹699).",
+        "Action received: click el_add_to_cart (confidence 100%) - Click Add to Cart to add Black Shirt C, the cheapest black shirt (₹699), to the cart."
+      ],
+      "executed": [
+        "Action executed: Navigation to localhost:8080 approved",
+        "Step 1 of 12 executed: navigate \"http://localhost:8080/shop.html\"",
+        "Action executed: Typed 11 character(s) into el_q",
+        "Step 2 of 12 executed: type el_q \"black shirt\"",
+        "Action executed: Clicked el_search_btn",
+        "Step 3 of 12 executed: click el_search_btn",
+        "Action executed: Clicked el_view_black_shirt_c",
+        "Step 4 of 12 executed: click el_view_black_shirt_c",
+        "Action executed: Clicked el_add_to_cart",
+        "Step 5 of 12 executed: click el_add_to_cart"
+      ],
+      "status": [
+        "Local agent: observing the page...",
+        "No web page is open in this tab. Asking the reasoner which site to open...",
+        "Local PII detection: nothing sensitive found",
+        "Sending sanitized request to backend...",
+        "Action received: navigate (confidence 100%) - Navigate to localhost:8080/shop.html as specified in the task.",
+        "Opening localhost:8080...",
+        "Action executed: Navigation to localhost:8080 approved",
+        "Step 1 of 12 executed: navigate \"http://localhost:8080/shop.html\"",
+        "Step 2 of 12: observing the page again...",
+        "Local PII detection: nothing sensitive found",
+        "Sending sanitized request to backend...",
+        "Action received: type el_q (confidence 100%) - Type 'black shirt' into the search input box to search for black shirts.",
+        "Action executed: Typed 11 character(s) into el_q",
+        "Step 2 of 12 executed: type el_q \"black shirt\"",
+        "Step 3 of 12: observing the page again...",
+        "Local PII detection: nothing sensitive found",
+        "Sending sanitized request to backend...",
+        "Action received: click el_search_btn (confidence 95%) - Click search button to display products matching 'black shirt'",
+        "Action executed: Clicked el_search_btn",
+        "Step 3 of 12 executed: click el_search_btn",
+        "Step 4 of 12: observing the page again...",
+        "Local PII detection: nothing sensitive found",
+        "Sending sanitized request to backend...",
+        "Action received: click el_view_black_shirt_c (confidence 100%) - Click View Black Shirt C to open the cheapest black shirt (priced at ₹699).",
+        "Action executed: Clicked el_view_black_shirt_c",
+        "Step 4 of 12 executed: click el_view_black_shirt_c",
+        "Step 5 of 12: observing the page again...",
+        "Local PII detection: nothing sensitive found",
+        "Sending sanitized request to backend...",
+        "Action received: click el_add_to_cart (confidence 100%) - Click Add to Cart to add Black Shirt C, the cheapest black shirt (₹699), to the cart.",
+        "Action executed: Clicked el_add_to_cart",
+        "Step 5 of 12 executed: click el_add_to_cart"
+      ],
+      "page": {
+        "url": "http://localhost:8080/shop.html",
+        "title": "ShirtStore Shop - Search and Cart",
+        "cartCount": "1",
+        "cartItems": [
+          "Black Shirt C - ₹699"
+        ],
+        "flowLog": "search: \"black shirt\" -> 3 result(s)\nview: Black Shirt C\ncart: added Black Shirt C (699)",
+        "searchValue": "black shirt"
+      },
+      "reasonBodyBytes": [
+        586,
+        1287,
+        1321,
+        2210,
+        2793
+      ],
+      "historyLengths": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "name": "blank-tab-unnamed-site",
+      "elapsedMs": 6557,
+      "state": "Complete",
+      "badge": "PROTECTED",
+      "pageInfo": "Page: current page · 0 interactive element(s) · 0 value(s) redacted · 0 visual observation(s)",
+      "stepLine": "1 (1 executed)",
+      "reasonRequests": 1,
+      "actions": [
+        "Action received: done (confidence 100%) - No website was specified in the task prompt to search for the cheapest black shirt."
+      ],
+      "executed": [
+        "Action executed: Task reported as done",
+        "Step 1 of 12 executed: done"
+      ],
+      "status": [
+        "Local agent: observing the page...",
+        "No web page is open in this tab. Asking the reasoner which site to open...",
+        "Local PII detection: nothing sensitive found",
+        "Sending sanitized request to backend...",
+        "Action received: done (confidence 100%) - No website was specified in the task prompt to search for the cheapest black shirt.",
+        "Action executed: Task reported as done",
+        "Step 1 of 12 executed: done"
+      ],
+      "page": {
+        "url": "about:blank",
+        "title": "",
+        "cartCount": "",
+        "cartItems": [],
+        "flowLog": "",
+        "searchValue": ""
+      },
+      "reasonBodyBytes": [
+        500
+      ],
+      "historyLengths": [
+        0
+      ]
+    }
+  ]
+}

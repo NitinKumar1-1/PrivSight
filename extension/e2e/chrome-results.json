@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-11T21:30:55.069Z",
+  "generatedAt": "2026-09-12T06:59:17.205Z",
   "browser": "Playwright Chromium (headless) with the built extension",
   "scenarios": [
     {
       "name": "index",
-      "elapsedMs": 11315,
+      "elapsedMs": 8104,
       "badge": "PROTECTED",
-      "pageStatus": "Black Shirt C Purchased (Buy Now C clicked at 2:59:13 AM)",
+      "pageStatus": "Black Shirt C Purchased (Buy Now C clicked at 12:27:44 PM)",
       "clicked": "buy_c",
       "stages": {
         "dom": {
@@ -15,7 +15,7 @@
         },
         "vision": {
           "state": "pass",
-          "detail": "tesseract.js 7 LSTM (wasm): 29 lines in 2437.8 ms"
+          "detail": "tesseract.js 7 LSTM (wasm): 29 lines in 2934.5 ms"
         },
         "detect": {
           "state": "pass",
@@ -47,17 +47,18 @@
         }
       },
       "metrics": {
+        "Step": "1 (1 executed)",
         "Round": "1",
         "Vision engine": "tesseract.js 7 LSTM (wasm)",
         "WebGPU": "adapter available (not used by the OCR engine)",
-        "Capture": "77 ms",
-        "OCR load": "1187 ms",
-        "OCR recognize": "2438 ms",
-        "Local perception": "3856 ms",
-        "Privacy processing": "327 ms",
-        "Cloud reasoning": "6089 ms",
-        "Validate + execute": "36 ms",
-        "Total": "10683 ms",
+        "Capture": "57 ms",
+        "OCR load": "1034 ms",
+        "OCR recognize": "2935 ms",
+        "Local perception": "4144 ms",
+        "Privacy processing": "353 ms",
+        "Cloud reasoning": "2711 ms",
+        "Validate + execute": "44 ms",
+        "Total": "7584 ms",
         "JS heap (vision doc)": "20 MB",
         "OCR lines": "29",
         "Observations sent": "3",
@@ -67,13 +68,14 @@
         "Local agent: observing the page...",
         "Local PII detection: EMAIL -> [EMAIL_1], PHONE -> [PHONE_1], PASSWORD -> [PASSWORD_1], CARD -> [CARD_1], OTP -> [OTP_1], PASSWORD -> [PASSWORD_2]",
         "Sending sanitized request to backend...",
-        "Action received: click el_buy_c (confidence 100%) - Black Shirt C has the lowest price of 699, so I am clicking Buy Now C.",
-        "Action executed: Clicked el_buy_c"
+        "Action received: click el_buy_c (confidence 100%) - Black Shirt C is the cheapest at ₹699, so I am clicking Buy Now C.",
+        "Action executed: Clicked el_buy_c",
+        "Step 1 of 12 executed: click el_buy_c"
       ],
       "requests": [
         {
           "method": "GET",
-          "url": "http://localhost:8080/index.html?_=1789162142104",
+          "url": "http://localhost:8080/index.html?_=1789196256495",
           "postBytes": 0,
           "contentType": ""
         },
@@ -85,38 +87,44 @@
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup/popup.html",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup/popup.html",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup.js",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup.js",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/chunks/modulepreload-polyfill.js",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/chunks/modulepreload-polyfill.js",
+          "postBytes": 0,
+          "contentType": ""
+        },
+        {
+          "method": "GET",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/icons/icon-128.png",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "POST",
           "url": "http://localhost:8000/reason",
-          "postBytes": 1965,
+          "postBytes": 1981,
           "contentType": "application/json"
         }
       ],
       "reasonBodies": [
-        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/index.html?_=1789162142104\",\"title\":\"ShirtStore - Black Shirts\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"},{\"id\":\"el_email\",\"tag\":\"input\",\"text\":\"[EMAIL_1]\",\"role\":\"textbox\"},{\"id\":\"el_phone\",\"tag\":\"input\",\"text\":\"[PHONE_1]\",\"role\":\"textbox\"},{\"id\":\"el_password\",\"tag\":\"input\",\"text\":\"[PASSWORD_1]\",\"role\":\"textbox\"},{\"id\":\"el_card_number\",\"tag\":\"input\",\"text\":\"[CARD_1]\",\"role\":\"textbox\"},{\"id\":\"el_otp\",\"tag\":\"input\",\"text\":\"[OTP_1]\",\"role\":\"textbox\"}],\"text\":\"ShirtStore\\nProducts About\\nSigned in as\\nEmail\\n[EMAIL_1]\\nPhone\\n[PHONE_1]\\nBlack Shirts\\nBlack Shirt A\\n\\nPrice: ₹799\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nBuy Now C\\nDelivery details\\nEmail\\nPhone\\nPassword\\nCard number\\nOTP\\n\\nShirtStore is a local demo page used to test browser automation. All account details shown are fake test values.\"},\"placeholders\":[\"[EMAIL_1]\",\"[PHONE_1]\",\"[PASSWORD_1]\",\"[CARD_1]\",\"[OTP_1]\",\"[PASSWORD_2]\"],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"[PASSWORD_2]\",\"bbox\":{\"x\":564,\"y\":711,\"width\":97,\"height\":5},\"confidence\":0.77,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 799, vision read Price: 7799\",\"Black Shirt B: page text says 899, vision read Price: 7899\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]}}"
+        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/index.html?_=1789196256495\",\"title\":\"ShirtStore - Black Shirts\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"},{\"id\":\"el_email\",\"tag\":\"input\",\"text\":\"[EMAIL_1]\",\"role\":\"textbox\"},{\"id\":\"el_phone\",\"tag\":\"input\",\"text\":\"[PHONE_1]\",\"role\":\"textbox\"},{\"id\":\"el_password\",\"tag\":\"input\",\"text\":\"[PASSWORD_1]\",\"role\":\"textbox\"},{\"id\":\"el_card_number\",\"tag\":\"input\",\"text\":\"[CARD_1]\",\"role\":\"textbox\"},{\"id\":\"el_otp\",\"tag\":\"input\",\"text\":\"[OTP_1]\",\"role\":\"textbox\"}],\"text\":\"Signed in as\\nEmail\\n[EMAIL_1]\\nPhone\\n[PHONE_1]\\nBlack Shirts\\nBlack Shirt A\\n\\nPrice: ₹799\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nBuy Now C\\nDelivery details\\nEmail\\nPhone\\nPassword\\nCard number\\nOTP\\n\\nShirtStore is a local demo page used to test browser automation. All account details shown are fake test values.\\nShirtStore\\nProducts About\\nProducts About\"},\"placeholders\":[\"[EMAIL_1]\",\"[PHONE_1]\",\"[PASSWORD_1]\",\"[CARD_1]\",\"[OTP_1]\",\"[PASSWORD_2]\"],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"[PASSWORD_2]\",\"bbox\":{\"x\":564,\"y\":711,\"width\":97,\"height\":5},\"confidence\":0.77,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 799, vision read Price: 7799\",\"Black Shirt B: page text says 899, vision read Price: 7899\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]}}"
       ]
     },
     {
       "name": "visual",
-      "elapsedMs": 7963,
+      "elapsedMs": 5601,
       "badge": "PROTECTED",
-      "pageStatus": "Black Shirt C Purchased (Buy Now C clicked at 2:59:21 AM)",
+      "pageStatus": "Black Shirt C Purchased (Buy Now C clicked at 12:27:49 PM)",
       "clicked": "buy_c",
       "stages": {
         "dom": {
@@ -125,7 +133,7 @@
         },
         "vision": {
           "state": "pass",
-          "detail": "tesseract.js 7 LSTM (wasm): 23 lines in 1851.3 ms"
+          "detail": "tesseract.js 7 LSTM (wasm): 23 lines in 2813.8 ms"
         },
         "detect": {
           "state": "pass",
@@ -157,17 +165,18 @@
         }
       },
       "metrics": {
+        "Step": "1 (1 executed)",
         "Round": "1",
         "Vision engine": "tesseract.js 7 LSTM (wasm)",
         "WebGPU": "adapter available (not used by the OCR engine)",
-        "Capture": "72 ms",
+        "Capture": "95 ms",
         "OCR load": "0 ms",
-        "OCR recognize": "1851 ms",
-        "Local perception": "1959 ms",
-        "Privacy processing": "321 ms",
-        "Cloud reasoning": "5121 ms",
-        "Validate + execute": "31 ms",
-        "Total": "7540 ms",
+        "OCR recognize": "2814 ms",
+        "Local perception": "2965 ms",
+        "Privacy processing": "336 ms",
+        "Cloud reasoning": "1533 ms",
+        "Validate + execute": "47 ms",
+        "Total": "5037 ms",
         "JS heap (vision doc)": "20 MB",
         "OCR lines": "23",
         "Observations sent": "6",
@@ -177,13 +186,14 @@
         "Local agent: observing the page...",
         "Local PII detection: nothing sensitive found",
         "Sending sanitized request to backend...",
-        "Action received: click el_buy_c (confidence 100%) - Black Shirt C is the cheapest at 699, and its Buy Now button is el_buy_c.",
-        "Action executed: Clicked el_buy_c"
+        "Action received: click el_buy_c (confidence 100%) - Click Buy Now C for the cheapest black shirt (Price: Rs 699 from visual observations).",
+        "Action executed: Clicked el_buy_c",
+        "Step 1 of 12 executed: click el_buy_c"
       ],
       "requests": [
         {
           "method": "GET",
-          "url": "http://localhost:8080/visual.html?_=1789162153376",
+          "url": "http://localhost:8080/visual.html?_=1789196264646",
           "postBytes": 0,
           "contentType": ""
         },
@@ -195,38 +205,44 @@
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup/popup.html",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup/popup.html",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup.js",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup.js",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/chunks/modulepreload-polyfill.js",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/chunks/modulepreload-polyfill.js",
+          "postBytes": 0,
+          "contentType": ""
+        },
+        {
+          "method": "GET",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/icons/icon-128.png",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "POST",
           "url": "http://localhost:8000/reason",
-          "postBytes": 1774,
+          "postBytes": 1790,
           "contentType": "application/json"
         }
       ],
       "reasonBodies": [
-        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/visual.html?_=1789162153376\",\"title\":\"ShirtStore - Visual Fallback\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"}],\"text\":\"ShirtStore\\nProducts About\\nBlack Shirts\\n\\nVisual-fallback fixture: the third product's name and price are drawn on a canvas, so they exist on screen but not in the DOM text.\\n\\nBlack Shirt A\\n\\nPrice: ₹799\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBuy Now C\\n\\nShirtStore is a local demo page used to test browser automation.\"},\"placeholders\":[],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"rawn or\",\"bbox\":{\"x\":572,\"y\":155,\"width\":41,\"height\":7},\"confidence\":0.85,\"target\":null},{\"type\":\"text\",\"text\":\"Black Shirt C\",\"bbox\":{\"x\":815,\"y\":356,\"width\":93,\"height\":12},\"confidence\":0.93,\"target\":null},{\"type\":\"price\",\"text\":\"Price: Rs 699\",\"bbox\":{\"x\":815,\"y\":387,\"width\":90,\"height\":12},\"confidence\":0.95,\"target\":null},{\"type\":\"text\",\"text\":\"it\",\"bbox\":{\"x\":432,\"y\":538,\"width\":11,\"height\":9},\"confidence\":0.6,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 799, vision read Price: 7799\",\"Black Shirt B: page text says 899, vision read Price: 7899\"]}}"
+        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/visual.html?_=1789196264646\",\"title\":\"ShirtStore - Visual Fallback\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"}],\"text\":\"Black Shirts\\n\\nVisual-fallback fixture: the third product's name and price are drawn on a canvas, so they exist on screen but not in the DOM text.\\n\\nBlack Shirt A\\n\\nPrice: ₹799\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBuy Now C\\n\\nShirtStore is a local demo page used to test browser automation.\\nShirtStore\\nProducts About\\nProducts About\"},\"placeholders\":[],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"rawn or\",\"bbox\":{\"x\":572,\"y\":155,\"width\":41,\"height\":7},\"confidence\":0.85,\"target\":null},{\"type\":\"text\",\"text\":\"Black Shirt C\",\"bbox\":{\"x\":815,\"y\":356,\"width\":93,\"height\":12},\"confidence\":0.93,\"target\":null},{\"type\":\"price\",\"text\":\"Price: Rs 699\",\"bbox\":{\"x\":815,\"y\":387,\"width\":90,\"height\":12},\"confidence\":0.95,\"target\":null},{\"type\":\"text\",\"text\":\"it\",\"bbox\":{\"x\":432,\"y\":538,\"width\":11,\"height\":9},\"confidence\":0.6,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 799, vision read Price: 7799\",\"Black Shirt B: page text says 899, vision read Price: 7899\"]}}"
       ]
     },
     {
       "name": "visual-privacy",
-      "elapsedMs": 8674,
+      "elapsedMs": 7204,
       "badge": "PROTECTED",
-      "pageStatus": "Black Shirt C Purchased (Buy Now C clicked at 2:59:29 AM)",
+      "pageStatus": "Black Shirt C Purchased (Buy Now C clicked at 12:27:57 PM)",
       "clicked": "buy_c",
       "stages": {
         "dom": {
@@ -235,7 +251,7 @@
         },
         "vision": {
           "state": "pass",
-          "detail": "tesseract.js 7 LSTM (wasm): 33 lines in 2343.7 ms"
+          "detail": "tesseract.js 7 LSTM (wasm): 33 lines in 3472.3 ms"
         },
         "detect": {
           "state": "pass",
@@ -267,18 +283,19 @@
         }
       },
       "metrics": {
+        "Step": "1 (1 executed)",
         "Round": "1",
         "Vision engine": "tesseract.js 7 LSTM (wasm)",
         "WebGPU": "adapter available (not used by the OCR engine)",
-        "Capture": "73 ms",
+        "Capture": "101 ms",
         "OCR load": "0 ms",
-        "OCR recognize": "2344 ms",
-        "Local perception": "2445 ms",
-        "Privacy processing": "319 ms",
-        "Cloud reasoning": "5352 ms",
-        "Validate + execute": "32 ms",
-        "Total": "8263 ms",
-        "JS heap (vision doc)": "3 MB",
+        "OCR recognize": "3472 ms",
+        "Local perception": "3586 ms",
+        "Privacy processing": "345 ms",
+        "Cloud reasoning": "2323 ms",
+        "Validate + execute": "57 ms",
+        "Total": "6481 ms",
+        "JS heap (vision doc)": "20 MB",
         "OCR lines": "33",
         "Observations sent": "7",
         "Regions masked": "4"
@@ -287,13 +304,14 @@
         "Local agent: observing the page...",
         "Local PII detection: EMAIL -> [EMAIL_1], OTP -> [OTP_1], PHONE -> [PHONE_1], CARD -> [CARD_1]",
         "Sending sanitized request to backend...",
-        "Action received: click el_buy_c (confidence 100%) - Black Shirt C is the cheapest black shirt at 699, so clicking Buy Now C.",
-        "Action executed: Clicked el_buy_c"
+        "Action received: click el_buy_c (confidence 100%) - Black Shirt C is the cheapest at ₹699, so I am clicking Buy Now C.",
+        "Action executed: Clicked el_buy_c",
+        "Step 1 of 12 executed: click el_buy_c"
       ],
       "requests": [
         {
           "method": "GET",
-          "url": "http://localhost:8080/visual-privacy.html?_=1789162161361",
+          "url": "http://localhost:8080/visual-privacy.html?_=1789196270263",
           "postBytes": 0,
           "contentType": ""
         },
@@ -305,38 +323,44 @@
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup/popup.html",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup/popup.html",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup.js",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup.js",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/chunks/modulepreload-polyfill.js",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/chunks/modulepreload-polyfill.js",
+          "postBytes": 0,
+          "contentType": ""
+        },
+        {
+          "method": "GET",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/icons/icon-128.png",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "POST",
           "url": "http://localhost:8000/reason",
-          "postBytes": 2163,
+          "postBytes": 2177,
           "contentType": "application/json"
         }
       ],
       "reasonBodies": [
-        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/visual-privacy.html?_=1789162161361\",\"title\":\"ShirtStore - Visual Privacy\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"}],\"text\":\"ShirtStore\\nProducts About\\n\\nVisual-privacy fixture: the account panel below is drawn on a canvas. The fake values exist only as pixels, so only local vision can see them. All values are test data.\\n\\nBlack Shirts\\nBlack Shirt A\\n\\nPrice: ₹799\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nBuy Now C\\n\\nShirtStore is a local demo page used to test browser automation. All account details shown are fake test values.\"},\"placeholders\":[\"[EMAIL_1]\",\"[OTP_1]\",\"[PHONE_1]\",\"[CARD_1]\"],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"text\",\"text\":\"Signed in as\",\"bbox\":{\"x\":232,\"y\":157,\"width\":95,\"height\":17},\"confidence\":0.96,\"target\":null},{\"type\":\"text\",\"text\":\"Email: [EMAIL_1]\",\"bbox\":{\"x\":233,\"y\":193,\"width\":192,\"height\":15},\"confidence\":0.84,\"target\":null},{\"type\":\"text\",\"text\":\"OTP: [OTP_1]\",\"bbox\":{\"x\":661,\"y\":194,\"width\":87,\"height\":12},\"confidence\":0.96,\"target\":null},{\"type\":\"text\",\"text\":\"Phone: [PHONE_1]\",\"bbox\":{\"x\":233,\"y\":223,\"width\":137,\"height\":12},\"confidence\":0.96,\"target\":null},{\"type\":\"text\",\"text\":\"Order ID: 8845120033\",\"bbox\":{\"x\":661,\"y\":223,\"width\":153,\"height\":12},\"confidence\":0.92,\"target\":null},{\"type\":\"text\",\"text\":\"Card: [CARD_1]\",\"bbox\":{\"x\":232,\"y\":253,\"width\":189,\"height\":12},\"confidence\":0.84,\"target\":null},{\"type\":\"text\",\"text\":\"Member since: 12/03/2024\",\"bbox\":{\"x\":662,\"y\":253,\"width\":187,\"height\":14},\"confidence\":0.96,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 799, vision read Price: 7799\",\"Black Shirt B: page text says 899, vision read Price: 7899\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]}}"
+        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/visual-privacy.html?_=1789196270263\",\"title\":\"ShirtStore - Visual Privacy\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"}],\"text\":\"Visual-privacy fixture: the account panel below is drawn on a canvas. The fake values exist only as pixels, so only local vision can see them. All values are test data.\\n\\nBlack Shirts\\nBlack Shirt A\\n\\nPrice: ₹799\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nBuy Now C\\n\\nShirtStore is a local demo page used to test browser automation. All account details shown are fake test values.\\nShirtStore\\nProducts About\\nProducts About\"},\"placeholders\":[\"[EMAIL_1]\",\"[OTP_1]\",\"[PHONE_1]\",\"[CARD_1]\"],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"text\",\"text\":\"Signed in as\",\"bbox\":{\"x\":232,\"y\":157,\"width\":95,\"height\":17},\"confidence\":0.96,\"target\":null},{\"type\":\"text\",\"text\":\"Email: [EMAIL_1]\",\"bbox\":{\"x\":233,\"y\":193,\"width\":192,\"height\":15},\"confidence\":0.84,\"target\":null},{\"type\":\"text\",\"text\":\"OTP: [OTP_1]\",\"bbox\":{\"x\":661,\"y\":194,\"width\":87,\"height\":12},\"confidence\":0.96,\"target\":null},{\"type\":\"text\",\"text\":\"Phone: [PHONE_1]\",\"bbox\":{\"x\":233,\"y\":223,\"width\":137,\"height\":12},\"confidence\":0.96,\"target\":null},{\"type\":\"text\",\"text\":\"Order ID: 8845120033\",\"bbox\":{\"x\":661,\"y\":223,\"width\":153,\"height\":12},\"confidence\":0.92,\"target\":null},{\"type\":\"text\",\"text\":\"Card: [CARD_1]\",\"bbox\":{\"x\":232,\"y\":253,\"width\":189,\"height\":12},\"confidence\":0.84,\"target\":null},{\"type\":\"text\",\"text\":\"Member since: 12/03/2024\",\"bbox\":{\"x\":662,\"y\":253,\"width\":187,\"height\":14},\"confidence\":0.96,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 799, vision read Price: 7799\",\"Black Shirt B: page text says 899, vision read Price: 7899\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]}}"
       ]
     },
     {
       "name": "dynamic-delay",
-      "elapsedMs": 8308,
+      "elapsedMs": 7984,
       "badge": "PROTECTED",
-      "pageStatus": "Black Shirt C Purchased (Buy Now C clicked at 2:59:38 AM)",
+      "pageStatus": "Black Shirt C Purchased (Buy Now C clicked at 12:28:05 PM)",
       "clicked": "buy_c",
       "stages": {
         "dom": {
@@ -345,7 +369,7 @@
         },
         "vision": {
           "state": "pass",
-          "detail": "tesseract.js 7 LSTM (wasm): 27 lines in 1895.2 ms"
+          "detail": "tesseract.js 7 LSTM (wasm): 27 lines in 3314.6 ms"
         },
         "detect": {
           "state": "pass",
@@ -377,18 +401,19 @@
         }
       },
       "metrics": {
+        "Step": "1 (1 executed)",
         "Round": "1",
         "Vision engine": "tesseract.js 7 LSTM (wasm)",
         "WebGPU": "adapter available (not used by the OCR engine)",
-        "Capture": "63 ms",
+        "Capture": "77 ms",
         "OCR load": "0 ms",
-        "OCR recognize": "1895 ms",
-        "Local perception": "2059 ms",
-        "Privacy processing": "325 ms",
-        "Cloud reasoning": "5386 ms",
-        "Validate + execute": "37 ms",
-        "Total": "7904 ms",
-        "JS heap (vision doc)": "2 MB",
+        "OCR recognize": "3315 ms",
+        "Local perception": "3449 ms",
+        "Privacy processing": "338 ms",
+        "Cloud reasoning": "3331 ms",
+        "Validate + execute": "54 ms",
+        "Total": "7317 ms",
+        "JS heap (vision doc)": "20 MB",
         "OCR lines": "27",
         "Observations sent": "4",
         "Regions masked": "0"
@@ -397,13 +422,14 @@
         "Local agent: observing the page...",
         "Local PII detection: nothing sensitive found",
         "Sending sanitized request to backend...",
-        "Action received: click el_buy_c (confidence 100%) - Black Shirt C is the cheapest at 699 rupees, so I will click its Buy Now button.",
-        "Action executed: Clicked el_buy_c"
+        "Action received: click el_buy_c (confidence 100%) - Black Shirt C is the cheapest at ₹699, and we click its Buy Now C button.",
+        "Action executed: Clicked el_buy_c",
+        "Step 1 of 12 executed: click el_buy_c"
       ],
       "requests": [
         {
           "method": "GET",
-          "url": "http://localhost:8080/dynamic.html?delay=1500&_=1789162170037",
+          "url": "http://localhost:8080/dynamic.html?delay=1500&_=1789196277505",
           "postBytes": 0,
           "contentType": ""
         },
@@ -415,36 +441,42 @@
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup/popup.html",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup/popup.html",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup.js",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup.js",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/chunks/modulepreload-polyfill.js",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/chunks/modulepreload-polyfill.js",
+          "postBytes": 0,
+          "contentType": ""
+        },
+        {
+          "method": "GET",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/icons/icon-128.png",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "POST",
           "url": "http://localhost:8000/reason",
-          "postBytes": 1703,
+          "postBytes": 1719,
           "contentType": "application/json"
         }
       ],
       "reasonBodies": [
-        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/dynamic.html?delay=1500&_=1789162170037\",\"title\":\"ShirtStore - Dynamic DOM\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"}],\"text\":\"ShirtStore\\nProducts About\\nBlack Shirts\\n\\nDynamic-DOM fixture. Buy Now C is inserted after a delay (default 1500 ms, ?delay=ms). With ?vanish=ms the button is removed again that many ms after it appears, to produce a stale target.\\n\\nBlack Shirt A\\n\\nPrice: ₹799\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nBuy Now C\\n\\nShirtStore is a local demo page used to test browser automation.\"},\"placeholders\":[],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"jefault 150\",\"bbox\":{\"x\":554,\"y\":152,\"width\":57,\"height\":10},\"confidence\":0.71,\"target\":null},{\"type\":\"text\",\"text\":\"t apr\",\"bbox\":{\"x\":265,\"y\":171,\"width\":24,\"height\":11},\"confidence\":0.83,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 799, vision read Price: 7799\",\"Black Shirt B: page text says 899, vision read Price: 7899\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]}}"
+        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/dynamic.html?delay=1500&_=1789196277505\",\"title\":\"ShirtStore - Dynamic DOM\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"}],\"text\":\"Black Shirts\\n\\nDynamic-DOM fixture. Buy Now C is inserted after a delay (default 1500 ms, ?delay=ms). With ?vanish=ms the button is removed again that many ms after it appears, to produce a stale target.\\n\\nBlack Shirt A\\n\\nPrice: ₹799\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nBuy Now C\\n\\nShirtStore is a local demo page used to test browser automation.\\nShirtStore\\nProducts About\\nProducts About\"},\"placeholders\":[],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"jefault 150\",\"bbox\":{\"x\":554,\"y\":152,\"width\":57,\"height\":10},\"confidence\":0.71,\"target\":null},{\"type\":\"text\",\"text\":\"t apr\",\"bbox\":{\"x\":265,\"y\":171,\"width\":24,\"height\":11},\"confidence\":0.83,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 799, vision read Price: 7799\",\"Black Shirt B: page text says 899, vision read Price: 7899\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]}}"
       ]
     },
     {
       "name": "dynamic-stale",
-      "elapsedMs": 15975,
+      "elapsedMs": 22455,
       "badge": "PROTECTED",
       "pageStatus": "",
       "clicked": "(none)",
@@ -455,7 +487,7 @@
         },
         "vision": {
           "state": "pass",
-          "detail": "tesseract.js 7 LSTM (wasm): 27 lines in 1932.1 ms"
+          "detail": "tesseract.js 7 LSTM (wasm): 29 lines in 3667 ms"
         },
         "detect": {
           "state": "pass",
@@ -463,7 +495,7 @@
         },
         "visual-redaction": {
           "state": "pass",
-          "detail": "0 region(s) masked; 5 observation(s) kept; 16 duplicate(s) dropped; 2 button(s) mapped; 3 conflict(s), DOM preferred"
+          "detail": "0 region(s) masked; 5 observation(s) kept; 18 duplicate(s) dropped; 2 button(s) mapped; 3 conflict(s), DOM preferred"
         },
         "leakage": {
           "state": "pass",
@@ -474,50 +506,59 @@
           "detail": "REQUEST ALLOWED"
         },
         "reason": {
-          "state": "fail",
-          "detail": "Backend returned 502: {\"detail\":\"Invalid action from reasoning provider: action \\\"click\\\" requires a target\"}"
+          "state": "pass",
+          "detail": "structured action received"
         },
         "validate": {
-          "state": "skipped",
-          "detail": ""
+          "state": "pass",
+          "detail": "action verified against the live page"
         },
         "execute": {
-          "state": "skipped",
-          "detail": ""
+          "state": "pass",
+          "detail": "Task reported as done"
         }
       },
       "metrics": {
+        "Step": "2 (2 executed)",
         "Round": "1",
         "Vision engine": "tesseract.js 7 LSTM (wasm)",
         "WebGPU": "adapter available (not used by the OCR engine)",
-        "Capture": "71 ms",
+        "Capture": "95 ms",
         "OCR load": "0 ms",
-        "OCR recognize": "1870 ms",
-        "Local perception": "1969 ms",
-        "Privacy processing": "329 ms",
-        "Cloud reasoning": "5292 ms",
-        "Validate + execute": "3 ms",
-        "Total": "7701 ms",
+        "OCR recognize": "3667 ms",
+        "Local perception": "3790 ms",
+        "Privacy processing": "309 ms",
+        "Cloud reasoning": "1921 ms",
+        "Validate + execute": "6 ms",
+        "Total": "21884 ms",
         "JS heap (vision doc)": "20 MB",
-        "OCR lines": "27",
-        "Observations sent": "4",
+        "OCR lines": "29",
+        "Observations sent": "5",
         "Regions masked": "0"
       },
       "status": [
         "Local agent: observing the page...",
         "Local PII detection: nothing sensitive found",
         "Sending sanitized request to backend...",
-        "Action received: click el_buy_c (confidence 100%) - Black Shirt C is the cheapest at 699, so I am clicking Buy Now C.",
+        "Action received: click el_buy_c (confidence 100%) - Black Shirt C is the cheapest black shirt at ₹699, so I am clicking Buy Now C.",
         "Action blocked by local validator: Target element not found on the current page. Target may have changed; re-observing.",
         "Re-observing the page (round 2 of 3)...",
         "Local PII detection: nothing sensitive found",
         "Sending sanitized request to backend...",
-        "Backend returned 502: {\"detail\":\"Invalid action from reasoning provider: action \\\"click\\\" requires a target\"}"
+        "Action received: scroll (confidence 100%) - Black Shirt C is mentioned in the page text but its Buy Now C button is not yet loaded in the interactive elements, so I will scroll down to wait for it.",
+        "Action executed: Scrolled down",
+        "Step 1 of 12 executed: scroll \"down\"",
+        "Step 2 of 12: observing the page again...",
+        "Local PII detection: nothing sensitive found",
+        "Sending sanitized request to backend...",
+        "Action received: done (confidence 100%) - The page text says Black Shirt C is ₹699, which is the cheapest black shirt, but the Buy Now C button has not appeared yet due to the dynamic delay.",
+        "Action executed: Task reported as done",
+        "Step 2 of 12 executed: done"
       ],
       "requests": [
         {
           "method": "GET",
-          "url": "http://localhost:8080/dynamic.html?delay=300&vanish=4000&_=1789162178376",
+          "url": "http://localhost:8080/dynamic.html?delay=300&_=1789196285469",
           "postBytes": 0,
           "contentType": ""
         },
@@ -529,45 +570,58 @@
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup/popup.html",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup/popup.html",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup.js",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup.js",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/chunks/modulepreload-polyfill.js",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/chunks/modulepreload-polyfill.js",
+          "postBytes": 0,
+          "contentType": ""
+        },
+        {
+          "method": "GET",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/icons/icon-128.png",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "POST",
           "url": "http://localhost:8000/reason",
-          "postBytes": 1714,
+          "postBytes": 1728,
           "contentType": "application/json"
         },
         {
           "method": "POST",
           "url": "http://localhost:8000/reason",
-          "postBytes": 1790,
+          "postBytes": 1742,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "url": "http://localhost:8000/reason",
+          "postBytes": 1803,
           "contentType": "application/json"
         }
       ],
       "reasonBodies": [
-        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/dynamic.html?delay=300&vanish=4000&_=1789162178376\",\"title\":\"ShirtStore - Dynamic DOM\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"}],\"text\":\"ShirtStore\\nProducts About\\nBlack Shirts\\n\\nDynamic-DOM fixture. Buy Now C is inserted after a delay (default 1500 ms, ?delay=ms). With ?vanish=ms the button is removed again that many ms after it appears, to produce a stale target.\\n\\nBlack Shirt A\\n\\nPrice: ₹799\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nBuy Now C\\n\\nShirtStore is a local demo page used to test browser automation.\"},\"placeholders\":[],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"jefault 150\",\"bbox\":{\"x\":554,\"y\":152,\"width\":57,\"height\":10},\"confidence\":0.71,\"target\":null},{\"type\":\"text\",\"text\":\"t apr\",\"bbox\":{\"x\":265,\"y\":171,\"width\":24,\"height\":11},\"confidence\":0.83,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 799, vision read Price: 7799\",\"Black Shirt B: page text says 899, vision read Price: 7899\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]}}",
-        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/dynamic.html?delay=300&vanish=4000&_=1789162178376\",\"title\":\"ShirtStore - Dynamic DOM\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"}],\"text\":\"ShirtStore\\nProducts About\\nBlack Shirts\\n\\nDynamic-DOM fixture. Buy Now C is inserted after a delay (default 1500 ms, ?delay=ms). With ?vanish=ms the button is removed again that many ms after it appears, to produce a stale target.\\n\\nBlack Shirt A\\n\\nPrice: ₹799\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nSold out\\n\\nShirtStore is a local demo page used to test browser automation.\"},\"placeholders\":[],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"jefault 150\",\"bbox\":{\"x\":554,\"y\":152,\"width\":57,\"height\":10},\"confidence\":0.71,\"target\":null},{\"type\":\"text\",\"text\":\"With ?vanish=ms the button is removec\",\"bbox\":{\"x\":735,\"y\":153,\"width\":214,\"height\":10},\"confidence\":0.9,\"target\":null},{\"type\":\"text\",\"text\":\"A fixtur\",\"bbox\":{\"x\":293,\"y\":154,\"width\":34,\"height\":8},\"confidence\":0.85,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 799, vision read Price: 7799\",\"Black Shirt B: page text says 899, vision read Price: 7899\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]}}"
+        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/dynamic.html?delay=300&_=1789196285469\",\"title\":\"ShirtStore - Dynamic DOM\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"}],\"text\":\"Black Shirts\\n\\nDynamic-DOM fixture. Buy Now C is inserted after a delay (default 1500 ms, ?delay=ms). With ?vanish=ms the button is removed again that many ms after it appears, to produce a stale target.\\n\\nBlack Shirt A\\n\\nPrice: ₹799\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nBuy Now C\\n\\nShirtStore is a local demo page used to test browser automation.\\nShirtStore\\nProducts About\\nProducts About\"},\"placeholders\":[],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"text\",\"text\":\"jefault 150\",\"bbox\":{\"x\":554,\"y\":153,\"width\":57,\"height\":10},\"confidence\":0.84,\"target\":null},{\"type\":\"text\",\"text\":\"he button is removec\",\"bbox\":{\"x\":833,\"y\":153,\"width\":99,\"height\":10},\"confidence\":0.94,\"target\":null},{\"type\":\"text\",\"text\":\"alr\",\"bbox\":{\"x\":975,\"y\":156,\"width\":10,\"height\":6},\"confidence\":0.87,\"target\":null},{\"type\":\"text\",\"text\":\"3 local demo page used t\",\"bbox\":{\"x\":292,\"y\":523,\"width\":151,\"height\":12},\"confidence\":0.93,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 799, vision read Price: 7799\",\"Black Shirt B: page text says 899, vision read Price: 7899\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]}}",
+        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/dynamic.html?delay=300&_=1789196285469\",\"title\":\"ShirtStore - Dynamic DOM\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"}],\"text\":\"Black Shirts\\n\\nDynamic-DOM fixture. Buy Now C is inserted after a delay (default 1500 ms, ?delay=ms). With ?vanish=ms the button is removed again that many ms after it appears, to produce a stale target.\\n\\nBlack Shirt A\\n\\nPrice: ₹799\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nShirtStore is a local demo page used to test browser automation.\\nShirtStore\\nProducts About\\nProducts About\"},\"placeholders\":[],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"jefault 150\",\"bbox\":{\"x\":554,\"y\":152,\"width\":57,\"height\":10},\"confidence\":0.71,\"target\":null},{\"type\":\"text\",\"text\":\"t apr\",\"bbox\":{\"x\":265,\"y\":171,\"width\":24,\"height\":11},\"confidence\":0.83,\"target\":null},{\"type\":\"text\",\"text\":\"rc\",\"bbox\":{\"x\":492,\"y\":526,\"width\":7,\"height\":6},\"confidence\":0.9,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 799, vision read Price: 7799\",\"Black Shirt B: page text says 899, vision read Price: 7899\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]}}",
+        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/dynamic.html?delay=300&_=1789196285469\",\"title\":\"ShirtStore - Dynamic DOM\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"}],\"text\":\"Black Shirts\\n\\nDynamic-DOM fixture. Buy Now C is inserted after a delay (default 1500 ms, ?delay=ms). With ?vanish=ms the button is removed again that many ms after it appears, to produce a stale target.\\n\\nBlack Shirt A\\n\\nPrice: ₹799\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nShirtStore is a local demo page used to test browser automation.\\nShirtStore\\nProducts About\\nProducts About\"},\"placeholders\":[],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"jefault 150\",\"bbox\":{\"x\":554,\"y\":152,\"width\":57,\"height\":10},\"confidence\":0.71,\"target\":null},{\"type\":\"text\",\"text\":\"t apr\",\"bbox\":{\"x\":265,\"y\":171,\"width\":24,\"height\":11},\"confidence\":0.83,\"target\":null},{\"type\":\"text\",\"text\":\"rc\",\"bbox\":{\"x\":492,\"y\":526,\"width\":7,\"height\":6},\"confidence\":0.9,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 799, vision read Price: 7799\",\"Black Shirt B: page text says 899, vision read Price: 7899\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]},\"history\":[{\"action\":\"scroll\",\"target\":null,\"value\":\"down\"}]}"
       ]
     },
     {
       "name": "swap-A",
-      "elapsedMs": 8330,
+      "elapsedMs": 7075,
       "badge": "PROTECTED",
-      "pageStatus": "Black Shirt A Purchased (Buy Now A clicked at 3:00:02 AM)",
+      "pageStatus": "Black Shirt A Purchased (Buy Now A clicked at 12:28:34 PM)",
       "clicked": "buy_a",
       "stages": {
         "dom": {
@@ -576,7 +630,7 @@
         },
         "vision": {
           "state": "pass",
-          "detail": "tesseract.js 7 LSTM (wasm): 29 lines in 1994.4 ms"
+          "detail": "tesseract.js 7 LSTM (wasm): 29 lines in 3099 ms"
         },
         "detect": {
           "state": "pass",
@@ -608,18 +662,19 @@
         }
       },
       "metrics": {
+        "Step": "1 (1 executed)",
         "Round": "1",
         "Vision engine": "tesseract.js 7 LSTM (wasm)",
         "WebGPU": "adapter available (not used by the OCR engine)",
-        "Capture": "65 ms",
+        "Capture": "87 ms",
         "OCR load": "0 ms",
-        "OCR recognize": "1994 ms",
-        "Local perception": "2085 ms",
-        "Privacy processing": "341 ms",
-        "Cloud reasoning": "5294 ms",
-        "Validate + execute": "26 ms",
-        "Total": "7856 ms",
-        "JS heap (vision doc)": "2 MB",
+        "OCR recognize": "3099 ms",
+        "Local perception": "3220 ms",
+        "Privacy processing": "353 ms",
+        "Cloud reasoning": "2639 ms",
+        "Validate + execute": "52 ms",
+        "Total": "6397 ms",
+        "JS heap (vision doc)": "20 MB",
         "OCR lines": "29",
         "Observations sent": "3",
         "Regions masked": "7"
@@ -628,13 +683,14 @@
         "Local agent: observing the page...",
         "Local PII detection: EMAIL -> [EMAIL_1], PHONE -> [PHONE_1], PASSWORD -> [PASSWORD_1], CARD -> [CARD_1], OTP -> [OTP_1], PASSWORD -> [PASSWORD_2]",
         "Sending sanitized request to backend...",
-        "Action received: click el_buy_a (confidence 100%) - Black Shirt A has the lowest price of 499 among the black shirts.",
-        "Action executed: Clicked el_buy_a"
+        "Action received: click el_buy_a (confidence 100%) - Black Shirt A is the cheapest black shirt at ₹499, so clicking Buy Now A.",
+        "Action executed: Clicked el_buy_a",
+        "Step 1 of 12 executed: click el_buy_a"
       ],
       "requests": [
         {
           "method": "GET",
-          "url": "http://localhost:8080/index.html?_=1789162194355",
+          "url": "http://localhost:8080/index.html?_=1789196307959",
           "postBytes": 0,
           "contentType": ""
         },
@@ -646,38 +702,44 @@
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup/popup.html",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup/popup.html",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup.js",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup.js",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/chunks/modulepreload-polyfill.js",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/chunks/modulepreload-polyfill.js",
+          "postBytes": 0,
+          "contentType": ""
+        },
+        {
+          "method": "GET",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/icons/icon-128.png",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "POST",
           "url": "http://localhost:8000/reason",
-          "postBytes": 1965,
+          "postBytes": 1981,
           "contentType": "application/json"
         }
       ],
       "reasonBodies": [
-        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/index.html?_=1789162194355\",\"title\":\"ShirtStore - Black Shirts\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"},{\"id\":\"el_email\",\"tag\":\"input\",\"text\":\"[EMAIL_1]\",\"role\":\"textbox\"},{\"id\":\"el_phone\",\"tag\":\"input\",\"text\":\"[PHONE_1]\",\"role\":\"textbox\"},{\"id\":\"el_password\",\"tag\":\"input\",\"text\":\"[PASSWORD_1]\",\"role\":\"textbox\"},{\"id\":\"el_card_number\",\"tag\":\"input\",\"text\":\"[CARD_1]\",\"role\":\"textbox\"},{\"id\":\"el_otp\",\"tag\":\"input\",\"text\":\"[OTP_1]\",\"role\":\"textbox\"}],\"text\":\"ShirtStore\\nProducts About\\nSigned in as\\nEmail\\n[EMAIL_1]\\nPhone\\n[PHONE_1]\\nBlack Shirts\\nBlack Shirt A\\n\\nPrice: ₹499\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nBuy Now C\\nDelivery details\\nEmail\\nPhone\\nPassword\\nCard number\\nOTP\\n\\nShirtStore is a local demo page used to test browser automation. All account details shown are fake test values.\"},\"placeholders\":[\"[EMAIL_1]\",\"[PHONE_1]\",\"[PASSWORD_1]\",\"[CARD_1]\",\"[OTP_1]\",\"[PASSWORD_2]\"],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"[PASSWORD_2]\",\"bbox\":{\"x\":564,\"y\":711,\"width\":97,\"height\":5},\"confidence\":0.77,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 499, vision read Price: 7499\",\"Black Shirt B: page text says 899, vision read Price: 7899\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]}}"
+        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/index.html?_=1789196307959\",\"title\":\"ShirtStore - Black Shirts\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"},{\"id\":\"el_email\",\"tag\":\"input\",\"text\":\"[EMAIL_1]\",\"role\":\"textbox\"},{\"id\":\"el_phone\",\"tag\":\"input\",\"text\":\"[PHONE_1]\",\"role\":\"textbox\"},{\"id\":\"el_password\",\"tag\":\"input\",\"text\":\"[PASSWORD_1]\",\"role\":\"textbox\"},{\"id\":\"el_card_number\",\"tag\":\"input\",\"text\":\"[CARD_1]\",\"role\":\"textbox\"},{\"id\":\"el_otp\",\"tag\":\"input\",\"text\":\"[OTP_1]\",\"role\":\"textbox\"}],\"text\":\"Signed in as\\nEmail\\n[EMAIL_1]\\nPhone\\n[PHONE_1]\\nBlack Shirts\\nBlack Shirt A\\n\\nPrice: ₹499\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nBuy Now C\\nDelivery details\\nEmail\\nPhone\\nPassword\\nCard number\\nOTP\\n\\nShirtStore is a local demo page used to test browser automation. All account details shown are fake test values.\\nShirtStore\\nProducts About\\nProducts About\"},\"placeholders\":[\"[EMAIL_1]\",\"[PHONE_1]\",\"[PASSWORD_1]\",\"[CARD_1]\",\"[OTP_1]\",\"[PASSWORD_2]\"],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"[PASSWORD_2]\",\"bbox\":{\"x\":564,\"y\":711,\"width\":97,\"height\":5},\"confidence\":0.77,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 499, vision read Price: 7499\",\"Black Shirt B: page text says 899, vision read Price: 7899\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]}}"
       ]
     },
     {
       "name": "swap-B",
-      "elapsedMs": 8083,
+      "elapsedMs": 8911,
       "badge": "PROTECTED",
-      "pageStatus": "Black Shirt B Purchased (Buy Now B clicked at 3:00:10 AM)",
+      "pageStatus": "Black Shirt B Purchased (Buy Now B clicked at 12:28:43 PM)",
       "clicked": "buy_b",
       "stages": {
         "dom": {
@@ -686,7 +748,7 @@
         },
         "vision": {
           "state": "pass",
-          "detail": "tesseract.js 7 LSTM (wasm): 29 lines in 1882 ms"
+          "detail": "tesseract.js 7 LSTM (wasm): 29 lines in 3189.5 ms"
         },
         "detect": {
           "state": "pass",
@@ -718,17 +780,18 @@
         }
       },
       "metrics": {
+        "Step": "1 (1 executed)",
         "Round": "1",
         "Vision engine": "tesseract.js 7 LSTM (wasm)",
         "WebGPU": "adapter available (not used by the OCR engine)",
-        "Capture": "62 ms",
+        "Capture": "101 ms",
         "OCR load": "0 ms",
-        "OCR recognize": "1882 ms",
-        "Local perception": "1965 ms",
-        "Privacy processing": "338 ms",
-        "Cloud reasoning": "5301 ms",
-        "Validate + execute": "35 ms",
-        "Total": "7738 ms",
+        "OCR recognize": "3190 ms",
+        "Local perception": "3313 ms",
+        "Privacy processing": "335 ms",
+        "Cloud reasoning": "4410 ms",
+        "Validate + execute": "49 ms",
+        "Total": "8263 ms",
         "JS heap (vision doc)": "20 MB",
         "OCR lines": "29",
         "Observations sent": "3",
@@ -738,13 +801,14 @@
         "Local agent: observing the page...",
         "Local PII detection: EMAIL -> [EMAIL_1], PHONE -> [PHONE_1], PASSWORD -> [PASSWORD_1], CARD -> [CARD_1], OTP -> [OTP_1], PASSWORD -> [PASSWORD_2]",
         "Sending sanitized request to backend...",
-        "Action received: click el_buy_b (confidence 100%) - Black Shirt B is the cheapest black shirt at ₹399, so I clicked its Buy Now button.",
-        "Action executed: Clicked el_buy_b"
+        "Action received: click el_buy_b (confidence 100%) - Black Shirt B is the cheapest black shirt at ₹399, so click Buy Now B.",
+        "Action executed: Clicked el_buy_b",
+        "Step 1 of 12 executed: click el_buy_b"
       ],
       "requests": [
         {
           "method": "GET",
-          "url": "http://localhost:8080/index.html?_=1789162202665",
+          "url": "http://localhost:8080/index.html?_=1789196315048",
           "postBytes": 0,
           "contentType": ""
         },
@@ -756,38 +820,44 @@
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup/popup.html",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup/popup.html",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup.js",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup.js",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/chunks/modulepreload-polyfill.js",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/chunks/modulepreload-polyfill.js",
+          "postBytes": 0,
+          "contentType": ""
+        },
+        {
+          "method": "GET",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/icons/icon-128.png",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "POST",
           "url": "http://localhost:8000/reason",
-          "postBytes": 1904,
+          "postBytes": 1920,
           "contentType": "application/json"
         }
       ],
       "reasonBodies": [
-        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/index.html?_=1789162202665\",\"title\":\"ShirtStore - Black Shirts\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"},{\"id\":\"el_email\",\"tag\":\"input\",\"text\":\"[EMAIL_1]\",\"role\":\"textbox\"},{\"id\":\"el_phone\",\"tag\":\"input\",\"text\":\"[PHONE_1]\",\"role\":\"textbox\"},{\"id\":\"el_password\",\"tag\":\"input\",\"text\":\"[PASSWORD_1]\",\"role\":\"textbox\"},{\"id\":\"el_card_number\",\"tag\":\"input\",\"text\":\"[CARD_1]\",\"role\":\"textbox\"},{\"id\":\"el_otp\",\"tag\":\"input\",\"text\":\"[OTP_1]\",\"role\":\"textbox\"}],\"text\":\"ShirtStore\\nProducts About\\nSigned in as\\nEmail\\n[EMAIL_1]\\nPhone\\n[PHONE_1]\\nBlack Shirts\\nBlack Shirt A\\n\\nPrice: ₹999\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹399\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nBuy Now C\\nDelivery details\\nEmail\\nPhone\\nPassword\\nCard number\\nOTP\\n\\nShirtStore is a local demo page used to test browser automation. All account details shown are fake test values.\"},\"placeholders\":[\"[EMAIL_1]\",\"[PHONE_1]\",\"[PASSWORD_1]\",\"[CARD_1]\",\"[OTP_1]\",\"[PASSWORD_2]\"],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"[PASSWORD_2]\",\"bbox\":{\"x\":564,\"y\":711,\"width\":97,\"height\":5},\"confidence\":0.77,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 999, vision read Price: 7999\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]}}"
+        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/index.html?_=1789196315048\",\"title\":\"ShirtStore - Black Shirts\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"},{\"id\":\"el_email\",\"tag\":\"input\",\"text\":\"[EMAIL_1]\",\"role\":\"textbox\"},{\"id\":\"el_phone\",\"tag\":\"input\",\"text\":\"[PHONE_1]\",\"role\":\"textbox\"},{\"id\":\"el_password\",\"tag\":\"input\",\"text\":\"[PASSWORD_1]\",\"role\":\"textbox\"},{\"id\":\"el_card_number\",\"tag\":\"input\",\"text\":\"[CARD_1]\",\"role\":\"textbox\"},{\"id\":\"el_otp\",\"tag\":\"input\",\"text\":\"[OTP_1]\",\"role\":\"textbox\"}],\"text\":\"Signed in as\\nEmail\\n[EMAIL_1]\\nPhone\\n[PHONE_1]\\nBlack Shirts\\nBlack Shirt A\\n\\nPrice: ₹999\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹399\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nBuy Now C\\nDelivery details\\nEmail\\nPhone\\nPassword\\nCard number\\nOTP\\n\\nShirtStore is a local demo page used to test browser automation. All account details shown are fake test values.\\nShirtStore\\nProducts About\\nProducts About\"},\"placeholders\":[\"[EMAIL_1]\",\"[PHONE_1]\",\"[PASSWORD_1]\",\"[CARD_1]\",\"[OTP_1]\",\"[PASSWORD_2]\"],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"[PASSWORD_2]\",\"bbox\":{\"x\":564,\"y\":711,\"width\":97,\"height\":5},\"confidence\":0.77,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 999, vision read Price: 7999\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]}}"
       ]
     },
     {
       "name": "visual-only",
-      "elapsedMs": 8152,
+      "elapsedMs": 5995,
       "badge": "PROTECTED",
-      "pageStatus": "Black Shirt A Purchased (Buy Now A clicked at 3:00:18 AM)",
+      "pageStatus": "Black Shirt A Purchased (Buy Now A clicked at 12:28:49 PM)",
       "clicked": "buy_a",
       "stages": {
         "dom": {
@@ -796,7 +866,7 @@
         },
         "vision": {
           "state": "pass",
-          "detail": "tesseract.js 7 LSTM (wasm): 17 lines in 1687.8 ms"
+          "detail": "tesseract.js 7 LSTM (wasm): 17 lines in 2876.1 ms"
         },
         "detect": {
           "state": "pass",
@@ -828,18 +898,19 @@
         }
       },
       "metrics": {
+        "Step": "1 (1 executed)",
         "Round": "1",
         "Vision engine": "tesseract.js 7 LSTM (wasm)",
         "WebGPU": "adapter available (not used by the OCR engine)",
-        "Capture": "59 ms",
+        "Capture": "85 ms",
         "OCR load": "0 ms",
-        "OCR recognize": "1688 ms",
-        "Local perception": "1779 ms",
-        "Privacy processing": "329 ms",
-        "Cloud reasoning": "5549 ms",
-        "Validate + execute": "28 ms",
-        "Total": "7777 ms",
-        "JS heap (vision doc)": "20 MB",
+        "OCR recognize": "2876 ms",
+        "Local perception": "2993 ms",
+        "Privacy processing": "331 ms",
+        "Cloud reasoning": "1977 ms",
+        "Validate + execute": "41 ms",
+        "Total": "5471 ms",
+        "JS heap (vision doc)": "2 MB",
         "OCR lines": "17",
         "Observations sent": "11",
         "Regions masked": "0"
@@ -849,12 +920,13 @@
         "Local PII detection: nothing sensitive found",
         "Sending sanitized request to backend...",
         "Action received: click el_buy_a (confidence 100%) - Black Shirt A is the cheapest at Rs 499, so I am clicking Buy Now A.",
-        "Action executed: Clicked el_buy_a"
+        "Action executed: Clicked el_buy_a",
+        "Step 1 of 12 executed: click el_buy_a"
       ],
       "requests": [
         {
           "method": "GET",
-          "url": "http://localhost:8080/visual-only.html?_=1789162210757",
+          "url": "http://localhost:8080/visual-only.html?_=1789196323936",
           "postBytes": 0,
           "contentType": ""
         },
@@ -866,31 +938,37 @@
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup/popup.html",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup/popup.html",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup.js",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup.js",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/chunks/modulepreload-polyfill.js",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/chunks/modulepreload-polyfill.js",
+          "postBytes": 0,
+          "contentType": ""
+        },
+        {
+          "method": "GET",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/icons/icon-128.png",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "POST",
           "url": "http://localhost:8000/reason",
-          "postBytes": 2192,
+          "postBytes": 2208,
           "contentType": "application/json"
         }
       ],
       "reasonBodies": [
-        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/visual-only.html?_=1789162210757\",\"title\":\"ShirtStore - Visual Only\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"}],\"text\":\"ShirtStore\\nProducts About\\nBlack Shirts\\n\\nVisual-only fixture: every product name and price is drawn on a canvas. The DOM contains the buttons only.\\n\\nBuy Now A\\nBuy Now B\\nBuy Now C\\n\\nShirtStore is a local demo page used to test browser automation.\"},\"placeholders\":[],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"Black Shirt A\",\"bbox\":{\"x\":228,\"y\":356,\"width\":95,\"height\":12},\"confidence\":0.96,\"target\":null},{\"type\":\"text\",\"text\":\"Black Shirt B\",\"bbox\":{\"x\":521,\"y\":356,\"width\":94,\"height\":12},\"confidence\":0.94,\"target\":null},{\"type\":\"text\",\"text\":\"Black Shirt C\",\"bbox\":{\"x\":815,\"y\":356,\"width\":93,\"height\":12},\"confidence\":0.93,\"target\":null},{\"type\":\"price\",\"text\":\"Price: Rs 499\",\"bbox\":{\"x\":228,\"y\":387,\"width\":90,\"height\":12},\"confidence\":0.96,\"target\":null},{\"type\":\"price\",\"text\":\"Price: Rs 899\",\"bbox\":{\"x\":521,\"y\":387,\"width\":90,\"height\":12},\"confidence\":0.96,\"target\":null},{\"type\":\"price\",\"text\":\"Price: Rs 699\",\"bbox\":{\"x\":815,\"y\":387,\"width\":90,\"height\":12},\"confidence\":0.95,\"target\":null},{\"type\":\"button\",\"text\":\"Buy NowA\",\"bbox\":{\"x\":308,\"y\":459,\"width\":78,\"height\":14},\"confidence\":0.92,\"target\":\"el_buy_a\"},{\"type\":\"button\",\"text\":\"Buy Now B\",\"bbox\":{\"x\":601,\"y\":459,\"width\":78,\"height\":14},\"confidence\":0.8,\"target\":\"el_buy_b\"},{\"type\":\"button\",\"text\":\"Buy Now C\",\"bbox\":{\"x\":895,\"y\":459,\"width\":77,\"height\":14},\"confidence\":0.93,\"target\":\"el_buy_c\"}],\"conflicts\":[]}}"
+        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/visual-only.html?_=1789196323936\",\"title\":\"ShirtStore - Visual Only\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"}],\"text\":\"Black Shirts\\n\\nVisual-only fixture: every product name and price is drawn on a canvas. The DOM contains the buttons only.\\n\\nBuy Now A\\nBuy Now B\\nBuy Now C\\n\\nShirtStore is a local demo page used to test browser automation.\\nShirtStore\\nProducts About\\nProducts About\"},\"placeholders\":[],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"Black Shirt A\",\"bbox\":{\"x\":228,\"y\":356,\"width\":95,\"height\":12},\"confidence\":0.96,\"target\":null},{\"type\":\"text\",\"text\":\"Black Shirt B\",\"bbox\":{\"x\":521,\"y\":356,\"width\":94,\"height\":12},\"confidence\":0.94,\"target\":null},{\"type\":\"text\",\"text\":\"Black Shirt C\",\"bbox\":{\"x\":815,\"y\":356,\"width\":93,\"height\":12},\"confidence\":0.93,\"target\":null},{\"type\":\"price\",\"text\":\"Price: Rs 499\",\"bbox\":{\"x\":228,\"y\":387,\"width\":90,\"height\":12},\"confidence\":0.96,\"target\":null},{\"type\":\"price\",\"text\":\"Price: Rs 899\",\"bbox\":{\"x\":521,\"y\":387,\"width\":90,\"height\":12},\"confidence\":0.96,\"target\":null},{\"type\":\"price\",\"text\":\"Price: Rs 699\",\"bbox\":{\"x\":815,\"y\":387,\"width\":90,\"height\":12},\"confidence\":0.95,\"target\":null},{\"type\":\"button\",\"text\":\"Buy NowA\",\"bbox\":{\"x\":308,\"y\":459,\"width\":78,\"height\":14},\"confidence\":0.92,\"target\":\"el_buy_a\"},{\"type\":\"button\",\"text\":\"Buy Now B\",\"bbox\":{\"x\":601,\"y\":459,\"width\":78,\"height\":14},\"confidence\":0.8,\"target\":\"el_buy_b\"},{\"type\":\"button\",\"text\":\"Buy Now C\",\"bbox\":{\"x\":895,\"y\":459,\"width\":77,\"height\":14},\"confidence\":0.93,\"target\":\"el_buy_c\"}],\"conflicts\":[]}}"
       ]
     },
     {
@@ -956,9 +1034,9 @@
     },
     {
       "name": "e2e-run-1",
-      "elapsedMs": 8539,
+      "elapsedMs": 7056,
       "badge": "PROTECTED",
-      "pageStatus": "Black Shirt C Purchased (Buy Now C clicked at 3:00:29 AM)",
+      "pageStatus": "Black Shirt C Purchased (Buy Now C clicked at 12:28:59 PM)",
       "clicked": "buy_c",
       "stages": {
         "dom": {
@@ -967,7 +1045,7 @@
         },
         "vision": {
           "state": "pass",
-          "detail": "tesseract.js 7 LSTM (wasm): 29 lines in 1915 ms"
+          "detail": "tesseract.js 7 LSTM (wasm): 29 lines in 3315.6 ms"
         },
         "detect": {
           "state": "pass",
@@ -999,17 +1077,18 @@
         }
       },
       "metrics": {
+        "Step": "1 (1 executed)",
         "Round": "1",
         "Vision engine": "tesseract.js 7 LSTM (wasm)",
         "WebGPU": "adapter available (not used by the OCR engine)",
-        "Capture": "74 ms",
+        "Capture": "93 ms",
         "OCR load": "0 ms",
-        "OCR recognize": "1915 ms",
-        "Local perception": "2014 ms",
-        "Privacy processing": "331 ms",
-        "Cloud reasoning": "5633 ms",
-        "Validate + execute": "37 ms",
-        "Total": "8116 ms",
+        "OCR recognize": "3316 ms",
+        "Local perception": "3444 ms",
+        "Privacy processing": "342 ms",
+        "Cloud reasoning": "2535 ms",
+        "Validate + execute": "47 ms",
+        "Total": "6520 ms",
         "JS heap (vision doc)": "2 MB",
         "OCR lines": "29",
         "Observations sent": "3",
@@ -1019,13 +1098,14 @@
         "Local agent: observing the page...",
         "Local PII detection: EMAIL -> [EMAIL_1], PHONE -> [PHONE_1], PASSWORD -> [PASSWORD_1], CARD -> [CARD_1], OTP -> [OTP_1], PASSWORD -> [PASSWORD_2]",
         "Sending sanitized request to backend...",
-        "Action received: click el_buy_c (confidence 100%) - Black Shirt C is the cheapest black shirt at ₹699, so I am clicking its Buy Now button.",
-        "Action executed: Clicked el_buy_c"
+        "Action received: click el_buy_c (confidence 100%) - Black Shirt C is the cheapest at ₹699, so I am clicking Buy Now C.",
+        "Action executed: Clicked el_buy_c",
+        "Step 1 of 12 executed: click el_buy_c"
       ],
       "requests": [
         {
           "method": "GET",
-          "url": "http://localhost:8080/index.html?_=1789162221538",
+          "url": "http://localhost:8080/index.html?_=1789196332624",
           "postBytes": 0,
           "contentType": ""
         },
@@ -1037,38 +1117,44 @@
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup/popup.html",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup/popup.html",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup.js",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup.js",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/chunks/modulepreload-polyfill.js",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/chunks/modulepreload-polyfill.js",
+          "postBytes": 0,
+          "contentType": ""
+        },
+        {
+          "method": "GET",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/icons/icon-128.png",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "POST",
           "url": "http://localhost:8000/reason",
-          "postBytes": 1965,
+          "postBytes": 1981,
           "contentType": "application/json"
         }
       ],
       "reasonBodies": [
-        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/index.html?_=1789162221538\",\"title\":\"ShirtStore - Black Shirts\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"},{\"id\":\"el_email\",\"tag\":\"input\",\"text\":\"[EMAIL_1]\",\"role\":\"textbox\"},{\"id\":\"el_phone\",\"tag\":\"input\",\"text\":\"[PHONE_1]\",\"role\":\"textbox\"},{\"id\":\"el_password\",\"tag\":\"input\",\"text\":\"[PASSWORD_1]\",\"role\":\"textbox\"},{\"id\":\"el_card_number\",\"tag\":\"input\",\"text\":\"[CARD_1]\",\"role\":\"textbox\"},{\"id\":\"el_otp\",\"tag\":\"input\",\"text\":\"[OTP_1]\",\"role\":\"textbox\"}],\"text\":\"ShirtStore\\nProducts About\\nSigned in as\\nEmail\\n[EMAIL_1]\\nPhone\\n[PHONE_1]\\nBlack Shirts\\nBlack Shirt A\\n\\nPrice: ₹799\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nBuy Now C\\nDelivery details\\nEmail\\nPhone\\nPassword\\nCard number\\nOTP\\n\\nShirtStore is a local demo page used to test browser automation. All account details shown are fake test values.\"},\"placeholders\":[\"[EMAIL_1]\",\"[PHONE_1]\",\"[PASSWORD_1]\",\"[CARD_1]\",\"[OTP_1]\",\"[PASSWORD_2]\"],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"[PASSWORD_2]\",\"bbox\":{\"x\":564,\"y\":711,\"width\":97,\"height\":5},\"confidence\":0.77,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 799, vision read Price: 7799\",\"Black Shirt B: page text says 899, vision read Price: 7899\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]}}"
+        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/index.html?_=1789196332624\",\"title\":\"ShirtStore - Black Shirts\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"},{\"id\":\"el_email\",\"tag\":\"input\",\"text\":\"[EMAIL_1]\",\"role\":\"textbox\"},{\"id\":\"el_phone\",\"tag\":\"input\",\"text\":\"[PHONE_1]\",\"role\":\"textbox\"},{\"id\":\"el_password\",\"tag\":\"input\",\"text\":\"[PASSWORD_1]\",\"role\":\"textbox\"},{\"id\":\"el_card_number\",\"tag\":\"input\",\"text\":\"[CARD_1]\",\"role\":\"textbox\"},{\"id\":\"el_otp\",\"tag\":\"input\",\"text\":\"[OTP_1]\",\"role\":\"textbox\"}],\"text\":\"Signed in as\\nEmail\\n[EMAIL_1]\\nPhone\\n[PHONE_1]\\nBlack Shirts\\nBlack Shirt A\\n\\nPrice: ₹799\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nBuy Now C\\nDelivery details\\nEmail\\nPhone\\nPassword\\nCard number\\nOTP\\n\\nShirtStore is a local demo page used to test browser automation. All account details shown are fake test values.\\nShirtStore\\nProducts About\\nProducts About\"},\"placeholders\":[\"[EMAIL_1]\",\"[PHONE_1]\",\"[PASSWORD_1]\",\"[CARD_1]\",\"[OTP_1]\",\"[PASSWORD_2]\"],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"[PASSWORD_2]\",\"bbox\":{\"x\":564,\"y\":711,\"width\":97,\"height\":5},\"confidence\":0.77,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 799, vision read Price: 7799\",\"Black Shirt B: page text says 899, vision read Price: 7899\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]}}"
       ]
     },
     {
       "name": "e2e-run-2",
-      "elapsedMs": 8128,
+      "elapsedMs": 4653,
       "badge": "PROTECTED",
-      "pageStatus": "Black Shirt C Purchased (Buy Now C clicked at 3:00:38 AM)",
+      "pageStatus": "Black Shirt C Purchased (Buy Now C clicked at 12:29:04 PM)",
       "clicked": "buy_c",
       "stages": {
         "dom": {
@@ -1077,7 +1163,7 @@
         },
         "vision": {
           "state": "pass",
-          "detail": "tesseract.js 7 LSTM (wasm): 29 lines in 1845.3 ms"
+          "detail": "tesseract.js 7 LSTM (wasm): 29 lines in 1836.9 ms"
         },
         "detect": {
           "state": "pass",
@@ -1109,18 +1195,19 @@
         }
       },
       "metrics": {
+        "Step": "1 (1 executed)",
         "Round": "1",
         "Vision engine": "tesseract.js 7 LSTM (wasm)",
         "WebGPU": "adapter available (not used by the OCR engine)",
-        "Capture": "66 ms",
+        "Capture": "91 ms",
         "OCR load": "0 ms",
-        "OCR recognize": "1845 ms",
-        "Local perception": "1935 ms",
-        "Privacy processing": "322 ms",
-        "Cloud reasoning": "5359 ms",
+        "OCR recognize": "1837 ms",
+        "Local perception": "1969 ms",
+        "Privacy processing": "327 ms",
+        "Cloud reasoning": "1633 ms",
         "Validate + execute": "32 ms",
-        "Total": "7748 ms",
-        "JS heap (vision doc)": "2 MB",
+        "Total": "4091 ms",
+        "JS heap (vision doc)": "20 MB",
         "OCR lines": "29",
         "Observations sent": "3",
         "Regions masked": "7"
@@ -1129,13 +1216,14 @@
         "Local agent: observing the page...",
         "Local PII detection: EMAIL -> [EMAIL_1], PHONE -> [PHONE_1], PASSWORD -> [PASSWORD_1], CARD -> [CARD_1], OTP -> [OTP_1], PASSWORD -> [PASSWORD_2]",
         "Sending sanitized request to backend...",
-        "Action received: click el_buy_c (confidence 100%) - Black Shirt C is the cheapest at ₹699, so I am clicking Buy Now C.",
-        "Action executed: Clicked el_buy_c"
+        "Action received: click el_buy_c (confidence 100%) - Black Shirt C is the cheapest black shirt at ₹699, so click Buy Now C.",
+        "Action executed: Clicked el_buy_c",
+        "Step 1 of 12 executed: click el_buy_c"
       ],
       "requests": [
         {
           "method": "GET",
-          "url": "http://localhost:8080/index.html?_=1789162230057",
+          "url": "http://localhost:8080/index.html?_=1789196339689",
           "postBytes": 0,
           "contentType": ""
         },
@@ -1147,148 +1235,44 @@
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup/popup.html",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup/popup.html",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup.js",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup.js",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/chunks/modulepreload-polyfill.js",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/chunks/modulepreload-polyfill.js",
+          "postBytes": 0,
+          "contentType": ""
+        },
+        {
+          "method": "GET",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/icons/icon-128.png",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "POST",
           "url": "http://localhost:8000/reason",
-          "postBytes": 1965,
+          "postBytes": 1981,
           "contentType": "application/json"
         }
       ],
       "reasonBodies": [
-        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/index.html?_=1789162230057\",\"title\":\"ShirtStore - Black Shirts\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"},{\"id\":\"el_email\",\"tag\":\"input\",\"text\":\"[EMAIL_1]\",\"role\":\"textbox\"},{\"id\":\"el_phone\",\"tag\":\"input\",\"text\":\"[PHONE_1]\",\"role\":\"textbox\"},{\"id\":\"el_password\",\"tag\":\"input\",\"text\":\"[PASSWORD_1]\",\"role\":\"textbox\"},{\"id\":\"el_card_number\",\"tag\":\"input\",\"text\":\"[CARD_1]\",\"role\":\"textbox\"},{\"id\":\"el_otp\",\"tag\":\"input\",\"text\":\"[OTP_1]\",\"role\":\"textbox\"}],\"text\":\"ShirtStore\\nProducts About\\nSigned in as\\nEmail\\n[EMAIL_1]\\nPhone\\n[PHONE_1]\\nBlack Shirts\\nBlack Shirt A\\n\\nPrice: ₹799\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nBuy Now C\\nDelivery details\\nEmail\\nPhone\\nPassword\\nCard number\\nOTP\\n\\nShirtStore is a local demo page used to test browser automation. All account details shown are fake test values.\"},\"placeholders\":[\"[EMAIL_1]\",\"[PHONE_1]\",\"[PASSWORD_1]\",\"[CARD_1]\",\"[OTP_1]\",\"[PASSWORD_2]\"],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"[PASSWORD_2]\",\"bbox\":{\"x\":564,\"y\":711,\"width\":97,\"height\":5},\"confidence\":0.77,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 799, vision read Price: 7799\",\"Black Shirt B: page text says 899, vision read Price: 7899\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]}}"
+        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/index.html?_=1789196339689\",\"title\":\"ShirtStore - Black Shirts\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"},{\"id\":\"el_email\",\"tag\":\"input\",\"text\":\"[EMAIL_1]\",\"role\":\"textbox\"},{\"id\":\"el_phone\",\"tag\":\"input\",\"text\":\"[PHONE_1]\",\"role\":\"textbox\"},{\"id\":\"el_password\",\"tag\":\"input\",\"text\":\"[PASSWORD_1]\",\"role\":\"textbox\"},{\"id\":\"el_card_number\",\"tag\":\"input\",\"text\":\"[CARD_1]\",\"role\":\"textbox\"},{\"id\":\"el_otp\",\"tag\":\"input\",\"text\":\"[OTP_1]\",\"role\":\"textbox\"}],\"text\":\"Signed in as\\nEmail\\n[EMAIL_1]\\nPhone\\n[PHONE_1]\\nBlack Shirts\\nBlack Shirt A\\n\\nPrice: ₹799\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nBuy Now C\\nDelivery details\\nEmail\\nPhone\\nPassword\\nCard number\\nOTP\\n\\nShirtStore is a local demo page used to test browser automation. All account details shown are fake test values.\\nShirtStore\\nProducts About\\nProducts About\"},\"placeholders\":[\"[EMAIL_1]\",\"[PHONE_1]\",\"[PASSWORD_1]\",\"[CARD_1]\",\"[OTP_1]\",\"[PASSWORD_2]\"],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"[PASSWORD_2]\",\"bbox\":{\"x\":564,\"y\":711,\"width\":97,\"height\":5},\"confidence\":0.77,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 799, vision read Price: 7799\",\"Black Shirt B: page text says 899, vision read Price: 7899\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]}}"
       ]
     },
     {
       "name": "e2e-run-3",
-      "elapsedMs": 8152,
+      "elapsedMs": 5336,
       "badge": "PROTECTED",
-      "pageStatus": "Black Shirt C Purchased (Buy Now C clicked at 3:00:46 AM)",
-      "clicked": "buy_c",
-      "stages": {
-        "dom": {
-          "state": "pass",
-          "detail": "10 sensitive field(s), 7 value(s) redacted"
-        },
-        "vision": {
-          "state": "pass",
-          "detail": "tesseract.js 7 LSTM (wasm): 29 lines in 1842.1 ms"
-        },
-        "detect": {
-          "state": "pass",
-          "detail": "EMAIL -> [EMAIL_1], PHONE -> [PHONE_1], PASSWORD -> [PASSWORD_1], CARD -> [CARD_1], OTP -> [OTP_1], PASSWORD -> [PASSWORD_2], CARD -> [CARD_2]"
-        },
-        "visual-redaction": {
-          "state": "pass",
-          "detail": "7 region(s) masked; 3 observation(s) kept; 18 duplicate(s) dropped; 2 button(s) mapped; 3 conflict(s), DOM preferred"
-        },
-        "leakage": {
-          "state": "pass",
-          "detail": "structure:pass image-data:pass known-values:pass patterns:pass"
-        },
-        "firewall": {
-          "state": "pass",
-          "detail": "REQUEST ALLOWED"
-        },
-        "reason": {
-          "state": "pass",
-          "detail": "structured action received"
-        },
-        "validate": {
-          "state": "pass",
-          "detail": "action verified against the live page"
-        },
-        "execute": {
-          "state": "pass",
-          "detail": "Clicked el_buy_c"
-        }
-      },
-      "metrics": {
-        "Round": "1",
-        "Vision engine": "tesseract.js 7 LSTM (wasm)",
-        "WebGPU": "adapter available (not used by the OCR engine)",
-        "Capture": "70 ms",
-        "OCR load": "0 ms",
-        "OCR recognize": "1842 ms",
-        "Local perception": "1942 ms",
-        "Privacy processing": "331 ms",
-        "Cloud reasoning": "5288 ms",
-        "Validate + execute": "37 ms",
-        "Total": "7702 ms",
-        "JS heap (vision doc)": "20 MB",
-        "OCR lines": "29",
-        "Observations sent": "3",
-        "Regions masked": "7"
-      },
-      "status": [
-        "Local agent: observing the page...",
-        "Local PII detection: EMAIL -> [EMAIL_1], PHONE -> [PHONE_1], PASSWORD -> [PASSWORD_1], CARD -> [CARD_1], OTP -> [OTP_1], PASSWORD -> [PASSWORD_2], CARD -> [CARD_2]",
-        "Sending sanitized request to backend...",
-        "Action received: click el_buy_c (confidence 100%) - Black Shirt C is the cheapest at ₹699, so I am clicking Buy Now C.",
-        "Action executed: Clicked el_buy_c"
-      ],
-      "requests": [
-        {
-          "method": "GET",
-          "url": "http://localhost:8080/index.html?_=1789162238221",
-          "postBytes": 0,
-          "contentType": ""
-        },
-        {
-          "method": "GET",
-          "url": "http://localhost:8080/style.css",
-          "postBytes": 0,
-          "contentType": ""
-        },
-        {
-          "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup/popup.html",
-          "postBytes": 0,
-          "contentType": ""
-        },
-        {
-          "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup.js",
-          "postBytes": 0,
-          "contentType": ""
-        },
-        {
-          "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/chunks/modulepreload-polyfill.js",
-          "postBytes": 0,
-          "contentType": ""
-        },
-        {
-          "method": "POST",
-          "url": "http://localhost:8000/reason",
-          "postBytes": 1971,
-          "contentType": "application/json"
-        }
-      ],
-      "reasonBodies": [
-        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/index.html?_=[CARD_2]\",\"title\":\"ShirtStore - Black Shirts\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"},{\"id\":\"el_email\",\"tag\":\"input\",\"text\":\"[EMAIL_1]\",\"role\":\"textbox\"},{\"id\":\"el_phone\",\"tag\":\"input\",\"text\":\"[PHONE_1]\",\"role\":\"textbox\"},{\"id\":\"el_password\",\"tag\":\"input\",\"text\":\"[PASSWORD_1]\",\"role\":\"textbox\"},{\"id\":\"el_card_number\",\"tag\":\"input\",\"text\":\"[CARD_1]\",\"role\":\"textbox\"},{\"id\":\"el_otp\",\"tag\":\"input\",\"text\":\"[OTP_1]\",\"role\":\"textbox\"}],\"text\":\"ShirtStore\\nProducts About\\nSigned in as\\nEmail\\n[EMAIL_1]\\nPhone\\n[PHONE_1]\\nBlack Shirts\\nBlack Shirt A\\n\\nPrice: ₹799\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nBuy Now C\\nDelivery details\\nEmail\\nPhone\\nPassword\\nCard number\\nOTP\\n\\nShirtStore is a local demo page used to test browser automation. All account details shown are fake test values.\"},\"placeholders\":[\"[EMAIL_1]\",\"[PHONE_1]\",\"[PASSWORD_1]\",\"[CARD_1]\",\"[OTP_1]\",\"[PASSWORD_2]\",\"[CARD_2]\"],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"[PASSWORD_2]\",\"bbox\":{\"x\":564,\"y\":711,\"width\":97,\"height\":5},\"confidence\":0.77,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 799, vision read Price: 7799\",\"Black Shirt B: page text says 899, vision read Price: 7899\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]}}"
-      ]
-    },
-    {
-      "name": "restored",
-      "elapsedMs": 8237,
-      "badge": "PROTECTED",
-      "pageStatus": "Black Shirt C Purchased (Buy Now C clicked at 3:00:54 AM)",
+      "pageStatus": "Black Shirt C Purchased (Buy Now C clicked at 12:29:09 PM)",
       "clicked": "buy_c",
       "stages": {
         "dom": {
@@ -1297,7 +1281,7 @@
         },
         "vision": {
           "state": "pass",
-          "detail": "tesseract.js 7 LSTM (wasm): 29 lines in 2075.2 ms"
+          "detail": "tesseract.js 7 LSTM (wasm): 29 lines in 1547 ms"
         },
         "detect": {
           "state": "pass",
@@ -1329,17 +1313,18 @@
         }
       },
       "metrics": {
+        "Step": "1 (1 executed)",
         "Round": "1",
         "Vision engine": "tesseract.js 7 LSTM (wasm)",
         "WebGPU": "adapter available (not used by the OCR engine)",
-        "Capture": "74 ms",
+        "Capture": "55 ms",
         "OCR load": "0 ms",
-        "OCR recognize": "2075 ms",
-        "Local perception": "2165 ms",
-        "Privacy processing": "330 ms",
-        "Cloud reasoning": "5143 ms",
-        "Validate + execute": "30 ms",
-        "Total": "7779 ms",
+        "OCR recognize": "1547 ms",
+        "Local perception": "1635 ms",
+        "Privacy processing": "477 ms",
+        "Cloud reasoning": "2663 ms",
+        "Validate + execute": "32 ms",
+        "Total": "4895 ms",
         "JS heap (vision doc)": "20 MB",
         "OCR lines": "29",
         "Observations sent": "3",
@@ -1349,13 +1334,14 @@
         "Local agent: observing the page...",
         "Local PII detection: EMAIL -> [EMAIL_1], PHONE -> [PHONE_1], PASSWORD -> [PASSWORD_1], CARD -> [CARD_1], OTP -> [OTP_1], PASSWORD -> [PASSWORD_2]",
         "Sending sanitized request to backend...",
-        "Action received: click el_buy_c (confidence 100%) - Black Shirt C is the cheapest at ₹699, so I am clicking Buy Now C.",
-        "Action executed: Clicked el_buy_c"
+        "Action received: click el_buy_c (confidence 100%) - Black Shirt C is the cheapest at ₹699, so I clicked its Buy Now button.",
+        "Action executed: Clicked el_buy_c",
+        "Step 1 of 12 executed: click el_buy_c"
       ],
       "requests": [
         {
           "method": "GET",
-          "url": "http://localhost:8080/index.html?_=1789162246371",
+          "url": "http://localhost:8080/index.html?_=1789196344330",
           "postBytes": 0,
           "contentType": ""
         },
@@ -1367,31 +1353,155 @@
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup/popup.html",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup/popup.html",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/popup.js",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup.js",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "GET",
-          "url": "chrome-extension://nkjacgbojoclkbgbphnchoahknnfjfae/chunks/modulepreload-polyfill.js",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/chunks/modulepreload-polyfill.js",
+          "postBytes": 0,
+          "contentType": ""
+        },
+        {
+          "method": "GET",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/icons/icon-128.png",
           "postBytes": 0,
           "contentType": ""
         },
         {
           "method": "POST",
           "url": "http://localhost:8000/reason",
-          "postBytes": 1965,
+          "postBytes": 1981,
           "contentType": "application/json"
         }
       ],
       "reasonBodies": [
-        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/index.html?_=1789162246371\",\"title\":\"ShirtStore - Black Shirts\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"},{\"id\":\"el_email\",\"tag\":\"input\",\"text\":\"[EMAIL_1]\",\"role\":\"textbox\"},{\"id\":\"el_phone\",\"tag\":\"input\",\"text\":\"[PHONE_1]\",\"role\":\"textbox\"},{\"id\":\"el_password\",\"tag\":\"input\",\"text\":\"[PASSWORD_1]\",\"role\":\"textbox\"},{\"id\":\"el_card_number\",\"tag\":\"input\",\"text\":\"[CARD_1]\",\"role\":\"textbox\"},{\"id\":\"el_otp\",\"tag\":\"input\",\"text\":\"[OTP_1]\",\"role\":\"textbox\"}],\"text\":\"ShirtStore\\nProducts About\\nSigned in as\\nEmail\\n[EMAIL_1]\\nPhone\\n[PHONE_1]\\nBlack Shirts\\nBlack Shirt A\\n\\nPrice: ₹799\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nBuy Now C\\nDelivery details\\nEmail\\nPhone\\nPassword\\nCard number\\nOTP\\n\\nShirtStore is a local demo page used to test browser automation. All account details shown are fake test values.\"},\"placeholders\":[\"[EMAIL_1]\",\"[PHONE_1]\",\"[PASSWORD_1]\",\"[CARD_1]\",\"[OTP_1]\",\"[PASSWORD_2]\"],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"[PASSWORD_2]\",\"bbox\":{\"x\":564,\"y\":711,\"width\":97,\"height\":5},\"confidence\":0.77,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 799, vision read Price: 7799\",\"Black Shirt B: page text says 899, vision read Price: 7899\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]}}"
+        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/index.html?_=1789196344330\",\"title\":\"ShirtStore - Black Shirts\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"},{\"id\":\"el_email\",\"tag\":\"input\",\"text\":\"[EMAIL_1]\",\"role\":\"textbox\"},{\"id\":\"el_phone\",\"tag\":\"input\",\"text\":\"[PHONE_1]\",\"role\":\"textbox\"},{\"id\":\"el_password\",\"tag\":\"input\",\"text\":\"[PASSWORD_1]\",\"role\":\"textbox\"},{\"id\":\"el_card_number\",\"tag\":\"input\",\"text\":\"[CARD_1]\",\"role\":\"textbox\"},{\"id\":\"el_otp\",\"tag\":\"input\",\"text\":\"[OTP_1]\",\"role\":\"textbox\"}],\"text\":\"Signed in as\\nEmail\\n[EMAIL_1]\\nPhone\\n[PHONE_1]\\nBlack Shirts\\nBlack Shirt A\\n\\nPrice: ₹799\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nBuy Now C\\nDelivery details\\nEmail\\nPhone\\nPassword\\nCard number\\nOTP\\n\\nShirtStore is a local demo page used to test browser automation. All account details shown are fake test values.\\nShirtStore\\nProducts About\\nProducts About\"},\"placeholders\":[\"[EMAIL_1]\",\"[PHONE_1]\",\"[PASSWORD_1]\",\"[CARD_1]\",\"[OTP_1]\",\"[PASSWORD_2]\"],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"[PASSWORD_2]\",\"bbox\":{\"x\":564,\"y\":711,\"width\":97,\"height\":5},\"confidence\":0.77,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 799, vision read Price: 7799\",\"Black Shirt B: page text says 899, vision read Price: 7899\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]}}"
+      ]
+    },
+    {
+      "name": "restored",
+      "elapsedMs": 6934,
+      "badge": "PROTECTED",
+      "pageStatus": "Black Shirt C Purchased (Buy Now C clicked at 12:29:16 PM)",
+      "clicked": "buy_c",
+      "stages": {
+        "dom": {
+          "state": "pass",
+          "detail": "10 sensitive field(s), 6 value(s) redacted"
+        },
+        "vision": {
+          "state": "pass",
+          "detail": "tesseract.js 7 LSTM (wasm): 29 lines in 1676.8 ms"
+        },
+        "detect": {
+          "state": "pass",
+          "detail": "EMAIL -> [EMAIL_1], PHONE -> [PHONE_1], PASSWORD -> [PASSWORD_1], CARD -> [CARD_1], OTP -> [OTP_1], PASSWORD -> [PASSWORD_2]"
+        },
+        "visual-redaction": {
+          "state": "pass",
+          "detail": "7 region(s) masked; 3 observation(s) kept; 18 duplicate(s) dropped; 2 button(s) mapped; 3 conflict(s), DOM preferred"
+        },
+        "leakage": {
+          "state": "pass",
+          "detail": "structure:pass image-data:pass known-values:pass patterns:pass"
+        },
+        "firewall": {
+          "state": "pass",
+          "detail": "REQUEST ALLOWED"
+        },
+        "reason": {
+          "state": "pass",
+          "detail": "structured action received"
+        },
+        "validate": {
+          "state": "pass",
+          "detail": "action verified against the live page"
+        },
+        "execute": {
+          "state": "pass",
+          "detail": "Clicked el_buy_c"
+        }
+      },
+      "metrics": {
+        "Step": "1 (1 executed)",
+        "Round": "1",
+        "Vision engine": "tesseract.js 7 LSTM (wasm)",
+        "WebGPU": "adapter available (not used by the OCR engine)",
+        "Capture": "50 ms",
+        "OCR load": "0 ms",
+        "OCR recognize": "1677 ms",
+        "Local perception": "1762 ms",
+        "Privacy processing": "362 ms",
+        "Cloud reasoning": "4270 ms",
+        "Validate + execute": "19 ms",
+        "Total": "6497 ms",
+        "JS heap (vision doc)": "20 MB",
+        "OCR lines": "29",
+        "Observations sent": "3",
+        "Regions masked": "7"
+      },
+      "status": [
+        "Local agent: observing the page...",
+        "Local PII detection: EMAIL -> [EMAIL_1], PHONE -> [PHONE_1], PASSWORD -> [PASSWORD_1], CARD -> [CARD_1], OTP -> [OTP_1], PASSWORD -> [PASSWORD_2]",
+        "Sending sanitized request to backend...",
+        "Action received: click el_buy_c (confidence 100%) - Black Shirt C is the cheapest black shirt at ₹699, so I am clicking Buy Now C.",
+        "Action executed: Clicked el_buy_c",
+        "Step 1 of 12 executed: click el_buy_c"
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "url": "http://localhost:8080/index.html?_=1789196349657",
+          "postBytes": 0,
+          "contentType": ""
+        },
+        {
+          "method": "GET",
+          "url": "http://localhost:8080/style.css",
+          "postBytes": 0,
+          "contentType": ""
+        },
+        {
+          "method": "GET",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup/popup.html",
+          "postBytes": 0,
+          "contentType": ""
+        },
+        {
+          "method": "GET",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/popup.js",
+          "postBytes": 0,
+          "contentType": ""
+        },
+        {
+          "method": "GET",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/chunks/modulepreload-polyfill.js",
+          "postBytes": 0,
+          "contentType": ""
+        },
+        {
+          "method": "GET",
+          "url": "chrome-extension://aeippehcbjlncdppnegclmegfkcankpe/icons/icon-128.png",
+          "postBytes": 0,
+          "contentType": ""
+        },
+        {
+          "method": "POST",
+          "url": "http://localhost:8000/reason",
+          "postBytes": 1981,
+          "contentType": "application/json"
+        }
+      ],
+      "reasonBodies": [
+        "{\"task\":\"Find the cheapest black shirt and click Buy Now\",\"page\":{\"url\":\"http://localhost:8080/index.html?_=1789196349657\",\"title\":\"ShirtStore - Black Shirts\",\"elements\":[{\"id\":\"el_products\",\"tag\":\"a\",\"text\":\"Products\",\"role\":\"link\"},{\"id\":\"el_about\",\"tag\":\"a\",\"text\":\"About\",\"role\":\"link\"},{\"id\":\"el_buy_a\",\"tag\":\"button\",\"text\":\"Buy Now A\",\"role\":\"button\"},{\"id\":\"el_buy_b\",\"tag\":\"button\",\"text\":\"Buy Now B\",\"role\":\"button\"},{\"id\":\"el_buy_c\",\"tag\":\"button\",\"text\":\"Buy Now C\",\"role\":\"button\"},{\"id\":\"el_email\",\"tag\":\"input\",\"text\":\"[EMAIL_1]\",\"role\":\"textbox\"},{\"id\":\"el_phone\",\"tag\":\"input\",\"text\":\"[PHONE_1]\",\"role\":\"textbox\"},{\"id\":\"el_password\",\"tag\":\"input\",\"text\":\"[PASSWORD_1]\",\"role\":\"textbox\"},{\"id\":\"el_card_number\",\"tag\":\"input\",\"text\":\"[CARD_1]\",\"role\":\"textbox\"},{\"id\":\"el_otp\",\"tag\":\"input\",\"text\":\"[OTP_1]\",\"role\":\"textbox\"}],\"text\":\"Signed in as\\nEmail\\n[EMAIL_1]\\nPhone\\n[PHONE_1]\\nBlack Shirts\\nBlack Shirt A\\n\\nPrice: ₹799\\n\\nBuy Now A\\nBlack Shirt B\\n\\nPrice: ₹899\\n\\nBuy Now B\\nBlack Shirt C\\n\\nPrice: ₹699\\n\\nBuy Now C\\nDelivery details\\nEmail\\nPhone\\nPassword\\nCard number\\nOTP\\n\\nShirtStore is a local demo page used to test browser automation. All account details shown are fake test values.\\nShirtStore\\nProducts About\\nProducts About\"},\"placeholders\":[\"[EMAIL_1]\",\"[PHONE_1]\",\"[PASSWORD_1]\",\"[CARD_1]\",\"[OTP_1]\",\"[PASSWORD_2]\"],\"visual\":{\"engine\":\"tesseract.js 7 LSTM (wasm)\",\"observations\":[{\"type\":\"button\",\"text\":\"Products\",\"bbox\":{\"x\":1120,\"y\":22,\"width\":59,\"height\":12},\"confidence\":0.96,\"target\":\"el_products\"},{\"type\":\"button\",\"text\":\"About\",\"bbox\":{\"x\":1205,\"y\":22,\"width\":42,\"height\":12},\"confidence\":0.96,\"target\":\"el_about\"},{\"type\":\"text\",\"text\":\"[PASSWORD_2]\",\"bbox\":{\"x\":564,\"y\":711,\"width\":97,\"height\":5},\"confidence\":0.77,\"target\":null}],\"conflicts\":[\"Black Shirt A: page text says 799, vision read Price: 7799\",\"Black Shirt B: page text says 899, vision read Price: 7899\",\"Black Shirt C: page text says 699, vision read Price: 7699\"]}}"
       ]
     }
   ]

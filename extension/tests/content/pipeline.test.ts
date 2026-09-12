@@ -106,39 +106,39 @@ describe("backend response -> validator -> executor", () => {
   it("a valid click from the backend is validated against the live page and executed", async () => {
     await handleExtractPage(TASK);
     const spy = clickSpy();
-    const result = handleExecuteAction({ action: "click", target: "el_buy_now", confidence: 0.95, reason: "cheapest is C" });
-    expect(result).toEqual({ ok: true, message: "Clicked el_buy_now", validation: "pass" });
+    const result = await handleExecuteAction({ action: "click", target: "el_buy_now", confidence: 0.95, reason: "cheapest is C" });
+    expect(result).toMatchObject({ ok: true, message: "Clicked el_buy_now", validation: "pass" });
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it("negative: unknown target is blocked and nothing is clicked", async () => {
     await handleExtractPage(TASK);
     const spy = clickSpy();
-    const result = handleExecuteAction({ action: "click", target: "el_random_button", confidence: 1, reason: "" });
+    const result = await handleExecuteAction({ action: "click", target: "el_random_button", confidence: 1, reason: "" });
     expect(result.validation).toBe("blocked");
     expect(result.code).toBe("unknown_target");
     expect(spy).not.toHaveBeenCalled();
   });
 
-  it("negative: unsupported and code-like actions are blocked", () => {
+  it("negative: unsupported and code-like actions are blocked", async () => {
     const spy = clickSpy();
-    expect(handleExecuteAction({ action: "execute_code", target: "el_buy_now", confidence: 1 }).code).toBe("unsupported_action");
-    expect(handleExecuteAction({ action: "click", target: "el_buy_now", confidence: 1, reason: "<script>x</script>" }).code).toBe("executable_content");
-    expect(handleExecuteAction("click el_buy_now").code).toBe("malformed");
-    expect(handleExecuteAction(null).code).toBe("malformed");
+    expect((await handleExecuteAction({ action: "execute_code", target: "el_buy_now", confidence: 1 })).code).toBe("unsupported_action");
+    expect((await handleExecuteAction({ action: "click", target: "el_buy_now", confidence: 1, reason: "<script>x</script>" })).code).toBe("executable_content");
+    expect((await handleExecuteAction("click el_buy_now")).code).toBe("malformed");
+    expect((await handleExecuteAction(null)).code).toBe("malformed");
     expect(spy).not.toHaveBeenCalled();
   });
 
   it("negative: a contract-valid type action is rejected because the executor does not support it", async () => {
     await handleExtractPage(TASK);
-    const result = handleExecuteAction({ action: "type", target: "el_email", value: "[EMAIL_1]", confidence: 1, reason: "" });
+    const result = await handleExecuteAction({ action: "type", target: "el_email", value: "[EMAIL_1]", confidence: 1, reason: "" });
     expect(result.validation).toBe("blocked");
     expect(result.code).toBe("unsupported_by_executor");
     expect((document.getElementById("email") as HTMLInputElement).value).toBe("demo@example.com");
   });
 
-  it("negative: dangerous navigation is blocked before the executor gate", () => {
-    const result = handleExecuteAction({ action: "navigate", value: "javascript:alert(1)", confidence: 1, reason: "" });
+  it("negative: dangerous navigation is blocked before the executor gate", async () => {
+    const result = await handleExecuteAction({ action: "navigate", value: "javascript:alert(1)", confidence: 1, reason: "" });
     expect(result.validation).toBe("blocked");
     expect(["dangerous_navigation", "executable_content"]).toContain(result.code);
   });
@@ -150,15 +150,15 @@ describe("backend response -> validator -> executor", () => {
     document.getElementById("buy_a")?.addEventListener("click", spyA);
     document.getElementById("buy_c")?.addEventListener("click", spyC);
 
-    const result = handleExecuteAction({ action: "click", target: "el_buy_c", confidence: 0.9, reason: "C is cheapest" });
-    expect(result).toEqual({ ok: true, message: "Clicked el_buy_c", validation: "pass" });
+    const result = await handleExecuteAction({ action: "click", target: "el_buy_c", confidence: 0.9, reason: "C is cheapest" });
+    expect(result).toMatchObject({ ok: true, message: "Clicked el_buy_c", validation: "pass" });
     expect(spyC).toHaveBeenCalledTimes(1);
     expect(spyA).not.toHaveBeenCalled();
   });
 
-  it("done terminates safely without touching the page", () => {
+  it("done terminates safely without touching the page", async () => {
     const spy = clickSpy();
-    const result = handleExecuteAction({ action: "done", confidence: 1, reason: "already purchased" });
+    const result = await handleExecuteAction({ action: "done", confidence: 1, reason: "already purchased" });
     expect(result.ok).toBe(true);
     expect(spy).not.toHaveBeenCalled();
   });

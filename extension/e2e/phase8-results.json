@@ -1,0 +1,34 @@
+{
+  "generatedAt": "2026-09-12T18:15:08.216Z",
+  "scenarios": [
+    {
+      "name": "D8-stock-cap",
+      "verdict": "PASS",
+      "state": "Blocked",
+      "hint": "The page does not provide enough information to complete this task safely.",
+      "facts": "Not enough information on the page · Cloud: Contacted · Browser action: Executed",
+      "badge": "PROTECTED",
+      "reasonRequests": 6,
+      "actions": [
+        "Action received: type el_q (confidence 100%) - Type black shirt into the search box to begin the search task.",
+        "Action received: click el_search_btn (confidence 100%) - Submit the search for 'black shirt' by clicking the search button.",
+        "Action received: click el_view_black_shirt_a (confidence 100%) - Click View Black Shirt A to open the cheapest black shirt priced at ₹249.",
+        "Action received: done (confidence 100%) - Black Shirt A has 250 available, but the task requires 500 units which exceeds available stock (250 available).",
+        "Action received: done (confidence 100%) - Black Shirt A has only 250 available in stock, which is less than the requested 500 units.",
+        "Action received: done (confidence 100%) - The cheapest black shirt (Black Shirt A at ₹249) has only 250 units available, which is less than the requested 500 units. The task constraint cannot be met because the required quantity of 500 is unavailable for the cheapest item.",
+        "TASK RESULT: BLOCKED · step 6 of budget 30 · recoveries 2 · stale-target retries 0 · REASON: Stopped: The cheapest black shirt (Black Shirt A at ₹249) has only 250 units available, which is less than the requested 500 units. The task constraint cannot be met because the required quantity of 500 is unavailable for the cheapest item. (re-checked once; the page offers no way to verify or resolve it)"
+      ],
+      "page": {
+        "url": "http://localhost:8080/shop.html?a=249&b=499&c=549&ra=4.2&rb=4.5&rc=4.7&sa=250&sb=500&sc=1000&_=1789236879201",
+        "cartCount": "0",
+        "cartItems": [],
+        "flowLog": "search: \"black shirt\" -> 3 result(s)\nview: Black Shirt A",
+        "qtyShown": "1",
+        "detailName": "Black Shirt A"
+      },
+      "elapsedMs": 28461,
+      "falseSuccess": false,
+      "explained": true
+    }
+  ]
+}

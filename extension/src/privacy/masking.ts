@@ -18,7 +18,7 @@ export interface MaskRegion {
   type: PiiType | "UNKNOWN";
 }
 
-const PLACEHOLDER = /\[(EMAIL|PHONE|CARD|CVV|OTP|PASSWORD)_\d+\]/g;
+const PLACEHOLDER = /\[(EMAIL|PHONE|CARD|CVV|OTP|PASSWORD|ADDRESS)_\d+\]/g;
 
 /**
  * Computes mask regions for one OCR line.

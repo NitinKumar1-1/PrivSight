@@ -83,7 +83,8 @@ def test_reason_returns_the_reasoner_action(reasoner):
 
 def test_reason_response_matches_contract_fields(reasoner):
     body = client.post("/reason", json=VALID_REQUEST).json()
-    assert set(body.keys()) == {"action", "target", "value", "confidence", "reason"}
+    assert set(body.keys()) == {"action", "target", "value", "confidence", "reason", "final"}
+    assert body["final"] is False  # the fake reasoner does not set it; the contract default is "not final"
 
 
 def test_reasoner_receives_exactly_the_sanitized_request(reasoner):

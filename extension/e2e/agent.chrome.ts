@@ -15,7 +15,7 @@ import { spawn, type ChildProcess } from "node:child_process";
 import { cpSync, existsSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { resolve } from "node:path";
-import { chromium, type BrowserContext, type Page, type Worker } from "playwright";
+import { chromium, type BrowserContext, type Page, type Request, type Worker } from "playwright";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 
 const ROOT = resolve(__dirname, "..");
@@ -37,6 +37,7 @@ interface SeenRequest {
 }
 
 interface PopupState {
+  terminal: boolean;
   stages: Array<[string, string, string]>;
   status: string[];
   badge: string;
@@ -111,7 +112,12 @@ interface ScenarioResult {
   elapsedMs: number;
 }
 
-async function runScenario(path: string, task = TASK): Promise<ScenarioResult> {
+interface ScenarioHooks {
+  /** Runs once, the moment the first sanitized /reason request leaves the browser: after the DOM was read, before any action can arrive. */
+  onFirstReason?: (page: Page) => Promise<void>;
+}
+
+async function runScenario(path: string, task = TASK, hooks: ScenarioHooks = {}): Promise<ScenarioResult> {
   const started = Date.now();
   const page = await context.newPage();
   const url = `${DEMO_BASE}/${path}${path.includes("?") ? "&" : "?"}_=${Date.now()}`;
@@ -129,6 +135,17 @@ async function runScenario(path: string, task = TASK): Promise<ScenarioResult> {
   }, url);
   expect(tabId).toBeTypeOf("number");
   await serviceWorker.evaluate(async (id: number) => { await chrome.tabs.update(id, { active: true }); }, tabId as number);
+
+  if (hooks.onFirstReason) {
+    let fired = false;
+    const onRequest = (request: Request) => {
+      if (fired || !request.url().endsWith("/reason") || request.method() !== "POST") return;
+      fired = true;
+      context.off("request", onRequest);
+      void hooks.onFirstReason?.(page);
+    };
+    context.on("request", onRequest);
+  }
 
   await popup.evaluate(
     ({ task, tabId }) => {
@@ -160,13 +177,13 @@ async function waitForPopup(popup: Page, timeoutMs: number): Promise<PopupState>
       badge: document.getElementById("privacy-badge")?.textContent ?? "",
       payload: document.getElementById("payload")?.textContent ?? "",
       previewNote: document.getElementById("preview-note")?.textContent ?? "",
+      terminal: ["Complete", "Blocked", "Failed"].includes(document.getElementById("state-word")?.textContent ?? "") && !(document.getElementById("run") as HTMLButtonElement).disabled,
       metrics: Object.fromEntries(
         Array.from(document.querySelectorAll("#metrics dt")).map((dt) => [dt.textContent ?? "", dt.nextElementSibling?.textContent ?? ""]),
       ),
     }))) as PopupState;
-    const execute = last.stages.find(([stage]) => stage === "execute")?.[1];
-    const finished = execute === "pass" || execute === "fail" || execute === "skipped" || last.status.some((s) => /^(Privacy Firewall blocked|Action blocked|Page extraction failed|Backend returned|Reasoning provider)/.test(s));
-    if (finished) return last;
+    // Phase 7: a run may take several steps; wait for the terminal state so the next scenario never overlaps a live run.
+    if (last.terminal) return last;
     await new Promise((r) => setTimeout(r, 500));
   }
   throw new Error(`popup did not finish in time. last state: ${JSON.stringify(last)}`);
@@ -302,7 +319,13 @@ describe("real Chrome: local agent through the built extension", () => {
   });
 
   it("stale target: Buy Now C vanishes before execution, validator blocks, agent re-observes, never clicks stale", async () => {
-    const r = await runScenario("dynamic.html?delay=300&vanish=4000");
+    // Deterministic stale target: Buy Now C is removed the moment the sanitized request leaves,
+    // so it was observed (it is in the request) and is gone before the click can be validated.
+    const r = await runScenario("dynamic.html?delay=300", TASK, {
+      onFirstReason: async (page) => {
+        await page.evaluate(() => document.getElementById("buy_c")?.remove());
+      },
+    });
     log("dynamic-stale", r);
     expect(r.popup.status.some((s) => /re-observing/i.test(s))).toBe(true);
     expect(r.pageStatus).not.toContain("Black Shirt C Purchased");

@@ -6,6 +6,20 @@
 import type { ContentMessage, ExecuteActionResult, ExtractPageResult, PingResult } from "../shared/messages";
 import { handleExecuteAction, handleExtractPage } from "./handlers";
 
+declare global {
+  interface Window {
+    __privsightContentScript?: boolean;
+  }
+}
+
+// A manual injection after navigation must never add a second listener: two
+// listeners would answer one EXECUTE_ACTION twice and click twice.
+if (!window.__privsightContentScript) {
+  window.__privsightContentScript = true;
+  registerListener();
+}
+
+function registerListener(): void {
 chrome.runtime.onMessage.addListener(
   (
     message: ContentMessage,
@@ -17,12 +31,13 @@ chrome.runtime.onMessage.addListener(
         sendResponse({ ok: true });
         return;
       case "EXTRACT_PAGE":
-        handleExtractPage(message.task, message.ocr).then(sendResponse);
+        handleExtractPage(message.task, message.ocr, message.history ?? [], message.guidance).then(sendResponse);
         return true; // async response
       case "EXECUTE_ACTION":
-        sendResponse(handleExecuteAction(message.action));
-        return;
+        handleExecuteAction(message.action, message.history ?? []).then(sendResponse);
+        return true; // async response: the executor watches the page after acting
     }
     return undefined;
   },
 );
+}

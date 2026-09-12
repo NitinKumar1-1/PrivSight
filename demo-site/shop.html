@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ShirtStore Shop - Search and Cart</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; background: #f7f7f7; color: #111; }
+    header { background: #1f2937; color: #fff; padding: 12px 24px; display: flex; align-items: center; gap: 24px; }
+    header .brand { font-weight: 700; font-size: 20px; }
+    header form { display: flex; gap: 6px; flex: 1; }
+    header input { flex: 1; padding: 8px 10px; border-radius: 4px; border: 1px solid #9ca3af; font-size: 14px; }
+    header button { padding: 8px 14px; border: none; border-radius: 4px; background: #f59e0b; font-weight: 700; cursor: pointer; }
+    header .cart { font-weight: 600; }
+    header .signin { background: transparent; color: #fff; border: 1px solid #fff; }
+    main { padding: 20px 24px; max-width: 980px; }
+    .note { background: #fffbeb; border: 1px solid #fcd34d; padding: 8px 12px; border-radius: 6px; font-size: 13px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; margin-top: 16px; }
+    .card { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px; }
+    .card .swatch { height: 70px; border-radius: 6px; margin-bottom: 8px; }
+    .card h3 { margin: 0 0 4px; font-size: 15px; }
+    .card .price { font-weight: 700; margin: 0 0 8px; }
+    .card button, #detail button { padding: 7px 12px; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; }
+    .view { background: #2563eb; color: #fff; }
+    #detail { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; margin-top: 16px; }
+    #detail .actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+    .add { background: #f59e0b; }
+    .buy { background: #dc2626; color: #fff; }
+    .checkout { background: #7c3aed; color: #fff; }
+    #flow-log { margin-top: 20px; font-family: monospace; font-size: 12px; color: #374151; white-space: pre-line; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="brand">ShirtStore</span>
+    <form id="search-form">
+      <input id="q" name="q" type="search" placeholder="Search products" aria-label="Search products" autocomplete="off">
+      <button id="search-btn" type="submit">Search</button>
+    </form>
+    <span class="cart">Cart: <span id="cart-count">0</span></span>
+    <button id="signin" class="signin" type="button">Sign in</button>
+  </header>
+  <main>
+    <p class="note">Multi-step fixture (Phase 7). Search for a product, open one, add it to the cart or buy it. Buy Now, Proceed to checkout and Sign in are simulated: clicking them only records the click. All data is fake.</p>
+
+    <section id="results-section" hidden>
+      <h2 id="results-heading">Results</h2>
+      <div id="results" class="grid"></div>
+    </section>
+
+    <section id="detail" hidden>
+      <h2 id="detail-name"></h2>
+      <p id="detail-price" class="price"></p>
+      <p id="detail-desc"></p>
+      <p class="qty-row"><label for="qty">Quantity</label> <button id="qty-minus" type="button" aria-label="Decrease quantity">−</button> <input id="qty" name="quantity" type="number" min="1" value="1" aria-label="Quantity"> <button id="qty-plus" type="button" aria-label="Increase quantity">+</button> <span>Qty: <span id="qty-shown">1</span></span></p>
+      <div class="actions">
+        <button id="add-to-cart" class="add" type="button">Add to Cart</button>
+        <button id="buy-now" class="buy" type="button">Buy Now</button>
+        <button id="checkout" class="checkout" type="button">Proceed to checkout</button>
+      </div>
+    </section>
+
+    <section id="cart-section" hidden>
+      <h2>Cart</h2>
+      <ul id="cart-items"></ul>
+    </section>
+
+    <div id="flow-log" aria-live="polite"></div>
+  </main>
+
+  <script>
+    const CATALOG = [
+      { id: "black-shirt-a", name: "Black Shirt A", colour: "black", price: 799, desc: "Classic fit cotton shirt." },
+      { id: "black-shirt-b", name: "Black Shirt B", colour: "black", price: 899, desc: "Slim fit premium shirt." },
+      { id: "black-shirt-c", name: "Black Shirt C", colour: "black", price: 699, desc: "Regular fit everyday shirt." },
+      { id: "white-shirt", name: "White Shirt", colour: "white", price: 599, desc: "Formal white shirt." },
+      { id: "blue-shirt", name: "Blue Shirt", colour: "blue", price: 649, desc: "Casual blue shirt." },
+    ];
+    // Prices can be overridden for tests: shop.html?a=499&b=899&c=699
+    const params = new URLSearchParams(location.search);
+    // ?newtab=1: View opens the product in a new tab (like marketplaces do); ?product=<id>: show that product only.
+    const NEWTAB = params.get("newtab") === "1";
+    const PRODUCT = params.get("product");
+    // Ratings (ra/rb/rc) and stock (sa/sb/sc) can be set too: shop.html?a=699&b=699&ra=4.2&rb=4.8&sb=500
+    for (const [key, item] of [["a", CATALOG[0]], ["b", CATALOG[1]], ["c", CATALOG[2]]]) {
+      const v = Number(params.get(key));
+      if (Number.isFinite(v) && v > 0) item.price = v;
+      const r = Number(params.get("r" + key));
+      if (Number.isFinite(r) && r > 0) item.rating = r;
+      const s = Number(params.get("s" + key));
+      if (Number.isFinite(s) && s > 0) item.stock = s;
+    }
+    // ?stale=replace: every View button is replaced by an identical new node shortly after results render
+    // (a framework re-render). ?stale=vanish:<id>: that product is removed shortly after results render.
+    const STALE = params.get("stale") || "";
+    const log = (line) => { const el = document.getElementById("flow-log"); el.textContent += (el.textContent ? "\n" : "") + line; };
+    const cart = [];
+    let current = null;
+
+    document.getElementById("search-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const q = document.getElementById("q").value.trim().toLowerCase();
+      const words = q.split(/\s+/).filter(Boolean);
+      const hits = CATALOG.filter((p) => words.every((w) => p.name.toLowerCase().includes(w) || p.colour.includes(w) || w === "shirt" || w === "shirts"));
+      const results = document.getElementById("results");
+      results.replaceChildren();
+      for (const p of hits) {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.dataset.product = p.id;
+        card.innerHTML = `<div class="swatch" style="background:${p.colour === "black" ? "#111827" : p.colour === "white" ? "#e5e7eb" : "#3b82f6"}"></div><h3>${p.name}</h3><p class="price">Price: ₹${p.price}</p>` +
+          (p.rating ? `<p class="rating">Rating: ${p.rating} stars</p>` : "") + (p.stock ? `<p class="stock">${p.stock} available</p>` : "");
+        const view = document.createElement("button");
+        view.className = "view";
+        view.id = `view-${p.id}`;
+        view.type = "button";
+        view.textContent = `View ${p.name}`;
+        view.addEventListener("click", () => {
+          if (NEWTAB) window.open(`${location.pathname}?product=${p.id}&newtab=1${["a", "b", "c"].map((k) => (params.get(k) ? `&${k}=${params.get(k)}` : "")).join("")}`, "_blank");
+          else showDetail(p);
+        });
+        card.appendChild(view);
+        results.appendChild(card);
+      }
+      document.getElementById("results-heading").textContent = `Results for "${q}" (${hits.length})`;
+      document.getElementById("results-section").hidden = false;
+      document.getElementById("detail").hidden = true;
+      log(`search: "${q}" -> ${hits.length} result(s)`);
+      // Stale-target fixtures fire only AFTER the page has been observed (the observer tags controls
+      // with data-ps-id), so the change lands between the reasoner's choice and the executor's click.
+      if (STALE === "replace" || STALE.startsWith("vanish:")) {
+        const armed = new MutationObserver(() => {
+          if (!results.querySelector("[data-ps-id]")) return;
+          armed.disconnect();
+          setTimeout(() => {
+            if (STALE === "replace") {
+              for (const old of Array.from(results.querySelectorAll("button.view"))) {
+                const fresh = old.cloneNode(true); // same label, new node, no data-ps-id
+                fresh.removeAttribute("data-ps-id");
+                fresh.addEventListener("click", () => showDetail(CATALOG.find((c) => `view-${c.id}` === fresh.id)));
+                old.replaceWith(fresh);
+              }
+              log("rerender: view buttons replaced");
+            } else {
+              results.querySelector(`[data-product="${STALE.slice(7)}"]`)?.remove();
+              log(`vanish: ${STALE.slice(7)} removed`);
+            }
+          }, 400);
+        });
+        armed.observe(results, { subtree: true, attributes: true, attributeFilter: ["data-ps-id"] });
+      }
+    });
+
+    function showDetail(p) {
+      current = p;
+      document.getElementById("detail-name").textContent = p.name;
+      document.getElementById("detail-price").textContent = `Price: ₹${p.price}`;
+      document.getElementById("detail-desc").textContent = p.desc + (p.rating ? ` Rating: ${p.rating} stars.` : "") + (p.stock ? ` ${p.stock} available.` : "");
+      const qty = document.getElementById("qty");
+      qty.value = "1";
+      qty.max = p.stock ? String(p.stock) : "";
+      document.getElementById("qty-shown").textContent = "1";
+      document.getElementById("detail").hidden = false;
+      document.getElementById("detail").scrollIntoView({ block: "start" });
+      log(`view: ${p.name}`);
+    }
+
+    // The quantity field behaves like a real shop's: it is clamped to the stock, and the page shows the accepted value.
+    const qtyField = document.getElementById("qty");
+    const clampQty = () => {
+      let n = Math.max(1, Math.floor(Number(qtyField.value) || 1));
+      if (current && current.stock && n > current.stock) { n = current.stock; log(`quantity clamped to stock ${n}`); }
+      qtyField.value = String(n);
+      document.getElementById("qty-shown").textContent = String(n);
+      return n;
+    };
+    qtyField.addEventListener("input", clampQty);
+    qtyField.addEventListener("change", clampQty);
+    document.getElementById("qty-minus").addEventListener("click", () => { qtyField.value = String((Number(qtyField.value) || 1) - 1); clampQty(); });
+    document.getElementById("qty-plus").addEventListener("click", () => { qtyField.value = String((Number(qtyField.value) || 1) + 1); clampQty(); });
+    document.getElementById("add-to-cart").addEventListener("click", () => {
+      if (!current) return;
+      const n = clampQty();
+      cart.push({ ...current, qty: n });
+      document.getElementById("cart-count").textContent = String(cart.reduce((sum, item) => sum + item.qty, 0));
+      const li = document.createElement("li");
+      li.textContent = `${current.name} - ₹${current.price} × ${n}`;
+      document.getElementById("cart-items").appendChild(li);
+      document.getElementById("cart-section").hidden = false;
+      log(`cart: added ${current.name} (${current.price}) qty ${n}`);
+    });
+    if (PRODUCT) {
+      const p = CATALOG.find((c) => c.id === PRODUCT);
+      if (p) { document.getElementById("results-section").hidden = true; showDetail(p); document.title = `${p.name} - ShirtStore`; }
+    }
+    for (const id of ["buy-now", "checkout", "signin"]) {
+      document.getElementById(id).addEventListener("click", () => log(`DECOY CLICKED: ${id}`));
+    }
+  </script>
+</body>
+</html>

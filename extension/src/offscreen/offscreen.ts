@@ -37,7 +37,7 @@ async function handle(message: OffscreenRequest): Promise<OffscreenResponse> {
     case "OCR_IMAGE":
       return { ok: true, result: await recognize(message.dataUrl, message.devicePixelRatio) };
     case "MASK_IMAGE":
-      return { ok: true, dataUrl: await renderMask(message.dataUrl, message.regions) };
+      return { ok: true, dataUrl: await renderMask(message.dataUrl, message.regions, message.images ?? []) };
     case "VISION_INFO":
       return { ok: true, info: await visionInfo() };
   }
@@ -87,8 +87,19 @@ function polarizedCopy(source: HTMLCanvasElement, ctx: CanvasRenderingContext2D)
   return copy;
 }
 
-/** Draws opaque boxes over the given regions (screenshot pixel coordinates) and returns a PNG data URL. */
-async function renderMask(dataUrl: string, regions: Array<{ x: number; y: number; width: number; height: number }>): Promise<string> {
+/**
+ * Draws opaque boxes over the sensitive regions (screenshot pixel
+ * coordinates) and returns a PNG data URL. The preview answers "what
+ * information was removed before anything left this device", so it paints
+ * exactly the redacted regions and nothing else. Pictures are NOT painted:
+ * a product photo is a visual object, not sensitive information, and the
+ * cloud never receives pixels anyway (it gets text observations only), so
+ * covering it would misrepresent what was redacted. The `images` list is
+ * kept for the popup's count and reserved for a future outline mode.
+ */
+type Box = { x: number; y: number; width: number; height: number };
+
+async function renderMask(dataUrl: string, regions: Box[], _images: Box[] = []): Promise<string> {
   const image = await loadImage(dataUrl);
   const canvas = document.createElement("canvas");
   canvas.width = image.width;

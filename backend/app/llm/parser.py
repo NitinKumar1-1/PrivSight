@@ -14,8 +14,8 @@ from pydantic import ValidationError
 from app.llm.base import LLMResponseError
 from app.schemas import ActionResponse
 
-ACTIONS_REQUIRING_TARGET = {"click", "type", "select"}
-ACTIONS_REQUIRING_VALUE = {"type", "select", "navigate"}
+ACTIONS_REQUIRING_TARGET = {"click", "type", "press", "select"}
+ACTIONS_REQUIRING_VALUE = {"type", "press", "select", "navigate"}
 
 _CODE_FENCE = re.compile(r"^\s*```(?:json)?\s*(.*?)\s*```\s*$", re.DOTALL)
 

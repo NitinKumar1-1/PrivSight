@@ -79,7 +79,7 @@ describe("image data never crosses", () => {
 
   it("blocks an oversized field that could carry a raw OCR dump", () => {
     const smuggled = JSON.parse(request());
-    smuggled.page.text = "word ".repeat(6000);
+    smuggled.page.text = "word ".repeat(7000); // 35,000 chars: above the 32,000 field cap that follows the page-text cap
     const result = verifySerializedPayload(JSON.stringify(smuggled), []);
     expect(result.safe).toBe(false);
     if (!result.safe) expect(result.reason).toBe("oversized field detected in payload");

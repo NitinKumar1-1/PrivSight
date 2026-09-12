@@ -167,9 +167,9 @@ async function waitForPopup(popup: Page, timeoutMs: number) {
       details: Object.fromEntries(Array.from(document.querySelectorAll<HTMLLIElement>("#pipeline li[data-stage]")).map((li) => [li.dataset.stage ?? "", li.title])),
       metrics: Object.fromEntries(Array.from(document.querySelectorAll("#metrics dt")).map((dt) => [dt.textContent ?? "", dt.nextElementSibling?.textContent ?? ""])),
       status: Array.from(document.querySelectorAll("#status li")).map((li) => li.textContent ?? ""),
-    }))) as typeof last;
-    const ex = last?.stages.execute;
-    if (ex === "pass" || ex === "fail" || ex === "skipped" || last?.status.some((s) => /^(Privacy Firewall blocked|Action blocked|Page extraction failed|Backend returned|Reasoning provider)/.test(s))) return last!;
+      terminal: ["Complete", "Blocked", "Failed"].includes(document.getElementById("state-word")?.textContent ?? "") && !(document.getElementById("run") as HTMLButtonElement).disabled,
+    }))) as typeof last & { terminal: boolean };
+    if ((last as { terminal?: boolean }).terminal) return last!;
     await new Promise((r) => setTimeout(r, 500));
   }
   throw new Error("popup did not finish");

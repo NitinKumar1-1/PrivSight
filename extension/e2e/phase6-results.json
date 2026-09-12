@@ -1,0 +1,719 @@
+{
+  "generatedAt": "2026-09-12T06:47:12.156Z",
+  "browser": "Playwright Chromium (headless) with the built extension",
+  "scenarios": [
+    {
+      "name": "demo-typed-task",
+      "url": "http://localhost:8080/index.html",
+      "elapsedMs": 8278,
+      "state": "Complete",
+      "badge": "PROTECTED",
+      "pageInfo": "Page: ShirtStore - Black Shirts (localhost:8080) · 10 interactive element(s) · 6 value(s) redacted · 3 visual observation(s)",
+      "stages": {
+        "dom": {
+          "state": "pass",
+          "detail": "10 sensitive field(s), 6 value(s) redacted"
+        },
+        "vision": {
+          "state": "pass",
+          "detail": "tesseract.js 7 LSTM (wasm): 29 lines in 3786.5 ms"
+        },
+        "detect": {
+          "state": "pass",
+          "detail": "EMAIL -> [EMAIL_1], PHONE -> [PHONE_1], PASSWORD -> [PASSWORD_1], CARD -> [CARD_1], OTP -> [OTP_1], PASSWORD -> [PASSWORD_2]"
+        },
+        "visual-redaction": {
+          "state": "pass",
+          "detail": "7 region(s) masked; 3 observation(s) kept; 18 duplicate(s) dropped; 2 button(s) mapped; 3 conflict(s), DOM preferred"
+        },
+        "leakage": {
+          "state": "pass",
+          "detail": "structure:pass image-data:pass known-values:pass patterns:pass"
+        },
+        "firewall": {
+          "state": "pass",
+          "detail": "REQUEST ALLOWED"
+        },
+        "reason": {
+          "state": "pass",
+          "detail": "structured action received"
+        },
+        "validate": {
+          "state": "pass",
+          "detail": "action verified against the live page"
+        },
+        "execute": {
+          "state": "pass",
+          "detail": "Clicked el_buy_c"
+        }
+      },
+      "status": [
+        "Local agent: observing the page...",
+        "Local PII detection: EMAIL -> [EMAIL_1], PHONE -> [PHONE_1], PASSWORD -> [PASSWORD_1], CARD -> [CARD_1], OTP -> [OTP_1], PASSWORD -> [PASSWORD_2]",
+        "Sending sanitized request to backend...",
+        "Action received: click el_buy_c (confidence 100%) - Black Shirt C is the cheapest at ₹699, so I am clicking Buy Now C to buy it.",
+        "Action executed: Clicked el_buy_c",
+        "Step 1 of 12 executed: click el_buy_c"
+      ],
+      "actionLine": "Action received: click el_buy_c (confidence 100%) - Black Shirt C is the cheapest at ₹699, so I am clicking Buy Now C to buy it.",
+      "clicked": "buy_c",
+      "pageStatus": "Black Shirt C Purchased (Buy Now C clicked at 12:15:35 PM)",
+      "scrollY": 17,
+      "reasonRequests": 1,
+      "reasonBodyBytes": [
+        1974
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "host": "localhost:8080",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "localhost:8080",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "POST",
+          "host": "localhost:8000",
+          "postBytes": 1974
+        }
+      ]
+    },
+    {
+      "name": "demo-prices-reordered",
+      "url": "http://localhost:8080/index.html",
+      "elapsedMs": 4633,
+      "state": "Complete",
+      "badge": "PROTECTED",
+      "pageInfo": "Page: ShirtStore - Black Shirts (localhost:8080) · 10 interactive element(s) · 6 value(s) redacted · 3 visual observation(s)",
+      "stages": {
+        "dom": {
+          "state": "pass",
+          "detail": "10 sensitive field(s), 6 value(s) redacted"
+        },
+        "vision": {
+          "state": "pass",
+          "detail": "tesseract.js 7 LSTM (wasm): 29 lines in 1937.7 ms"
+        },
+        "detect": {
+          "state": "pass",
+          "detail": "EMAIL -> [EMAIL_1], PHONE -> [PHONE_1], PASSWORD -> [PASSWORD_1], CARD -> [CARD_1], OTP -> [OTP_1], PASSWORD -> [PASSWORD_2]"
+        },
+        "visual-redaction": {
+          "state": "pass",
+          "detail": "7 region(s) masked; 3 observation(s) kept; 18 duplicate(s) dropped; 2 button(s) mapped; 3 conflict(s), DOM preferred"
+        },
+        "leakage": {
+          "state": "pass",
+          "detail": "structure:pass image-data:pass known-values:pass patterns:pass"
+        },
+        "firewall": {
+          "state": "pass",
+          "detail": "REQUEST ALLOWED"
+        },
+        "reason": {
+          "state": "pass",
+          "detail": "structured action received"
+        },
+        "validate": {
+          "state": "pass",
+          "detail": "action verified against the live page"
+        },
+        "execute": {
+          "state": "pass",
+          "detail": "Clicked el_buy_a"
+        }
+      },
+      "status": [
+        "Local agent: observing the page...",
+        "Local PII detection: EMAIL -> [EMAIL_1], PHONE -> [PHONE_1], PASSWORD -> [PASSWORD_1], CARD -> [CARD_1], OTP -> [OTP_1], PASSWORD -> [PASSWORD_2]",
+        "Sending sanitized request to backend...",
+        "Action received: click el_buy_a (confidence 100%) - Black Shirt A is the cheapest at ₹499, and the task asks to buy it.",
+        "Action executed: Clicked el_buy_a",
+        "Step 1 of 12 executed: click el_buy_a"
+      ],
+      "actionLine": "Action received: click el_buy_a (confidence 100%) - Black Shirt A is the cheapest at ₹499, and the task asks to buy it.",
+      "clicked": "buy_a",
+      "pageStatus": "Black Shirt A Purchased (Buy Now A clicked at 12:15:40 PM)",
+      "scrollY": 17,
+      "reasonRequests": 1,
+      "reasonBodyBytes": [
+        1974
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "host": "localhost:8080",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "localhost:8080",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "POST",
+          "host": "localhost:8000",
+          "postBytes": 1974
+        }
+      ]
+    },
+    {
+      "name": "demo-scroll",
+      "url": "http://localhost:8080/index.html",
+      "elapsedMs": 4579,
+      "state": "Complete",
+      "badge": "PROTECTED",
+      "pageInfo": "Page: ShirtStore - Black Shirts (localhost:8080) · 10 interactive element(s) · 6 value(s) redacted · 3 visual observation(s)",
+      "stages": {
+        "dom": {
+          "state": "pass",
+          "detail": "10 sensitive field(s), 6 value(s) redacted"
+        },
+        "vision": {
+          "state": "pass",
+          "detail": "tesseract.js 7 LSTM (wasm): 29 lines in 1587.4 ms"
+        },
+        "detect": {
+          "state": "pass",
+          "detail": "EMAIL -> [EMAIL_1], PHONE -> [PHONE_1], PASSWORD -> [PASSWORD_1], CARD -> [CARD_1], OTP -> [OTP_1], PASSWORD -> [PASSWORD_2]"
+        },
+        "visual-redaction": {
+          "state": "pass",
+          "detail": "7 region(s) masked; 3 observation(s) kept; 18 duplicate(s) dropped; 2 button(s) mapped; 3 conflict(s), DOM preferred"
+        },
+        "leakage": {
+          "state": "pass",
+          "detail": "structure:pass image-data:pass known-values:pass patterns:pass"
+        },
+        "firewall": {
+          "state": "pass",
+          "detail": "REQUEST ALLOWED"
+        },
+        "reason": {
+          "state": "pass",
+          "detail": "structured action received"
+        },
+        "validate": {
+          "state": "pass",
+          "detail": "action verified against the live page"
+        },
+        "execute": {
+          "state": "pass",
+          "detail": "Scrolled down"
+        }
+      },
+      "status": [
+        "Local agent: observing the page...",
+        "Local PII detection: EMAIL -> [EMAIL_1], PHONE -> [PHONE_1], PASSWORD -> [PASSWORD_1], CARD -> [CARD_1], OTP -> [OTP_1], PASSWORD -> [PASSWORD_2]",
+        "Sending sanitized request to backend...",
+        "Action received: scroll (confidence 100%) - Scroll down the page to see the delivery details section.",
+        "Action executed: Scrolled down",
+        "Step 1 of 12 executed: scroll \"down\""
+      ],
+      "actionLine": "Action received: scroll (confidence 100%) - Scroll down the page to see the delivery details section.",
+      "clicked": "(none)",
+      "pageStatus": "",
+      "scrollY": 71,
+      "reasonRequests": 1,
+      "reasonBodyBytes": [
+        1990
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "host": "localhost:8080",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "localhost:8080",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "POST",
+          "host": "localhost:8000",
+          "postBytes": 1990
+        }
+      ]
+    },
+    {
+      "name": "demo-task-with-pii",
+      "url": "http://localhost:8080/index.html",
+      "elapsedMs": 5047,
+      "state": "Complete",
+      "badge": "PROTECTED",
+      "pageInfo": "Page: ShirtStore - Black Shirts (localhost:8080) · 10 interactive element(s) · 6 value(s) redacted · 3 visual observation(s)",
+      "stages": {
+        "dom": {
+          "state": "pass",
+          "detail": "10 sensitive field(s), 6 value(s) redacted"
+        },
+        "vision": {
+          "state": "pass",
+          "detail": "tesseract.js 7 LSTM (wasm): 29 lines in 1795.2 ms"
+        },
+        "detect": {
+          "state": "pass",
+          "detail": "EMAIL -> [EMAIL_1], PHONE -> [PHONE_1], PASSWORD -> [PASSWORD_1], CARD -> [CARD_1], OTP -> [OTP_1], PASSWORD -> [PASSWORD_2]"
+        },
+        "visual-redaction": {
+          "state": "pass",
+          "detail": "7 region(s) masked; 3 observation(s) kept; 18 duplicate(s) dropped; 2 button(s) mapped; 3 conflict(s), DOM preferred"
+        },
+        "leakage": {
+          "state": "pass",
+          "detail": "structure:pass image-data:pass known-values:pass patterns:pass"
+        },
+        "firewall": {
+          "state": "pass",
+          "detail": "REQUEST ALLOWED"
+        },
+        "reason": {
+          "state": "pass",
+          "detail": "structured action received"
+        },
+        "validate": {
+          "state": "pass",
+          "detail": "action verified against the live page"
+        },
+        "execute": {
+          "state": "pass",
+          "detail": "Clicked el_buy_c"
+        }
+      },
+      "status": [
+        "Local agent: observing the page...",
+        "Local PII detection: EMAIL -> [EMAIL_1], PHONE -> [PHONE_1], PASSWORD -> [PASSWORD_1], CARD -> [CARD_1], OTP -> [OTP_1], PASSWORD -> [PASSWORD_2]",
+        "Sending sanitized request to backend...",
+        "Action received: click el_buy_c (confidence 100%) - Click Buy Now C to buy the cheapest black shirt (Black Shirt C at ₹699).",
+        "Action executed: Clicked el_buy_c",
+        "Step 1 of 12 executed: click el_buy_c"
+      ],
+      "actionLine": "Action received: click el_buy_c (confidence 100%) - Click Buy Now C to buy the cheapest black shirt (Black Shirt C at ₹699).",
+      "clicked": "buy_c",
+      "pageStatus": "Black Shirt C Purchased (Buy Now C clicked at 12:15:53 PM)",
+      "scrollY": 17,
+      "reasonRequests": 1,
+      "reasonBodyBytes": [
+        1988
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "host": "localhost:8080",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "localhost:8080",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "POST",
+          "host": "localhost:8000",
+          "postBytes": 1988
+        }
+      ]
+    },
+    {
+      "name": "real-example-com",
+      "url": "https://example.com/",
+      "elapsedMs": 34983,
+      "state": "Complete",
+      "badge": "PROTECTED",
+      "pageInfo": "Page: Example Domain (example.com) · 1 interactive element(s) · 0 value(s) redacted · 1 visual observation(s)",
+      "stages": {
+        "dom": {
+          "state": "pass",
+          "detail": "0 sensitive field(s), 0 value(s) redacted"
+        },
+        "vision": {
+          "state": "pass",
+          "detail": "tesseract.js 7 LSTM (wasm): 3 lines in 1081.7 ms"
+        },
+        "detect": {
+          "state": "pass",
+          "detail": "nothing sensitive found"
+        },
+        "visual-redaction": {
+          "state": "pass",
+          "detail": "0 region(s) masked; 1 observation(s) kept; 2 duplicate(s) dropped; 1 button(s) mapped"
+        },
+        "leakage": {
+          "state": "pass",
+          "detail": "structure:pass image-data:pass known-values:pass patterns:pass"
+        },
+        "firewall": {
+          "state": "pass",
+          "detail": "REQUEST ALLOWED"
+        },
+        "reason": {
+          "state": "pass",
+          "detail": "structured action received"
+        },
+        "validate": {
+          "state": "pass",
+          "detail": "action verified against the live page"
+        },
+        "execute": {
+          "state": "pass",
+          "detail": "Task reported as done"
+        }
+      },
+      "status": [
+        "Local agent: observing the page...",
+        "Local PII detection: nothing sensitive found",
+        "Sending sanitized request to backend...",
+        "Action received: done (confidence 100%) - The main page heading is Example Domain.",
+        "Action executed: Task reported as done",
+        "Step 1 of 12 executed: done"
+      ],
+      "actionLine": "Action received: done (confidence 100%) - The main page heading is Example Domain.",
+      "clicked": "(none)",
+      "pageStatus": "",
+      "scrollY": 0,
+      "reasonRequests": 1,
+      "reasonBodyBytes": [
+        589
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "host": "example.com",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "POST",
+          "host": "localhost:8000",
+          "postBytes": 589
+        }
+      ],
+      "website": "https://example.com/"
+    },
+    {
+      "name": "real-wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Main_Page",
+      "elapsedMs": 42160,
+      "state": "Complete",
+      "badge": "PROTECTED",
+      "pageInfo": "Page: Wikipedia, the free encyclopedia (en.wikipedia.org) · 220 interactive element(s) · 0 value(s) redacted · 33 visual observation(s)",
+      "stages": {
+        "dom": {
+          "state": "pass",
+          "detail": "0 sensitive field(s), 0 value(s) redacted"
+        },
+        "vision": {
+          "state": "pass",
+          "detail": "tesseract.js 7 LSTM (wasm): 84 lines in 6285.1 ms"
+        },
+        "detect": {
+          "state": "pass",
+          "detail": "nothing sensitive found"
+        },
+        "visual-redaction": {
+          "state": "pass",
+          "detail": "0 region(s) masked; 33 observation(s) kept; 37 duplicate(s) dropped; 25 button(s) mapped"
+        },
+        "leakage": {
+          "state": "pass",
+          "detail": "structure:pass image-data:pass known-values:pass patterns:pass"
+        },
+        "firewall": {
+          "state": "pass",
+          "detail": "REQUEST ALLOWED"
+        },
+        "reason": {
+          "state": "pass",
+          "detail": "structured action received"
+        },
+        "validate": {
+          "state": "pass",
+          "detail": "action verified against the live page"
+        },
+        "execute": {
+          "state": "pass",
+          "detail": "Task reported as done"
+        }
+      },
+      "status": [
+        "Local agent: observing the page...",
+        "Local PII detection: nothing sensitive found",
+        "Sending sanitized request to backend...",
+        "Action received: done (confidence 100%) - Found the search box on the page with ID el_searchinput as requested, without typing or submitting.",
+        "Action executed: Task reported as done",
+        "Step 1 of 12 executed: done"
+      ],
+      "actionLine": "Action received: done (confidence 100%) - Found the search box on the page with ID el_searchinput as requested, without typing or submitting.",
+      "clicked": "(none)",
+      "pageStatus": "",
+      "scrollY": 0,
+      "reasonRequests": 1,
+      "reasonBodyBytes": [
+        28915
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "host": "en.wikipedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "en.wikipedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "en.wikipedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "en.wikipedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "en.wikipedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "en.wikipedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "en.wikipedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "en.wikipedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "en.wikipedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "en.wikipedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "thumb.wikimedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "thumb.wikimedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "thumb.wikimedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "thumb.wikimedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "en.wikipedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "en.wikipedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "en.wikipedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "ocngfeigdhdhbnmbjcblagbnaggghbej",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "en.wikipedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "en.wikipedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "POST",
+          "host": "en.wikipedia.org",
+          "postBytes": 613
+        },
+        {
+          "method": "GET",
+          "host": "en.wikipedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "en.wikipedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "meta.wikimedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "auth.wikimedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "en.wikipedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "GET",
+          "host": "upload.wikimedia.org",
+          "postBytes": 0
+        },
+        {
+          "method": "POST",
+          "host": "localhost:8000",
+          "postBytes": 28915
+        }
+      ],
+      "website": "https://en.wikipedia.org/wiki/Main_Page",
+      "elementsSent": 220,
+      "searchBoxOffered": true
+    }
+  ]
+}

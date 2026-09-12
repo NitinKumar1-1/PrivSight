@@ -20,6 +20,8 @@ function ctx(overrides: Partial<ValidationContext> = {}): ValidationContext {
     sensitiveTypeOf: (id) => SENSITIVE[id],
     placeholderType: (p) => PLACEHOLDERS[p],
     supportedActions: ALL_ACTIONS,
+    isConsequential: () => null,
+    isNavigationAllowed: () => null,
     ...overrides,
   };
 }
@@ -184,17 +186,36 @@ describe("sensitive field policy", () => {
 });
 
 describe("executor support gate", () => {
-  it("the real executor supports click and done only", () => {
-    expect([...EXECUTOR_SUPPORTED_ACTIONS].sort()).toEqual(["click", "done"]);
+  it("the real executor supports click, type, press, select, scroll, navigate and done", () => {
+    expect([...EXECUTOR_SUPPORTED_ACTIONS].sort()).toEqual(["click", "done", "navigate", "press", "scroll", "select", "type"]);
   });
 
-  it("a contract-valid type action is rejected as unsupported by the current executor", () => {
+  it("navigate is blocked when the context says the task does not authorise the site", () => {
+    const result = validateAction({ action: "navigate", value: "https://example.com/", confidence: 1 }, ctx({ isNavigationAllowed: () => "Navigation to example.com blocked: the task does not name this website" }));
+    expect(code(result)).toBe("navigation_not_authorised");
+  });
+
+  it("a placeholder type action is unsupported when the executor declares it does not type sensitive values", () => {
     const result = validateAction(
-      { action: "type", target: "el_search", value: "x", confidence: 1 },
-      ctx({ supportedActions: EXECUTOR_SUPPORTED_ACTIONS }),
+      { action: "type", target: "el_email", value: "[EMAIL_1]", confidence: 1 },
+      ctx({ supportedActions: EXECUTOR_SUPPORTED_ACTIONS, typesSensitiveValues: false }),
     );
     expect(code(result)).toBe("unsupported_by_executor");
-    if (!result.ok) expect(result.reason).toContain("unsupported by current executor");
+    const plain = validateAction({ action: "type", target: "el_search", value: "black shirt", confidence: 1 }, ctx({ supportedActions: EXECUTOR_SUPPORTED_ACTIONS, typesSensitiveValues: false }));
+    expect(code(plain)).toBe("ok");
+  });
+
+  it("select is supported by the executor for a standard select whose option exists", () => {
+    const select = validateAction({ action: "select", target: "el_size", value: "M", confidence: 1 }, ctx({ supportedActions: EXECUTOR_SUPPORTED_ACTIONS }));
+    expect(select.ok).toBe(true);
+  });
+
+  it("a select whose value is not one of the control's options is rejected", () => {
+    const result = validateAction(
+      { action: "select", target: "el_size", value: "XXXL", confidence: 1 },
+      ctx({ supportedActions: EXECUTOR_SUPPORTED_ACTIONS }),
+    );
+    expect(code(result)).toBe("invalid_value");
   });
 
   it("contract failures are reported before the executor gate", () => {

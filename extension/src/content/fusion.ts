@@ -92,10 +92,16 @@ export function fuseObservations(page: PageInfo, ocr: OcrResult | null, buttons:
   return { kept, conflicts, stats };
 }
 
-/** "Black Shirt A\nPrice: ₹799" style pairs from DOM text. Keyed by normalized name. */
+/**
+ * Name/price pairs from DOM text, keyed by normalized name: a line followed by
+ * a price line, where the price line is either "Price: <amount>" (with or
+ * without a currency mark) or a bare currency amount ("₹1,299", "Rs 499",
+ * "$20"). Used only to detect DOM/vision price conflicts; it never picks a
+ * target.
+ */
 export function domProductPrices(text: string): Map<string, number> {
   const prices = new Map<string, number>();
-  const pattern = /([^\n]{3,60}?)\s*\n+\s*Price:\s*(?:₹|rs\.?|inr|\$|€|£)?\s?(\d[\d,]*)/gi;
+  const pattern = /([^\n]{3,60}?)\s*\n+\s*(?:price\s*[:\-]?\s*(?:₹|rs\.?|inr|\$|€|£)?|(?:₹|rs\.?|inr|\$|€|£))\s?(\d[\d,]*)/gi;
   for (const match of text.matchAll(pattern)) {
     const name = normalize(match[1]);
     const amount = Number(match[2].replace(/,/g, ""));

@@ -19,7 +19,7 @@
 
 import { PS_ID_ATTRIBUTE } from "../content/element-ids";
 import { fuseObservations } from "../content/fusion";
-import type { PageInfo, ReasonRequest, VisualContext, VisualObservation } from "../shared/contract";
+import type { ActionRecord, PageInfo, ReasonRequest, VisualContext, VisualObservation } from "../shared/contract";
 import type { ButtonCandidate, OcrResult } from "../vision/types";
 import { classifyFieldDetailed, fieldContext, fieldValue } from "./detectors";
 import { inspectOutgoingRequest } from "./firewall";
@@ -62,11 +62,16 @@ export function sanitizePage(raw: PageInfo, elements: HTMLElement[]): SanitizedP
  * Sanitizes page, task and visual observations, then passes the serialized
  * request through the firewall.
  */
+/** Previous actions carried to the reasoner so a multi-step task does not repeat itself. */
+const MAX_HISTORY = 10;
+
 export function prepareOutgoingRequest(
   task: string,
   raw: PageInfo,
   elements: HTMLElement[],
   ocr: OcrResult | null = null,
+  history: ActionRecord[] = [],
+  guidance: string | undefined = undefined,
 ): PreparedRequest {
   const redactor = startRun(elements);
   const buttons = buttonCandidates(raw);
@@ -91,9 +96,26 @@ export function prepareOutgoingRequest(
     visualPrivacy = privacy;
   }
 
+  if (history.length > 0) {
+    request.history = history.slice(-MAX_HISTORY).map((h) => ({
+      action: h.action,
+      target: h.target,
+      value: h.value === null ? null : redactor.redactText(h.value).slice(0, 200),
+      ...(h.effect ? { effect: h.effect } : {}),
+      ...(h.note ? { note: redactor.redactText(h.note).slice(0, 200) } : {}),
+    }));
+  }
+
+  if (guidance) request.guidance = redactor.redactText(guidance).slice(0, 400);
+
   request.placeholders = redactor.summary().placeholders;
   const firewall = inspectOutgoingRequest(request, redactor.knownValues());
   return { summary: redactor.summary(), firewall, visualPrivacy };
+}
+
+/** Redacts a short label for a developer log with the most recent run's redactor. Local only. */
+export function redactForLog(text: string): string {
+  return activeRedactor ? activeRedactor.redactText(text) : text.replace(/\d{6,}/g, "[NUMBER]");
 }
 
 /** Resolves a placeholder from the most recent run. Local only. */
@@ -126,6 +148,8 @@ function redactPage(redactor: Redactor, raw: PageInfo, elements: HTMLElement[] =
     elements: raw.elements.map((element, index) => ({
       ...element,
       text: redactWithContext(redactor, element.text, elements[index]),
+      ...(element.context !== undefined ? { context: redactor.redactText(element.context) } : {}),
+      ...(element.options !== undefined ? { options: element.options.map((o) => redactor.redactText(o)) } : {}),
     })),
     text: redactor.redactText(raw.text),
   };

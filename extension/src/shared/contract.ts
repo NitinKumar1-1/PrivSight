@@ -5,7 +5,10 @@
  * If one side changes, the other must change with it.
  */
 
-export type ActionType = "click" | "type" | "scroll" | "select" | "navigate" | "done";
+export type ActionType = "click" | "type" | "press" | "scroll" | "select" | "navigate" | "done";
+
+/** What the page did after an executed action, as observed locally. */
+export type ActionEffect = "url_changed" | "dom_changed" | "no_change" | "unknown";
 
 export interface PageElement {
   /** PrivSight element identifier, stored on the element as data-ps-id. */
@@ -13,6 +16,10 @@ export interface PageElement {
   tag: string;
   text: string;
   role: string;
+  /** Nearby title and price for generic controls ("Add to cart" x 48), redacted. Absent when not needed. */
+  context?: string;
+  /** For a standard <select>: its selectable option labels (redacted, capped). Absent otherwise. */
+  options?: string[];
 }
 
 export interface PageInfo {
@@ -51,6 +58,29 @@ export interface VisualContext {
   conflicts: string[];
 }
 
+/** One action already performed for this task (Phase 7 multi-step). Values are redacted text. */
+export interface ActionRecord {
+  action: ActionType;
+  target: string | null;
+  value: string | null;
+  /** Observed page effect of the action (Phase 8). Absent for older records. */
+  effect?: ActionEffect;
+  /** Short local note about the action's result, value-free (for example "typed text verified; nothing submitted"). */
+  note?: string;
+  /**
+   * Redacted label of the control the action used. LOCAL ONLY: the sanitizer
+   * never copies it onto the wire; it lets the validator bound repeated
+   * consequential clicks (an "Add to cart" used twice already) across steps.
+   */
+  label?: string;
+  /** LOCAL ONLY: the executor measured cart evidence (count up, confirmation, go-to-cart) right after this click. */
+  cartAdded?: boolean;
+  /** LOCAL ONLY: redacted product context of the control, to tell "add to cart" of product A from product B. */
+  context?: string;
+  /** LOCAL ONLY: a record the controller inserted (a locally rejected "done"), not an executed step. */
+  synthetic?: boolean;
+}
+
 export interface ReasonRequest {
   task: string;
   /** Sanitized page: sensitive values are already replaced by placeholders. */
@@ -59,6 +89,14 @@ export interface ReasonRequest {
   placeholders: string[];
   /** Sanitized structured visual observations. Absent when vision was unavailable. */
   visual?: VisualContext;
+  /** Actions already executed for this task, oldest first. Absent on the first step. */
+  history?: ActionRecord[];
+  /**
+   * The local controller's value-free note for this round (Phase 10): why a
+   * "done" was rejected, what is missing, or what failed. Redacted like every
+   * other field; capped at 400 characters.
+   */
+  guidance?: string;
 }
 
 export interface ActionResponse {
@@ -67,4 +105,6 @@ export interface ActionResponse {
   value?: string | null;
   confidence: number;
   reason: string;
+  /** True when this single action completes the task; false when the reasoner expects to act again (Phase 7). */
+  final?: boolean;
 }

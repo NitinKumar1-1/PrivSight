@@ -6,10 +6,10 @@
  * reported.
  */
 
-export type PiiType = "EMAIL" | "PHONE" | "CARD" | "CVV" | "OTP" | "PASSWORD";
+export type PiiType = "EMAIL" | "PHONE" | "CARD" | "CVV" | "OTP" | "PASSWORD" | "ADDRESS";
 
 /** Tie-break order: the more specific type wins when scores are equal. */
-export const PII_TYPES: readonly PiiType[] = ["PASSWORD", "OTP", "CVV", "CARD", "EMAIL", "PHONE"];
+export const PII_TYPES: readonly PiiType[] = ["PASSWORD", "OTP", "CVV", "CARD", "EMAIL", "PHONE", "ADDRESS"];
 
 /** One sensitive field found on the page. Contains no value. */
 export interface Detection {

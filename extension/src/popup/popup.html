@@ -4,153 +4,156 @@
   <meta charset="UTF-8">
   <title>PrivSight</title>
   <style>
+    :root {
+      --ink: #111827; --muted: #6b7280; --line: #e5e7eb; --panel: #f9fafb;
+      --blue: #1d4ed8; --blue-dark: #1e3a8a; --green: #15803d; --red: #b91c1c; --amber: #b45309;
+    }
+    * { box-sizing: border-box; }
     body {
-      width: 380px;
-      margin: 0;
-      padding: 14px;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      font-size: 13px;
-      color: #1f2937;
+      width: 400px; margin: 0; padding: 0 14px 14px;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-size: 13px; color: var(--ink); background: #fff;
     }
-    h1 { font-size: 16px; margin: 0 0 12px; }
-    label { display: block; font-weight: 600; margin-bottom: 4px; }
-    textarea {
-      width: 100%;
-      box-sizing: border-box;
-      min-height: 60px;
-      padding: 8px;
-      border: 1px solid #d1d5db;
-      border-radius: 6px;
-      font: inherit;
-      resize: vertical;
-    }
-    button {
-      width: 100%;
-      margin-top: 8px;
-      padding: 10px;
-      border: none;
-      border-radius: 6px;
-      background: #1d4ed8;
-      color: #fff;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    button:disabled { background: #9ca3af; cursor: default; }
-    h2 { font-size: 13px; margin: 14px 0 6px; }
+    header { display: flex; align-items: center; gap: 10px; padding: 14px 0 10px; border-bottom: 1px solid var(--line); }
+    header img { width: 36px; height: 36px; }
+    header h1 { font-size: 17px; margin: 0; line-height: 1.1; letter-spacing: 0.01em; }
+    header p { margin: 2px 0 0; color: var(--muted); font-size: 11.5px; }
 
-    .badge-row { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; }
-    .badge-row h2 { margin: 0; }
-    .badge {
-      padding: 3px 10px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      background: #e5e7eb;
-      color: #374151;
+    .task { margin-top: 12px; }
+    textarea {
+      width: 100%; min-height: 58px; padding: 9px 10px; border: 1px solid #cbd5e1; border-radius: 8px; font: inherit; resize: vertical; color: var(--ink);
     }
+    textarea:focus { outline: 2px solid #93c5fd; border-color: var(--blue); }
+    #run {
+      width: 100%; margin-top: 8px; padding: 10px; border: none; border-radius: 8px; background: var(--blue); color: #fff; font-weight: 700; font-size: 13px; cursor: pointer;
+    }
+    #run:hover { background: var(--blue-dark); }
+    #run:disabled { background: #9ca3af; cursor: default; }
+
+    .state { display: flex; align-items: center; gap: 10px; margin-top: 12px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+    .state .dot { width: 10px; height: 10px; border-radius: 50%; background: #9ca3af; flex: none; }
+    .state[data-kind="busy"] .dot { background: var(--blue); animation: pulse 1.1s ease-in-out infinite; }
+    .state[data-kind="ok"] .dot { background: var(--green); }
+    .state[data-kind="blocked"] .dot { background: var(--red); }
+    .state[data-kind="failed"] .dot { background: var(--amber); }
+    .state[data-kind="unverified"] .dot { background: var(--amber); }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+    .state strong { display: block; font-size: 13px; }
+    .state span { color: var(--muted); font-size: 11.5px; }
+    .state .badge { margin-left: auto; }
+    .state .facts { display: block; margin-top: 4px; font-size: 11px; color: var(--muted); }
+    .state .facts:empty { display: none; }
+    #status li.state-line { white-space: pre-line; font-family: ui-monospace, Consolas, monospace; font-size: 11px; color: #374151; border-left: 3px solid var(--blue); padding-left: 6px; }
+    .badge { padding: 3px 9px; border-radius: 999px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.04em; background: #e5e7eb; color: #374151; white-space: nowrap; }
     .badge.ok { background: #dcfce7; color: #166534; }
     .badge.blocked { background: #fee2e2; color: #991b1b; }
 
-    #pipeline {
-      list-style: none;
-      margin: 6px 0 0;
-      padding: 6px 8px;
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      border-radius: 6px;
-    }
-    #pipeline li { display: flex; justify-content: space-between; padding: 3px 0; cursor: help; }
-    #pipeline li.group { font-size: 11px; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 4px; cursor: default; }
-    #pipeline .state { font-size: 11px; font-weight: 700; color: #9ca3af; }
-    #pipeline li[data-state="pass"] .state { color: #15803d; }
-    #pipeline li[data-state="fail"] .state { color: #b91c1c; }
-    #pipeline li[data-state="fallback"] .state { color: #b45309; }
-    #pipeline li[data-state="skipped"] .state { color: #6b7280; }
+    #page-info { margin: 8px 0 0; color: var(--muted); font-size: 11.5px; min-height: 14px; }
+    #page-info b { color: var(--ink); font-weight: 600; }
 
-    .previews { display: flex; gap: 8px; margin-top: 6px; }
-    .previews figure { flex: 1; margin: 0; }
-    .previews figcaption { font-size: 11px; color: #6b7280; margin-bottom: 3px; }
-    .previews img { width: 100%; border: 1px solid #e5e7eb; border-radius: 4px; background: #f3f4f6; min-height: 60px; }
+    h2 { font-size: 11px; margin: 14px 0 6px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
 
-    #metrics { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; margin: 6px 0 0; font-size: 12px; }
-    #metrics dt { color: #6b7280; }
-    #metrics dd { margin: 0; font-variant-numeric: tabular-nums; }
+    #pipeline { list-style: none; margin: 0; padding: 4px 10px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; }
+    #pipeline li { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; cursor: help; }
+    #pipeline li + li { border-top: 1px solid #f1f5f9; }
+    #pipeline li.group { font-size: 10.5px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; padding-top: 7px; cursor: default; border-top: none; }
+    #pipeline li.group.cloud { color: var(--blue); }
+    #pipeline .state-cell { font-size: 10.5px; font-weight: 700; color: #9ca3af; }
+    #pipeline li[data-state="pass"] .state-cell { color: var(--green); }
+    #pipeline li[data-state="fail"] .state-cell { color: var(--red); }
+    #pipeline li[data-state="fallback"] .state-cell { color: var(--amber); }
+    #pipeline li[data-state="skipped"] .state-cell { color: var(--muted); }
+    #pipeline li[data-state="pending"] .state-cell.live { color: var(--blue); }
+    .boundary { display: flex; align-items: center; gap: 8px; margin: 8px 0 2px; color: var(--blue); font-size: 10.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+    .boundary::before, .boundary::after { content: ""; flex: 1; border-top: 1px dashed #93c5fd; }
 
-    #status {
-      list-style: none;
-      margin: 0;
-      padding: 8px;
-      min-height: 40px;
-      background: #f3f4f6;
-      border-radius: 6px;
-    }
+    .preview { margin-top: 6px; }
+    .preview img { display: block; width: 100%; border: 1px solid var(--line); border-radius: 6px; background: #f3f4f6; cursor: zoom-in; }
+    .preview img:hover { box-shadow: 0 0 0 2px var(--blue); }
+    .preview img[hidden] { display: none; }
+    .preview .empty { padding: 14px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: 6px; font-size: 11.5px; }
+    .lock { margin: 6px 0 0; font-size: 11.5px; color: var(--green); font-weight: 600; }
+    .hint { margin: 4px 0 0; color: var(--muted); font-size: 11px; }
+
+    #status { list-style: none; margin: 0; padding: 8px 10px; min-height: 36px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; font-size: 12px; }
     #status li { padding: 2px 0; }
-    #status li.success { color: #15803d; }
-    #status li.error { color: #b91c1c; }
-    details { margin-top: 12px; }
-    summary { cursor: pointer; font-weight: 600; font-size: 13px; }
-    #payload {
-      margin: 6px 0 0;
-      padding: 8px;
-      max-height: 220px;
-      overflow: auto;
-      background: #111827;
-      color: #e5e7eb;
-      border-radius: 6px;
-      font-size: 11px;
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
-    .hint { margin: 4px 0 0; color: #6b7280; font-size: 11px; }
+    #status li.success { color: var(--green); }
+    #status li.error { color: var(--red); }
+
+    details { margin-top: 10px; }
+    summary { cursor: pointer; font-weight: 600; font-size: 12px; color: #374151; }
+    #metrics { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; margin: 6px 0 0; font-size: 12px; }
+    #metrics dt { color: var(--muted); }
+    #metrics dd { margin: 0; font-variant-numeric: tabular-nums; }
+    #payload { margin: 6px 0 0; padding: 8px; max-height: 200px; overflow: auto; background: #111827; color: #e5e7eb; border-radius: 6px; font-size: 11px; white-space: pre-wrap; word-break: break-word; }
+    footer { margin-top: 12px; color: var(--muted); font-size: 10.5px; text-align: center; }
   </style>
 </head>
 <body>
-  <h1>PrivSight</h1>
+  <header>
+    <img src="../icons/icon-128.png" alt="">
+    <div>
+      <h1>PrivSight</h1>
+      <p>Privacy-Preserving AI Browser Agent</p>
+    </div>
+  </header>
 
-  <label for="task">Task</label>
-  <textarea id="task">Find the cheapest black shirt and click Buy Now</textarea>
-  <button id="run">Run</button>
+  <div class="task">
+    <textarea id="task" placeholder="Tell PrivSight what to do..." aria-label="Task"></textarea>
+    <button id="run">Run Task</button>
+  </div>
 
-  <div class="badge-row">
-    <h2>Privacy status</h2>
+  <div class="state" id="agent-state" data-kind="idle">
+    <span class="dot"></span>
+    <div>
+      <strong id="state-word">Idle</strong>
+      <span id="state-hint">Enter a task and press Run Task.</span>
+      <span id="state-facts" class="facts"></span>
+    </div>
     <span id="privacy-badge" class="badge idle">IDLE</span>
   </div>
-  <ul id="pipeline">
-    <li class="group"><span>Perception (local)</span></li>
-    <li data-stage="dom" data-state="pending"><span>DOM perception</span><span class="state">PENDING</span></li>
-    <li data-stage="vision" data-state="pending"><span>Local vision (neural OCR)</span><span class="state">PENDING</span></li>
-    <li class="group"><span>Privacy (local)</span></li>
-    <li data-stage="detect" data-state="pending"><span>PII detection</span><span class="state">PENDING</span></li>
-    <li data-stage="visual-redaction" data-state="pending"><span>Visual redaction</span><span class="state">PENDING</span></li>
-    <li data-stage="leakage" data-state="pending"><span>Leakage verification</span><span class="state">PENDING</span></li>
-    <li data-stage="firewall" data-state="pending"><span>Privacy Firewall</span><span class="state">PENDING</span></li>
-    <li class="group"><span>Reasoning (cloud)</span></li>
-    <li data-stage="reason" data-state="pending"><span>Cloud LLM</span><span class="state">PENDING</span></li>
-    <li class="group"><span>Safety (local)</span></li>
-    <li data-stage="validate" data-state="pending"><span>Action validator</span><span class="state">PENDING</span></li>
-    <li data-stage="execute" data-state="pending"><span>Browser execution</span><span class="state">PENDING</span></li>
-  </ul>
-  <p class="hint">Hover a row for details. Raw values are never shown.</p>
+  <p id="page-info"></p>
 
-  <h2>Local screen previews</h2>
-  <div class="previews">
-    <figure><figcaption>Captured (local)</figcaption><img id="preview-raw" alt="raw capture preview"></figure>
-    <figure><figcaption>Masked (local)</figcaption><img id="preview-masked" alt="masked capture preview"></figure>
+  <h2>Privacy pipeline</h2>
+  <ul id="pipeline">
+    <li class="group"><span>Raw page (stays on this device)</span></li>
+    <li data-stage="dom" data-state="pending"><span>DOM observation</span><span class="state-cell">PENDING</span></li>
+    <li data-stage="vision" data-state="pending"><span>Local visual perception (neural OCR)</span><span class="state-cell">PENDING</span></li>
+    <li class="group"><span>Local privacy processing</span></li>
+    <li data-stage="detect" data-state="pending"><span>PII detection and redaction</span><span class="state-cell">PENDING</span></li>
+    <li data-stage="visual-redaction" data-state="pending"><span>Screen region masking</span><span class="state-cell">PENDING</span></li>
+    <li data-stage="leakage" data-state="pending"><span>Leakage verification</span><span class="state-cell">PENDING</span></li>
+    <li data-stage="firewall" data-state="pending"><span>Privacy Firewall</span><span class="state-cell">PENDING</span></li>
+    <li class="group cloud"><span>Sanitized context only crosses this line</span></li>
+    <li data-stage="reason" data-state="pending"><span>Cloud reasoning</span><span class="state-cell">PENDING</span></li>
+    <li class="group"><span>Back on this device</span></li>
+    <li data-stage="validate" data-state="pending"><span>Action validator (live page check)</span><span class="state-cell">PENDING</span></li>
+    <li data-stage="execute" data-state="pending"><span>Browser action</span><span class="state-cell">PENDING</span></li>
+  </ul>
+  <p class="hint">Hover a row for details. Raw values are never shown here.</p>
+
+  <h2>What the cloud does not see</h2>
+  <div class="preview">
+    <img id="preview-masked" alt="locally masked screen capture" title="Click to open the masked preview full size (stays in this browser)" hidden>
+    <div id="preview-empty" class="empty">Masked screen preview appears here after a run.</div>
   </div>
+  <p class="lock">Raw pixels never leave this browser.</p>
   <p class="hint" id="preview-note"></p>
 
-  <h2>Measured this run</h2>
-  <dl id="metrics"></dl>
-
-  <h2>Status</h2>
+  <h2>Run log</h2>
   <ul id="status"></ul>
 
   <details>
-    <summary>Sanitized payload sent to backend</summary>
+    <summary>Measured this run</summary>
+    <dl id="metrics"></dl>
+  </details>
+
+  <details>
+    <summary>Sanitized context sent to the reasoner</summary>
     <p class="hint">Exact request body. Sensitive values appear only as placeholders. No image data.</p>
     <pre id="payload">(run a task to see the payload)</pre>
   </details>
+
+  <footer>Local controller: deterministic orchestration. Local vision: on-device OCR. Cloud: reasoning on sanitized text only.</footer>
 
   <script type="module" src="popup.ts"></script>
 </body>

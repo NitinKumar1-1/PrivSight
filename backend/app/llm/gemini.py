@@ -27,6 +27,9 @@ MAX_ERROR_EXCERPT = 300
 ATTEMPTS_PER_MODEL = 3
 RETRY_DELAY_SECONDS = 1.5
 RETRYABLE_STATUSES = {429, 500, 502, 503, 504}
+# A 429 whose body says the quota itself is used up (daily/plan quota, not a per-minute burst)
+# will not clear in seconds: skip straight to the next model instead of pausing and retrying.
+QUOTA_EXHAUSTED_MARKER = "exceeded your current quota"
 SKIP_MODEL_STATUSES = {404}
 
 
@@ -68,7 +71,23 @@ class GeminiReasoner:
         text = self._extract_text(response)
         if self._debug:
             self._dump("RAW REPLY FROM GEMINI", text)
-        return parse_action(text, (el.id for el in request.page.elements))
+        allowed = [el.id for el in request.page.elements]
+        try:
+            return parse_action(text, allowed)
+        except LLMResponseError as first:
+            # One correction round: tell the model what was wrong with its own reply and ask again.
+            # The page context is unchanged and still sanitized; nothing new is revealed.
+            correction = (
+                f"Your previous reply was rejected: {first}. Reply again with exactly one JSON action. "
+                "Use only an element ID that appears in the INTERACTIVE ELEMENTS list, copied exactly, or return \"done\"."
+            )
+            payload["contents"].append({"role": "model", "parts": [{"text": text}]})
+            payload["contents"].append({"role": "user", "parts": [{"text": correction}]})
+            print(f"[llm] correction round: {first}")
+            retry_text = self._extract_text(self._post(payload))
+            if self._debug:
+                self._dump("RAW REPLY FROM GEMINI (correction round)", retry_text)
+            return parse_action(retry_text, allowed)
 
     @staticmethod
     def _dump(title: str, body: str) -> None:
@@ -116,6 +135,8 @@ class GeminiReasoner:
                 failures.append(f"{model} attempt {attempt}: HTTP {response.status_code}: {excerpt}")
                 if response.status_code in SKIP_MODEL_STATUSES:
                     break  # this model is gone; move to the next one
+                if response.status_code == 429 and QUOTA_EXHAUSTED_MARKER in response.text:
+                    break  # quota used up on this model; try the next one without waiting
                 if response.status_code in RETRYABLE_STATUSES:
                     self._pause(attempt)
                     continue

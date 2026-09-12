@@ -10,11 +10,13 @@ import type { ExecuteActionResult, ExtractPageResult } from "../../src/shared/me
 import type { OcrResult } from "../../src/vision/types";
 
 const TASK = "Find the cheapest black shirt and click Buy Now";
+const BUY_TRACE = { action: "click", target: "Buy Now", resolution: "ps-id" as const, match: "button el_buy_c", validation: "PASS" as const, execution: "PASS" as const, postAction: "url_changed" };
 const OCR: OcrResult = { engine: "test-ocr", imageWidth: 10, imageHeight: 10, lines: [], timings: { loadMs: 5, recognizeMs: 40 }, usedJsHeapMb: 12 };
 
 const allowed: FirewallVerdict = {
   verdict: "allowed",
-  body: JSON.stringify({ task: TASK, page: { url: "u", title: "t", elements: [], text: "" }, placeholders: [] }) as ApprovedPayload,
+  // The fake page is a checkout page, so a verified "Buy Now" click can complete a purchase task.
+  body: JSON.stringify({ task: TASK, page: { url: "https://shop.example/checkout", title: "Checkout", elements: [], text: "" }, placeholders: [] }) as ApprovedPayload,
   checks: [{ name: "structure", passed: true }],
 };
 const blocked: FirewallVerdict = { verdict: "blocked", reason: "Privacy Firewall blocked request: EMAIL leakage detected", checks: [] };
@@ -45,8 +47,9 @@ function harness(overrides: Partial<AgentPorts> = {}): Harness {
     perceive: async () => (count("perceive"), OCR),
     visionInfo: async () => ({ engine: "test-ocr", backend: "wasm", webgpu: "n/a" }),
     extract: async () => (count("extract"), extracted(allowed)),
-    reason: async () => (count("reason"), { action: "click", target: "el_buy_c", confidence: 0.9, reason: "r" }),
-    execute: async () => (count("execute"), { ok: true, message: "Clicked el_buy_c", validation: "pass" } as ExecuteActionResult),
+    // The click is marked final; the controller verifies it on the resulting page, where the reasoner confirms with done.
+    reason: async () => (count("reason"), calls.reason === 1 ? { action: "click", target: "el_buy_c", confidence: 0.9, reason: "r", final: true } : { action: "done", confidence: 1, reason: "bought" }),
+    execute: async () => (count("execute"), { ok: true, message: "Clicked el_buy_c", validation: "pass", trace: BUY_TRACE } as ExecuteActionResult),
     renderMask: async () => (count("mask"), "data:image/png;base64,MASK"),
     report: (event) => void events.push(event),
     now: () => (clock += 10),
@@ -61,9 +64,10 @@ describe("runAgent happy path", () => {
   it("runs OBSERVE -> PERCEIVE/SANITIZE -> REASON -> VALIDATE/EXECUTE once and completes", async () => {
     const h = harness();
     const outcome = await runAgent(TASK, h.ports);
-    expect(outcome).toEqual({ status: "completed", rounds: 1, message: "Clicked el_buy_c" });
-    expect(h.calls).toMatchObject({ ensure: 1, capture: 1, perceive: 1, extract: 1, reason: 1, execute: 1, mask: 1 });
-    expect(stages(h)).toEqual([
+    expect(outcome).toMatchObject({ status: "completed", code: "COMPLETED", rounds: 2, steps: 2, cloudContacted: true, browserActed: true });
+    // Two rounds: the final click, then the verification observation on which the reasoner says done.
+    expect(h.calls).toMatchObject({ ensure: 2, capture: 2, perceive: 2, extract: 2, reason: 2, execute: 2, mask: 2 });
+    expect(stages(h).slice(0, 11)).toEqual([
       "vision:pass", "dom:pass", "detect:pass", "visual-redaction:pass", "leakage:pass", "firewall:pass",
       "reason:pending", "reason:pass", "validate:pending", "validate:pass", "execute:pass",
     ]);
@@ -115,7 +119,7 @@ describe("runAgent stop conditions (fail safe)", () => {
   it("stops when the firewall blocks: no reasoning, no execution", async () => {
     const h = harness({ extract: async () => extracted(blocked) });
     const outcome = await runAgent(TASK, h.ports);
-    expect(outcome).toEqual({ status: "blocked", rounds: 1, message: blocked.reason });
+    expect(outcome).toMatchObject({ status: "blocked", code: "PRIVACY_BLOCK", rounds: 1, steps: 0, message: blocked.reason, cloudContacted: false, browserActed: false });
     expect(h.calls.reason).toBeUndefined();
     expect(h.calls.execute).toBeUndefined();
     expect(stages(h)).toEqual(expect.arrayContaining(["firewall:fail", "reason:skipped", "validate:skipped", "execute:skipped"]));
@@ -160,14 +164,17 @@ describe("runAgent bounded re-observation", () => {
       attempt++;
       return attempt === 1
         ? ({ ok: false, message: "Target element not found on the current page", validation: "blocked", code: "unknown_target" } as ExecuteActionResult)
-        : ({ ok: true, message: "Clicked el_buy_c", validation: "pass" } as ExecuteActionResult);
+        : ({ ok: true, message: "Clicked el_buy_c", validation: "pass", trace: BUY_TRACE } as ExecuteActionResult);
     });
     const h = harness({ execute });
+    // The reasoner asks for the click twice (the first attempt was stale), then confirms done.
+    h.ports.reason = async () => (h.calls.reason = (h.calls.reason ?? 0) + 1, h.calls.reason <= 2 ? { action: "click", target: "el_buy_c", confidence: 0.9, reason: "r", final: true } : { action: "done", confidence: 1, reason: "bought" });
     const outcome = await runAgent(TASK, h.ports);
-    expect(outcome).toEqual({ status: "completed", rounds: 2, message: "Clicked el_buy_c" });
-    expect(h.calls.capture).toBe(2);
-    expect(h.calls.extract).toBe(2);
-    expect(h.calls.reason).toBe(2);
+    // Round 1: stale; round 2: the click runs (final); round 3: done, verified on the checkout page.
+    expect(outcome).toMatchObject({ status: "completed", code: "COMPLETED", rounds: 3, steps: 2 });
+    expect(h.calls.capture).toBe(3);
+    expect(h.calls.extract).toBe(3);
+    expect(h.calls.reason).toBe(3);
   });
 
   it("never exceeds MAX_ROUNDS when the target keeps disappearing", async () => {

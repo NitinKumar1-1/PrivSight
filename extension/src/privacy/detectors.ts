@@ -43,16 +43,26 @@ const AUTOCOMPLETE_RULES: Record<string, PiiType> = {
   "one-time-code": "OTP",
   "current-password": "PASSWORD",
   "new-password": "PASSWORD",
+  "street-address": "ADDRESS",
+  "address-line1": "ADDRESS",
+  "address-line2": "ADDRESS",
 };
 
-/** Keyword evidence. Several rules may match one text; each adds to its type. */
+/**
+ * Keyword evidence. Several rules may match one text; each adds to its type.
+ * Every keyword is word-bounded: "headphones", "smartphone case",
+ * "microphone" and "automobile" are product words, not phone fields, and
+ * "cardigan" is not a card. An accessible label that merely names a product
+ * must never turn a control into a sensitive field.
+ */
 const KEYWORD_RULES: ReadonlyArray<readonly [RegExp, PiiType]> = [
-  [/passw(or)?d|passcode/i, "PASSWORD"],
-  [/\botp\b|one[\s_-]?time|verification code/i, "OTP"],
-  [/\bcv[vc]2?\b|security code/i, "CVV"],
-  [/card[\s_-]?(number|no|num)|\bcc[\s_-]?(number|num)\b|credit card|debit card/i, "CARD"],
-  [/e[\s_-]?mail/i, "EMAIL"],
-  [/phone|mobile|\btel\b|contact number/i, "PHONE"],
+  [/\bpassw(?:or)?d\b|\bpasscode\b/i, "PASSWORD"],
+  [/\botp\b|\bone[\s_-]?time\b|\bverification code\b/i, "OTP"],
+  [/\bcv[vc]2?\b|\bsecurity code\b/i, "CVV"],
+  [/\bcard[\s_-]?(?:number|no|num)\b|\bcc[\s_-]?(?:number|num)\b|\bcredit card\b|\bdebit card\b/i, "CARD"],
+  [/\be[\s_-]?mail\b/i, "EMAIL"],
+  [/\bphone\b|\bmobile\b|\btel\b|\btelephone\b|\bcontact number\b|\bwhatsapp\b/i, "PHONE"],
+  [/(?<!e[\s_-]?mail[\s_-])\b(?:street|shipping|billing|delivery|home|postal)?[\s_-]?address\b/i, "ADDRESS"],
 ];
 
 /** Value shapes. Deliberately WEAK: a shape alone never classifies a field. */
@@ -72,8 +82,19 @@ export interface FieldClassification {
   signals: string[];
 }
 
+/** Button-like inputs carry a label, never a user value. */
+const BUTTON_INPUT_TYPES = new Set(["submit", "button", "reset", "image", "checkbox", "radio", "file", "range", "color"]);
+
+/**
+ * A field that can hold a user's value. Buttons rendered as <input
+ * type="submit"> (with a product name in their aria-label) are controls, not
+ * fields: their "value" is a caption, and classifying them would register
+ * that caption as sensitive.
+ */
 export function isFormField(element: Element): element is HTMLInputElement | HTMLTextAreaElement {
-  return element.tagName === "INPUT" || element.tagName === "TEXTAREA";
+  if (element.tagName === "TEXTAREA") return true;
+  if (element.tagName !== "INPUT") return false;
+  return !BUTTON_INPUT_TYPES.has((element.getAttribute("type") ?? "text").toLowerCase());
 }
 
 /** Returns the PII type a form field holds, or null. Convenience wrapper. */
@@ -237,7 +258,7 @@ const PHONE_PATTERNS = [
  * decides the type (a semantic signal); the value must also have the right
  * shape for numeric types so "OTP: contact support" is not redacted.
  */
-const LABELLED_VALUE = /\b(otp|one[\s-]?time (?:code|password)|verification code|passw(?:or)?d|passcode|cvv|cvc|card(?: number| no\.?)?|phone|mobile|e-?mail)\s*[:=]\s*([^\s,;|]+(?:[ \-]\d{3,6}){0,4})/gi;
+const LABELLED_VALUE = /\b(otp|one[\s-]?time (?:code|password)|verification code|passw(?:or)?d|passcode|cvv|cvc|card(?: number| no\.?)?|phone|mobile|e-?mail|(?:shipping |delivery |billing |home |street )?address)\s*[:=]\s*([^\s,;|]+(?:[ \-]\d{3,6}){0,4}|(?:[^\n,;|]{6,120}))/gi;
 
 /** Redaction output; must never be picked up as a value by any detector. */
 const PLACEHOLDER_SHAPE = /^\[[A-Z]+_\d+\]$/;
@@ -249,6 +270,7 @@ const LABEL_SHAPES: ReadonlyArray<readonly [RegExp, PiiType, RegExp]> = [
   [/^card/i, "CARD", /^(?:\d[ -]?){12,18}\d$/],
   [/^phone|^mobile/i, "PHONE", /^\+?[\d ()-]{8,16}$/],
   [/^e-?mail/i, "EMAIL", /^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i],
+  [/address$/i, "ADDRESS", /^(?=.*[a-z])(?=.*\d).{6,120}$/i],
 ];
 
 /** PII type named by a label text ("Card number", "OTP", "Verification code"), or null. */
@@ -267,6 +289,8 @@ export function valueMatchesShape(type: PiiType, value: string): boolean {
     PHONE: /^\+?[\d ()-]{8,16}$/,
     EMAIL: /^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i,
     PASSWORD: /^(?=.*[\d•*#@!$%^&_])\S{4,}$/,
+    // A postal address names a place and a number: "42 Park Street, Agra 282010". Label-typed only.
+    ADDRESS: /^(?=.*[a-z])(?=.*\d).{6,120}$/i,
   };
   return shapes[type].test(value.trim());
 }

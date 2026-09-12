@@ -2,6 +2,101 @@
 
 Privacy-preserving browser agent. Smart India Hackathon 2026, problem statement SIH26171.
 
+## Phase 7: multi-step tasks on real sites
+
+Phase 7 lets one task span several actions while keeping every boundary
+from Phases 2 to 6:
+
+- **Multi-step loop.** After an action that is neither `done` nor marked
+  `final` by the reasoner, the controller waits for the page to settle,
+  observes again (fresh capture, OCR, redaction, firewall) and sends the
+  sanitized page together with a redacted list of the actions already taken
+  (`history`, verified by the leakage checker like every other field). At
+  most 8 steps per task; a repeated identical action stops the run.
+- **Typing, non-sensitive only.** The executor types plain text into ordinary
+  fields such as a search box. It refuses placeholders and password fields,
+  so no personal or payment value is ever typed on the model's behalf; the
+  Phase 3 rule that a raw value never enters a sensitive field is unchanged.
+- **Consequential-action guard.** A click whose label reads as purchase,
+  checkout, payment, sign-in/registration, delete/remove or form submission
+  is allowed only when the user's task asks for that category in an
+  affirmative sentence ("buy it" authorises Buy Now; "do not purchase"
+  authorises nothing). A submit button on a form with a password, card or OTP
+  field is treated the same way. This is a deterministic local rule over the
+  user's words and the live control; the model cannot widen it.
+- **Context for repeated controls.** When several controls share a short
+  label ("Add to cart" on every product card), each one carries a redacted
+  `context`: the title and first price of its enclosing card, derived locally
+  from headings and links, so the reasoner can tell them apart. Unique labels
+  get no context and the wire shape of ordinary pages is unchanged. The
+  element cap is 220, filled viewport-first, then buttons and fields, then
+  links.
+- **Self-correction.** If the reasoner names an element id that is not in
+  the list it was given, the backend shows it its own reply and asks once
+  more; if that also fails, the controller re-observes the page once before
+  giving up.
+- **Task-authorised navigation.** The reasoner may return `navigate`; the
+  validator allows it only to a website the task names ("on amazon" allows
+  an amazon URL) or to the site already open, https/http only, and the
+  service worker performs it and waits for the page. From a new tab or a
+  chrome:// page, where no content script can run, the agent sends a
+  sanitized "no page is open" observation first, so a task that names a site
+  opens it by itself and then continues.
+- **Pictures covered in the preview.** Every visible image and video is
+  greyed out in the local masked preview; the cloud never receives images,
+  and now the preview shows that.
+- **Quota handling.** A provider reply saying the API quota is used up is
+  not retried per model; the popup reports it as "the Gemini API key has used
+  up its quota" instead of a raw error.
+- **Fixture.** `demo-site/shop.html` is a single-page shop (search, results,
+  product detail, Add to Cart) with Buy Now, Proceed to checkout and Sign in
+  decoys that log any click.
+
+`e2e/phase7.chrome.ts` runs the cart task through the real popup on the
+fixture (cheapest product ends in the cart, decoys untouched, history present
+in later requests), the same task with prices reordered, injected purchase
+clicks refused by the guard, a buy task that is allowed to click Buy Now, and
+the Amazon task exactly as a user would type it, recorded as observed.
+
+## Phase 6: demo polish and real-website readiness
+
+Phase 6 made no change to the privacy pipeline, the validator or the
+evaluation. It turned the working system into a demonstrable product:
+
+- **The user's task is the entry point.** The popup has an empty task field
+  ("Tell PrivSight what to do...") and a Run Task button. The typed task goes
+  to the Local Browser Controller, is redacted with the same redactor as the
+  page, and reaches the cloud only inside the firewall-approved body. The
+  last task is remembered locally for convenience and is never run
+  automatically.
+- **No page-specific agent logic.** An audit found none in the pipeline: the
+  target always comes from the reasoner's structured action, checked by the
+  validator against the live DOM. The only demo-specific code was the
+  prefilled task text, now removed. Test fixtures, the demo site and the
+  Phase 5 ground truth keep their fixed values on purpose.
+- **Bounded scroll.** The executor now performs `scroll` (up, down, top,
+  bottom) in addition to `click` and `done`. Typing, selecting and navigation
+  stay unsupported and fail closed at the validator, so no consequential
+  action can run.
+- **Real pages.** Interactive-element discovery is capped at 150 per
+  observation, keeps in-viewport elements first, skips `aria-hidden`
+  subtrees and names icon-only controls from their title or image alt.
+  Name/price pairing for conflict detection accepts bare currency amounts.
+- **Product look.** A shield-and-eye icon (generated by
+  `extension/scripts/make-icons.py`, 16/32/48/128 px), a status word
+  (Idle, Observing, Protecting privacy, Reasoning, Validating, Executing,
+  Complete, Blocked), page facts taken from the sanitized body, and a
+  pipeline panel that marks the boundary "sanitized context only crosses
+  this line". The raw capture is no longer shown anywhere; the popup shows
+  only the locally masked capture with the masked regions outlined, under
+  the line "Raw pixels never leave this browser."
+
+`npm run test:chrome` now also runs `e2e/phase6.chrome.ts`: the demo through
+the real popup UI, a price reorder with the same typed task, a scroll task,
+the remembered-task behaviour, task redaction, the icon set, and two harmless
+real-website checks (example.com "find the page heading", Wikipedia's main
+page "find the search box"; no login, no typing, no submission).
+
 ## Phase 5: measured evaluation
 
 Phase 5 adds a reproducible SIH evaluation under `extension/evaluation/`
@@ -82,7 +177,7 @@ Two trust boundaries, both enforced locally:
   in the live DOM, target compatibility, value rules, http/https-only
   navigation, and the sensitive-field policy (a placeholder only into a field
   of the same type, never a raw value into a sensitive field). The executor
-  accepts only validated actions and still implements click and done;
+  accepts only validated actions and implements click, bounded scroll and done;
   contract-valid but unimplemented actions are rejected as "unsupported by
   current executor".
 
@@ -220,14 +315,20 @@ fetched from a CDN at runtime.
 1. Open the demo site tab. It shows fake account data (`demo@example.com`,
    `9999999999`) and a prefilled delivery form with a password, card number
    and OTP. All values are test data.
-2. Click the PrivSight toolbar icon.
-3. The task box is prefilled with "Find the cheapest black shirt and click Buy Now". Click Run.
-4. The pipeline panel fills in: Local PII detection, Leakage verification,
-   Privacy Firewall, Cloud reasoning, Local action validator, Browser
-   execution. The badge reads PROTECTED once the firewall allows the request.
-   Hover a row for details (signal names and check names, never values).
-5. Expand "Sanitized payload sent to backend" in the popup to see the exact
-   request body. It contains placeholders and no raw values.
+2. Click the PrivSight toolbar icon (the shield-and-eye icon).
+3. Type a task such as "Find the cheapest black shirt and buy it" and click
+   Run Task. The status word walks Observing, Protecting privacy, Reasoning,
+   Validating, Executing, Complete.
+4. The pipeline panel fills in: DOM observation, local visual perception,
+   PII detection and redaction, screen region masking, leakage verification,
+   Privacy Firewall, then cloud reasoning on the other side of the boundary
+   line, then the action validator and the browser action. The badge reads
+   PROTECTED once the firewall allows the request. Hover a row for details
+   (signal names and check names, never values). The "Page:" line shows the
+   sanitized title, host and counts.
+5. "What the cloud does not see" shows the locally masked capture with the
+   masked regions outlined. Expand "Sanitized context sent to the reasoner"
+   to see the exact request body: placeholders, no raw values, no image.
 6. Each product has its own button (Buy Now A, B, C with ids `el_buy_a`,
    `el_buy_b`, `el_buy_c`). The model must pick one; the chosen button turns
    green and the line under the grid reads, for example, "Black Shirt C

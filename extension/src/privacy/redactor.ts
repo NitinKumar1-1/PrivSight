@@ -9,6 +9,7 @@
  */
 
 import { findTextMatches } from "./detectors";
+import { findLeakMatches } from "./leakage";
 import type { KnownValue, PiiType, PrivacySummary, Detection } from "./types";
 
 /** Redaction output; a detector must never re-register it as a value. */
@@ -52,10 +53,20 @@ export class Redactor {
   redactText(text: string): string {
     if (!text) return text;
     let result = this.replaceKnownValues(text);
+    result = this.applyMatches(result, findTextMatches(result));
+    // Last pass, aligned with the leakage verifier: anything its own patterns
+    // would flag (a differently formatted card or mobile number, an email in
+    // odd casing) is redacted here, so a page the verifier would reject is
+    // sanitized instead of blocked. The verifier still checks the bytes.
+    result = this.applyMatches(result, findLeakMatches(result));
+    return result;
+  }
 
-    const matches = findTextMatches(result).filter((m) => !PLACEHOLDER_SHAPE.test(m.value));
-    for (let i = matches.length - 1; i >= 0; i--) {
-      const { type, value, index } = matches[i];
+  private applyMatches(text: string, matches: Array<{ type: PiiType; value: string; index: number }>): string {
+    let result = text;
+    const usable = matches.filter((m) => !PLACEHOLDER_SHAPE.test(m.value));
+    for (let i = usable.length - 1; i >= 0; i--) {
+      const { type, value, index } = usable[i];
       const placeholder = this.placeholderFor(type, value);
       result = result.slice(0, index) + placeholder + result.slice(index + value.length);
     }
@@ -89,18 +100,27 @@ export class Redactor {
     return { placeholders, types, detections: [...this.detections] };
   }
 
+  /**
+   * Replaces every known value AND its variants, mirroring what the leakage
+   * verifier looks for: a numeric value (phone, card, OTP) in any spacing or
+   * dashing of the same digits, digit-bounded so an order id that merely
+   * contains the digits is left alone; a textual value (email) in any letter
+   * case.
+   */
   private replaceKnownValues(text: string): string {
     const values = Array.from(this.placeholderByValue.keys()).sort((a, b) => b.length - a.length);
     let result = text;
     for (const value of values) {
-      if (!result.includes(value)) continue;
       const placeholder = this.placeholderByValue.get(value) as string;
-      // A purely numeric value (OTP, phone) embedded inside a longer digit run
-      // is a different number (an order id that happens to contain the OTP's
-      // digits), so it is replaced only on digit boundaries.
-      result = /^[\d\s-]+$/.test(value)
-        ? result.replace(new RegExp(`(?<!\\d)${escapeRegExp(value)}(?!\\d)`, "g"), placeholder)
-        : result.split(value).join(placeholder);
+      const raw = value.trim();
+      if (/^\+?[\d\s-]+$/.test(raw)) {
+        const digits = raw.replace(/\D/g, "");
+        if (digits.length < 4) continue;
+        const spaced = digits.split("").map(escapeRegExp).join("[\\s-]*");
+        result = result.replace(new RegExp(`(?<![\\d+])\\+?${spaced}(?!\\d)`, "g"), placeholder);
+      } else if (raw.length >= 3) {
+        result = result.replace(new RegExp(escapeRegExp(raw), "gi"), placeholder);
+      }
     }
     return result;
   }

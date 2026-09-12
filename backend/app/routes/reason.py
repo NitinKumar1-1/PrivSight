@@ -41,8 +41,15 @@ def reason(request: ReasonRequest, reasoner: LLMReasoner = Depends(get_reasoner)
     try:
         action = reasoner.reason(request)
     except LLMRequestError as exc:
+        safe_print(f"[reason] provider error: {exc}")
+        if "exceeded your current quota" in str(exc):
+            raise HTTPException(
+                status_code=503,
+                detail="Cloud reasoner unavailable: the Gemini API key has used up its quota (HTTP 429). Wait for the quota to reset or configure another key in backend/.env, then run the task again.",
+            ) from exc
         raise HTTPException(status_code=502, detail=f"Reasoning provider error: {exc}") from exc
     except LLMResponseError as exc:
+        safe_print(f"[reason] invalid action: {exc}")
         raise HTTPException(status_code=502, detail=f"Invalid action from reasoning provider: {exc}") from exc
 
     print(
